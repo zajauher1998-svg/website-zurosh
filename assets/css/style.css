@@ -509,3 +509,8 @@ html.veil-in body::after { content: ""; position: fixed; inset: 0; background: v
 .steps-mini li { counter-increment: s; font-size: .88rem; display: flex; gap: 10px; align-items: baseline; }
 .steps-mini li::before { content: counter(s, decimal-leading-zero); color: var(--gold); font-weight: 700; font-size: .75rem; }
 @media (max-width: 480px) { .steps-mini { grid-template-columns: 1fr; } }
+
+/* lifecycle heading stays pinned beside the timeline only when they sit side by side */
+@media (min-width: 861px) {
+  .sticky-head { position: sticky; top: calc(var(--header-h) + 36px); }
+}

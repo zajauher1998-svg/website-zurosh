@@ -312,7 +312,7 @@ telecom = f'''<main id="main" class="telecom-page">
 
   <section class="section navy" id="lifecycle">
     <div class="container two-col" style="align-items:start">
-      <div class="section-head reveal" style="position:sticky;top:120px">
+      <div class="section-head reveal sticky-head">
         <span class="eyebrow on-dark">Tower lifecycle</span>
         <h2>From site acquisition to handing over the tower.</h2>
         <p>Every step is run by one accountable team, so operators get a single point of contact and a single timeline — not a chain of subcontractors.</p>
