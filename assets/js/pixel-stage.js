@@ -561,7 +561,7 @@
      Home: scroll-driven
      ====================================================================== */
   function initScroll(canvas) {
-    var stage = new Stage(canvas, {});
+    var stage = new Stage(canvas, { net: true });
     var sections = [].slice.call(document.querySelectorAll('[data-kf]'));
     var rail = [].slice.call(document.querySelectorAll('.progress-rail a'));
     var kf = [], anchors = [];
@@ -611,6 +611,8 @@
       stage.layout(a.form, b.form, tm);
       // solid logo until the pixels start moving; it returns once they have re-formed a Z
       stage.setSolid(a.form === 'z' && tm < 0.05 ? 1 - tm / 0.05 : b.form === 'z' && tm > 0.95 ? (tm - 0.95) / 0.05 : 0);
+      // fibre network shows only while the pixels rest as the map
+      stage.updateNet(a.form === 'map' ? 1 - tm / 0.12 : b.form === 'map' ? (tm - 0.88) / 0.12 : 0, (now - start) / 1000);
       stage.render(
         a.rot + (b.rot - a.rot) * tr,
         a.x + (b.x - a.x) * ease(th),
