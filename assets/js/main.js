@@ -45,58 +45,47 @@
     document.addEventListener('click', function (e) { if (!item.contains(e.target)) set(false); });
   });
 
-  /* ---------- pixel veil: pages dissolve into / out of pixels ---------- */
-  var veil = document.createElement('canvas');
-  veil.className = 'pixel-veil';
-  veil.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(veil);
-  var ctx = veil.getContext('2d');
-  var cells = [], cols, rows, size;
+  /* ---------- page transition: a navy panel wipes over, then away ---------- */
+  var wipe = document.createElement('div');
+  wipe.className = 'page-wipe';
+  wipe.setAttribute('aria-hidden', 'true');
+  wipe.innerHTML = '<svg class="wipe-mark" viewBox="0 0 94 100"><path fill="#fff" d="M0 0 L94 0 L16.451 100 L0 100 L67.468 13 L0 13 Z"/>' +
+    '<path fill="#C29B57" d="M77.549 31.005 L94 31.005 L40.495 100 L24.044 100 Z"/><path fill="#fff" d="M58.169 87 L94 87 L94 100 L48.087 100 Z"/></svg>';
+  document.body.appendChild(wipe);
 
-  function buildGrid() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    veil.width = window.innerWidth * dpr;
-    veil.height = window.innerHeight * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    size = window.innerWidth < 700 ? 34 : 52;
-    cols = Math.ceil(window.innerWidth / size);
-    rows = Math.ceil(window.innerHeight / size);
-    cells = [];
-    for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) {
-      // order: diagonal sweep + noise so pixels fall like the Z's stroke
-      cells.push({ x: x, y: y, o: (x / cols + y / rows) / 2 * 0.6 + Math.random() * 0.4, g: Math.random() < 0.14 });
-    }
+  function afterTransition(fn, ms) {
+    var done = false;
+    function go() { if (!done) { done = true; fn(); } }
+    wipe.addEventListener('transitionend', function h(e) {
+      if (e.target === wipe && e.propertyName === 'transform') { wipe.removeEventListener('transitionend', h); go(); }
+    });
+    setTimeout(go, ms); // safety net if transitionend never fires
   }
-  function draw(p, filling) {
-    ctx.clearRect(0, 0, veil.width, veil.height);
-    for (var i = 0; i < cells.length; i++) {
-      var c = cells[i];
-      var on = filling ? c.o <= p : c.o > p;
-      if (!on) continue;
-      ctx.fillStyle = c.g ? '#C29B57' : '#15284A';
-      ctx.fillRect(c.x * size, c.y * size, size + 0.5, size + 0.5);
-    }
-  }
-  function animate(dur, filling, done) {
-    var t0 = performance.now();
-    (function step(now) {
-      var p = Math.min(1, (now - t0) / dur);
-      draw(p, filling);
-      if (p < 1) requestAnimationFrame(step); else if (done) done();
-    })(t0);
+  function reset() { wipe.className = 'page-wipe'; }
+
+  // leaving: panel rises from the bottom and covers the page, then navigate
+  function leave(href) {
+    try { sessionStorage.setItem('zurosh-veil', '1'); } catch (err) {}
+    wipe.className = 'page-wipe anim';
+    void wipe.offsetWidth; // commit the start position before animating
+    wipe.classList.add('cover');
+    afterTransition(function () { location.href = href; }, 700);
   }
 
-  // arriving via a transition: start covered, then dissolve
-  var arriving = doc.classList.contains('veil-in');
-  if (arriving) {
-    buildGrid();
-    draw(0, false);
+  // arriving: start covered, then the panel continues upward and off screen
+  if (doc.classList.contains('veil-in')) {
+    wipe.className = 'page-wipe cover';
     doc.classList.remove('veil-in');
     try { sessionStorage.removeItem('zurosh-veil'); } catch (e) {}
-    animate(650, false, function () { ctx.clearRect(0, 0, veil.width, veil.height); });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        wipe.className = 'page-wipe anim leave';
+        afterTransition(reset, 900);
+      });
+    });
   }
   window.addEventListener('pageshow', function (e) {
-    if (e.persisted) { ctx.clearRect(0, 0, veil.width, veil.height); doc.classList.remove('veil-in'); }
+    if (e.persisted) { reset(); doc.classList.remove('veil-in'); }
   });
 
   document.addEventListener('click', function (e) {
@@ -107,9 +96,7 @@
     if (url.origin !== location.origin || !/\.html$|\/$/.test(url.pathname)) return;
     if (url.pathname === location.pathname) return; // same-page anchors scroll normally
     e.preventDefault();
-    buildGrid();
-    try { sessionStorage.setItem('zurosh-veil', '1'); } catch (err) {}
-    animate(480, true, function () { location.href = url.href; });
+    leave(url.href);
   });
 
   /* ---------- reveal on scroll ---------- */

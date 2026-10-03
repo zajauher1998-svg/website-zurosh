@@ -207,12 +207,25 @@ p { margin: 0 0 1em; }
 }
 
 /* ==========================================================================
-   Pixel page-transition overlay
+   Page transition: navy panel with a gold leading edge
    ========================================================================== */
-.pixel-veil {
+.page-wipe {
   position: fixed; inset: 0; z-index: 999; pointer-events: none;
-  width: 100vw; height: 100vh;
+  background: var(--navy-900); display: grid; place-items: center;
+  transform: translateY(100%); visibility: hidden;
 }
+.page-wipe::before, .page-wipe::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 3px; background: var(--gold);
+}
+.page-wipe::before { top: 0; }
+.page-wipe::after { bottom: 0; }
+.page-wipe.anim { transition: transform .6s cubic-bezier(.76, 0, .24, 1); }
+.page-wipe.cover { transform: none; visibility: visible; pointer-events: auto; }
+.page-wipe.leave { transform: translateY(-100%); visibility: visible; }
+.wipe-mark { width: 52px; height: auto; opacity: 0; transform: translateY(10px); transition: opacity .3s ease, transform .4s ease; }
+.page-wipe.cover .wipe-mark { opacity: 1; transform: none; transition-delay: .2s; }
+.page-wipe.leave .wipe-mark { opacity: 0; transform: translateY(-10px); transition-duration: .2s; }
+.page-wipe.cover:not(.anim) .wipe-mark { transition: none; }
 
 /* ==========================================================================
    HOME — scroll-driven 3D stage
@@ -488,8 +501,8 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 16px; }
   .scroll-cue .mouse::after { animation: none; }
 }
 
-/* covers the page until the pixel veil takes over (set inline in <head>) */
-html.veil-in body::after { content: ""; position: fixed; inset: 0; background: var(--navy); z-index: 998; }
+/* covers the page until the transition panel takes over (set inline in <head>) */
+html.veil-in body::after { content: ""; position: fixed; inset: 0; background: var(--navy-900); z-index: 998; }
 
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .steps-mini { list-style: none; counter-reset: s; padding: 0; margin: 18px 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; }
