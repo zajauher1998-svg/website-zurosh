@@ -278,6 +278,27 @@
     this.group.add(mesh);
     this.scene.add(this.group);
 
+    // the solid logo: shown at rest, swapped for the pixels once morphing starts
+    var solid = this.solid = new THREE.Group(), depth = LAYERS * CELL, mats = this.solidMats = [];
+    Z_POLYS.forEach(function (poly) {
+      var shape = new THREE.Shape();
+      poly.p.forEach(function (pt, k) {
+        var x = (pt[0] - 47) * UNIT, y = (50 - pt[1]) * UNIT;
+        if (k) shape.lineTo(x, y); else shape.moveTo(x, y);
+      });
+      var g = new THREE.ExtrudeGeometry(shape, { depth: depth, bevelEnabled: false });
+      g.translate(0, 0, -depth / 2);
+      var hex = poly.c === 'g' ? palette.g : palette.n;
+      // faces keep the exact brand colour; the sides are lit to show depth
+      var face = new THREE.MeshBasicMaterial({ color: hex, transparent: true });
+      var side = new THREE.MeshStandardMaterial({ color: hex, roughness: 0.4, metalness: 0.2, transparent: true });
+      mats.push(face, side);
+      solid.add(new THREE.Mesh(g, [face, side]));
+    });
+    this.group.add(solid);
+    this.solidV = -1;
+    this.setSolid(1);
+
     this.dummy = new THREE.Object3D();
     this.last = '';
     this.mouse = { x: 0, y: 0, tx: 0, ty: 0 };
@@ -300,6 +321,16 @@
     this.visH = 2 * this.camera.position.z * Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
     this.visW = this.visH * this.camera.aspect;
     this.last = '';
+  };
+
+  /* 1 = original solid logo, 0 = pixels, in between = logo fading into pixels */
+  Stage.prototype.setSolid = function (v) {
+    v = clamp(v, 0, 1);
+    if (v === this.solidV) return;
+    this.solidV = v;
+    this.solid.visible = v > 0;
+    this.mesh.visible = v < 1;
+    this.solidMats.forEach(function (m) { m.opacity = v; });
   };
 
   /* place every pixel for a morph between two formations (t: 0..1) */
@@ -345,7 +376,7 @@
     g.rotation.y = rotY + wobble + m.x * 0.18;
     g.rotation.x = m.y * 0.1 + (this.reduced ? 0 : Math.sin(time * 0.45) * 0.05 * sway);
     g.position.x = x;
-    g.position.y = y;
+    g.position.y = y + (this.reduced ? 0 : Math.sin(time * 0.8) * 0.18 * sway);
     g.scale.setScalar(scale);
     this.renderer.render(this.scene, this.camera);
   };
@@ -396,11 +427,14 @@
       while (i < anchors.length - 2 && y >= anchors[i + 1]) i++;
       var span = Math.max(1, anchors[i + 1] - anchors[i]);
       var raw = clamp((y - anchors[i]) / span, 0, 1);
-      var th = clamp((raw - 0.1) / 0.8, 0, 1);    // hold zones around each section
+      // hold zones around each section; the opening logo reacts to the first scroll
+      var th = i === 0 ? clamp(raw / 0.9, 0, 1) : clamp((raw - 0.1) / 0.8, 0, 1);
       var a = kf[i], b = kf[i + 1];
       var tr = ease(clamp(th / 0.65, 0, 1));     // rotate first…
       var tm = clamp((th - 0.22) / 0.78, 0, 1);  // …then shatter & rebuild
       stage.layout(a.form, b.form, tm);
+      // solid logo until the pixels start moving; it returns once they have re-formed a Z
+      stage.setSolid(a.form === 'z' && tm < 0.05 ? 1 - tm / 0.05 : b.form === 'z' && tm > 0.95 ? (tm - 0.95) / 0.05 : 0);
       stage.render(
         a.rot + (b.rot - a.rot) * tr,
         a.x + (b.x - a.x) * ease(th),
@@ -432,7 +466,9 @@
       if (!visible) return;
       var t = (now - start) / 1000;
       var p = clamp((t - HOLD) / DUR, 0, 1);
-      stage.layout('z', form, clamp((p - 0.15) / 0.85, 0, 1));
+      var tm = clamp((p - 0.15) / 0.85, 0, 1);
+      stage.layout('z', form, tm);
+      stage.setSolid(1 - tm / 0.05);
       var spinAfter = stage.reduced ? 0 : Math.max(0, t - HOLD - DUR) * 0.22;
       stage.render(ease(clamp(p / 0.6, 0, 1)) * Math.PI * 2 + spinAfter, 0, 0, 0.92, 0.6, t);
     }

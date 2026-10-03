@@ -11,7 +11,10 @@
 
   /* ---------- header ---------- */
   var header = document.querySelector('.site-header');
-  function onScroll() { if (header) header.classList.toggle('scrolled', window.scrollY > 20); }
+  function onScroll() {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 20);
+    document.body.classList.toggle('has-scrolled', window.scrollY > 20);
+  }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
