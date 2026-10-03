@@ -207,23 +207,13 @@ p { margin: 0 0 1em; }
 }
 
 /* ==========================================================================
-   Page transition: the Z's diagonal sweeps across (see main.js)
+   Page transition: the Z splits along its diagonal (see main.js)
    ========================================================================== */
 .z-wipe { position: fixed; inset: 0; z-index: 999; pointer-events: none; visibility: hidden; overflow: hidden; }
 .z-wipe.active { visibility: visible; pointer-events: auto; }
-.zw-band { position: absolute; top: 0; height: 100%; transform: translateX(-300vw) skewX(-37.8deg); will-change: transform; }
-.zw-navy { background: var(--navy); }
-.zw-gold { background: var(--gold); z-index: 2; }
-.zw-center {
-  position: absolute; inset: 0; z-index: 3; opacity: 0;
-  display: grid; place-content: center; justify-items: center; gap: 22px;
-}
-.zw-center svg { width: 64px; height: auto; }
-.zw-rule { width: 46px; height: 2px; background: var(--gold); }
-.zw-label {
-  color: #fff; font-size: .8rem; font-weight: 500; letter-spacing: .6em; text-transform: uppercase;
-  padding-left: .6em; /* balances the trailing letter-spacing */
-}
+.zw-half { position: absolute; background: var(--navy); will-change: transform; }
+.zw-mark { position: absolute; left: 50%; top: 50%; width: 72px; height: 77px; margin: -38px 0 0 -36px; z-index: 2; will-change: transform; }
+.zw-mark svg { position: absolute; inset: 0; width: 100%; height: 100%; will-change: transform; }
 
 /* ==========================================================================
    HOME — scroll-driven 3D stage

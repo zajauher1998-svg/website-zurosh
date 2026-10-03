@@ -45,35 +45,43 @@
     document.addEventListener('click', function (e) { if (!item.contains(e.target)) set(false); });
   });
 
-  /* ---------- page transition: the Z's diagonal sweeps between pages ----------
-     A gold streak cuts across at the logo's stroke angle, a navy band follows
-     and covers the screen while the Z mark + destination name appear (echoing
-     the stacked logo), then the band exits along the same diagonal.        */
-  var SLANT = Math.tan(37.8 * Math.PI / 180);  // angle of the Z's diagonal strokes
-  var NAMES = { 'index': 'Home', '': 'Home', 'telecom': 'Telecom', 'construction': 'Construction', 'about': 'About', 'contact': 'Contact' };
+  /* ---------- page transition: the Z splits along its own diagonal ----------
+     Leaving: two navy halves, cut along the Z's diagonal, slide together and the Z floats in.
+     Arriving: the gold stripe flies up-right, the rest of the Z down-left,
+     the halves part sideways along the cut, and the new page rises in.             */
+  var DIR = { x: 0.613, y: -0.790 };  // unit vector along the Z's diagonal (up-right on screen)
   var wipe = document.createElement('div');
   wipe.className = 'z-wipe';
   wipe.setAttribute('aria-hidden', 'true');
   wipe.innerHTML =
-    '<div class="zw-band zw-navy"></div><div class="zw-band zw-gold"></div>' +
-    '<div class="zw-center"><svg viewBox="0 0 94 100"><path fill="#fff" d="M0 0 L94 0 L16.451 100 L0 100 L67.468 13 L0 13 Z"/>' +
-    '<path fill="#C29B57" d="M77.549 31.005 L94 31.005 L40.495 100 L24.044 100 Z"/><path fill="#fff" d="M58.169 87 L94 87 L94 100 L48.087 100 Z"/></svg>' +
-    '<span class="zw-rule"></span><span class="zw-label"></span></div>';
+    '<div class="zw-half zw-a"></div><div class="zw-half zw-b"></div>' +
+    '<div class="zw-mark">' +
+    '<svg class="zw-white" viewBox="0 0 94 100"><path fill="#fff" d="M0 0 L94 0 L16.451 100 L0 100 L67.468 13 L0 13 Z"/><path fill="#fff" d="M58.169 87 L94 87 L94 100 L48.087 100 Z"/></svg>' +
+    '<svg class="zw-gold" viewBox="0 0 94 100"><path fill="#C29B57" d="M77.549 31.005 L94 31.005 L40.495 100 L24.044 100 Z"/></svg>' +
+    '</div>';
   document.body.appendChild(wipe);
-  var navy = wipe.querySelector('.zw-navy'), gold = wipe.querySelector('.zw-gold');
-  var center = wipe.querySelector('.zw-center'), label = wipe.querySelector('.zw-label');
+  var halfA = wipe.querySelector('.zw-a'), halfB = wipe.querySelector('.zw-b');
+  var mark = wipe.querySelector('.zw-mark'), zWhite = wipe.querySelector('.zw-white'), zGold = wipe.querySelector('.zw-gold');
   var running = [];
 
+  // split the screen along a line through its centre at the Z's angle; each half is
+  // oversized by P on every side so only the diagonal edge is ever seen while it moves
   function geom() {
-    var W = window.innerWidth, H = window.innerHeight, lean = H * SLANT;
-    var B = W + lean + 40, g = Math.max(46, W * 0.045);
-    navy.style.width = B + 'px'; navy.style.left = (W - B) / 2 + 'px';
-    gold.style.width = g + 'px'; gold.style.left = (W - g) / 2 + 'px';
-    return { off: B + lean, goff: W / 2 + g + lean };
+    var W = window.innerWidth, H = window.innerHeight, P = W + H;
+    var Wt = W + 2 * P, Ht = H + 2 * P, cx = W / 2 + P, cy = H / 2 + P, m = DIR.x / DIR.y;
+    var xt = cx + (0 - cy) * m, xb = cx + (Ht - cy) * m;
+    [halfA, halfB].forEach(function (h) {
+      h.style.left = h.style.top = -P + 'px';
+      h.style.width = Wt + 'px'; h.style.height = Ht + 'px';
+    });
+    halfA.style.clipPath = 'polygon(0 0, ' + (xt + 1) + 'px 0, ' + (xb + 1) + 'px ' + Ht + 'px, 0 ' + Ht + 'px)';
+    halfB.style.clipPath = 'polygon(' + (xt - 1) + 'px 0, ' + Wt + 'px 0, ' + Wt + 'px ' + Ht + 'px, ' + (xb - 1) + 'px ' + Ht + 'px)';
+    return W + H;
   }
-  function tx(x) { return 'translateX(' + x + 'px) skewX(-37.8deg)'; }
+  function side(d) { return 'translateX(' + d + 'px)'; }
+  function along(d) { return 'translate(' + (DIR.x * d) + 'px, ' + (DIR.y * d) + 'px)'; }
   function anim(el, frames, opts) {
-    opts.fill = 'forwards';
+    opts.fill = 'both';
     var a = el.animate(frames, opts);
     running.push(a);
     return a;
@@ -83,45 +91,35 @@
     running = [];
     wipe.classList.remove('active');
   }
-  function pageName(url) {
-    var file = url.pathname.split('/').pop().replace(/\.html$/, '');
-    return NAMES[file] || 'Zurosh';
-  }
+  var EASE_IN = 'cubic-bezier(.7, 0, .3, 1)', EASE_OUT = 'cubic-bezier(.6, 0, .2, 1)';
 
-  var EASE = 'cubic-bezier(.76, 0, .24, 1)';
-
-  // leaving: gold streak, navy band covers, mark + name settle, then navigate
+  // leaving: halves close along the diagonal, Z floats in, navigate
   function leave(url) {
-    var g = geom(), name = pageName(url);
+    var D = geom();
     reset();
-    label.textContent = name;
     wipe.classList.add('active');
-    try { sessionStorage.setItem('zurosh-veil', name); } catch (err) {}
-    anim(gold, [{ transform: tx(-g.goff) }, { transform: tx(g.goff) }], { duration: 760, easing: 'cubic-bezier(.65, 0, .35, 1)' });
-    anim(navy, [{ transform: tx(-g.off) }, { transform: tx(0) }], { duration: 640, delay: 90, easing: EASE });
-    anim(center, [{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 320, delay: 470, easing: 'ease-out' });
-    setTimeout(function () { location.href = url.href; }, 820);
+    try { sessionStorage.setItem('zurosh-veil', '1'); } catch (err) {}
+    anim(halfA, [{ transform: side(-D) }, { transform: 'none' }], { duration: 340, easing: EASE_IN });
+    anim(halfB, [{ transform: side(D) }, { transform: 'none' }], { duration: 340, easing: EASE_IN });
+    anim(mark, [{ opacity: 0, transform: 'translateY(14px) scale(.9)' }, { opacity: 1, transform: 'none' }], { duration: 260, delay: 160, easing: 'ease-out' });
+    setTimeout(function () { location.href = url.href; }, 430);
   }
 
-  // arriving: start covered, name fades, band exits along the diagonal, page rises in
+  // arriving: Z floats a beat, then splits apart with the navy and the page appears
   if (doc.classList.contains('veil-in')) {
-    var g0 = geom(), name0 = 'Zurosh';
-    try { name0 = sessionStorage.getItem('zurosh-veil') || name0; sessionStorage.removeItem('zurosh-veil'); } catch (e) {}
-    label.textContent = name0;
+    var D0 = geom();
+    try { sessionStorage.removeItem('zurosh-veil'); } catch (e) {}
     wipe.classList.add('active');
-    navy.style.transform = tx(0);
-    gold.style.transform = tx(-g0.goff);
-    center.style.opacity = 1;
     doc.classList.remove('veil-in');
-    anim(center, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-10px)' }], { duration: 260, delay: 160, easing: 'ease-in' });
-    anim(navy, [{ transform: tx(0) }, { transform: tx(g0.off) }], { duration: 720, delay: 300, easing: EASE });
-    var last = anim(gold, [{ transform: tx(-g0.goff) }, { transform: tx(g0.goff) }], { duration: 800, delay: 380, easing: 'cubic-bezier(.65, 0, .35, 1)' });
+    var T = 140; // short float before the split
+    anim(mark, [{ transform: 'none' }, { transform: 'translateY(-6px)' }], { duration: T + 80, easing: 'ease-in-out' });
+    anim(zGold, [{ transform: 'none', opacity: 1 }, { transform: along(D0 * 0.6), opacity: 0 }], { duration: 520, delay: T, easing: EASE_OUT });
+    anim(zWhite, [{ transform: 'none', opacity: 1 }, { transform: along(-D0 * 0.6), opacity: 0 }], { duration: 520, delay: T, easing: EASE_OUT });
+    anim(halfB, [{ transform: 'none' }, { transform: side(D0) }], { duration: 560, delay: T + 40, easing: EASE_OUT });
+    var last = anim(halfA, [{ transform: 'none' }, { transform: side(-D0) }], { duration: 560, delay: T + 40, easing: EASE_OUT });
     var main = document.querySelector('main');
-    if (main) main.animate([{ opacity: 0, transform: 'translateY(28px)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: 480, easing: 'cubic-bezier(.2, .7, .2, 1)', fill: 'backwards' });
-    last.onfinish = function () {
-      reset();
-      navy.style.transform = gold.style.transform = center.style.opacity = '';
-    };
+    if (main) main.animate([{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'none' }], { duration: 520, delay: T + 120, easing: 'cubic-bezier(.2, .7, .2, 1)', fill: 'backwards' });
+    last.onfinish = reset;
   }
   window.addEventListener('pageshow', function (e) {
     if (e.persisted) { reset(); doc.classList.remove('veil-in'); }
