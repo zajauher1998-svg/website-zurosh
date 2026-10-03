@@ -207,25 +207,23 @@ p { margin: 0 0 1em; }
 }
 
 /* ==========================================================================
-   Page transition: navy panel with a gold leading edge
+   Page transition: the Z's diagonal sweeps across (see main.js)
    ========================================================================== */
-.page-wipe {
-  position: fixed; inset: 0; z-index: 999; pointer-events: none;
-  background: var(--navy-900); display: grid; place-items: center;
-  transform: translateY(100%); visibility: hidden;
+.z-wipe { position: fixed; inset: 0; z-index: 999; pointer-events: none; visibility: hidden; overflow: hidden; }
+.z-wipe.active { visibility: visible; pointer-events: auto; }
+.zw-band { position: absolute; top: 0; height: 100%; transform: translateX(-300vw) skewX(-37.8deg); will-change: transform; }
+.zw-navy { background: var(--navy); }
+.zw-gold { background: var(--gold); z-index: 2; }
+.zw-center {
+  position: absolute; inset: 0; z-index: 3; opacity: 0;
+  display: grid; place-content: center; justify-items: center; gap: 22px;
 }
-.page-wipe::before, .page-wipe::after {
-  content: ""; position: absolute; left: 0; right: 0; height: 3px; background: var(--gold);
+.zw-center svg { width: 64px; height: auto; }
+.zw-rule { width: 46px; height: 2px; background: var(--gold); }
+.zw-label {
+  color: #fff; font-size: .8rem; font-weight: 500; letter-spacing: .6em; text-transform: uppercase;
+  padding-left: .6em; /* balances the trailing letter-spacing */
 }
-.page-wipe::before { top: 0; }
-.page-wipe::after { bottom: 0; }
-.page-wipe.anim { transition: transform .6s cubic-bezier(.76, 0, .24, 1); }
-.page-wipe.cover { transform: none; visibility: visible; pointer-events: auto; }
-.page-wipe.leave { transform: translateY(-100%); visibility: visible; }
-.wipe-mark { width: 52px; height: auto; opacity: 0; transform: translateY(10px); transition: opacity .3s ease, transform .4s ease; }
-.page-wipe.cover .wipe-mark { opacity: 1; transform: none; transition-delay: .2s; }
-.page-wipe.leave .wipe-mark { opacity: 0; transform: translateY(-10px); transition-duration: .2s; }
-.page-wipe.cover:not(.anim) .wipe-mark { transition: none; }
 
 /* ==========================================================================
    HOME — scroll-driven 3D stage
@@ -502,7 +500,7 @@ fieldset.field { border: 0; padding: 0; margin: 0 0 16px; }
 }
 
 /* covers the page until the transition panel takes over (set inline in <head>) */
-html.veil-in body::after { content: ""; position: fixed; inset: 0; background: var(--navy-900); z-index: 998; }
+html.veil-in body::after { content: ""; position: fixed; inset: 0; background: var(--navy); z-index: 998; }
 
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .steps-mini { list-style: none; counter-reset: s; padding: 0; margin: 18px 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; }
