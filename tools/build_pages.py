@@ -257,7 +257,8 @@ def card(icon, h, p):
     return f'<div class="card reveal"><div class="ico">{ICON[icon]}</div><h3>{h}</h3><p>{p}</p></div>'
 
 telecom = f'''<main id="main" class="telecom-page">
-  <section class="page-hero telecom">
+  <section class="page-hero telecom track-hero" id="network">
+    <div class="track-sticky">
     <div class="container">
       <div class="hero-copy">
         <div class="breadcrumb"><a href="index.html">Home</a> / Telecom</div>
@@ -270,9 +271,15 @@ telecom = f'''<main id="main" class="telecom-page">
         </div>
       </div>
       <div class="hero-canvas-wrap">
-        <canvas data-stage="assemble" data-form="tower" data-dark aria-hidden="true"></canvas>
+        <canvas data-stage="track" data-from="map" data-form="tower" data-track="#network" data-dark aria-hidden="true"></canvas>
         <img class="fallback" src="assets/img/z-mark.svg" alt="">
+        <div class="stage-caption" aria-hidden="true">
+          <span class="cap-a"><i></i>Fibre backbone across Pakistan</span>
+          <span class="cap-b"><i></i>5G tower infrastructure</span>
+        </div>
       </div>
+    </div>
+    <div class="track-hint" aria-hidden="true">Scroll to build</div>
     </div>
   </section>
 
@@ -339,7 +346,8 @@ page('telecom.html', 'Telecom Services | Zurosh Enterprises',
 
 # =========================================================================== CONSTRUCTION
 construction = f'''<main id="main" class="construction-page">
-  <section class="page-hero construction">
+  <section class="page-hero construction track-hero" id="build">
+    <div class="track-sticky">
     <div class="container">
       <div class="hero-copy">
         <div class="breadcrumb"><a href="index.html">Home</a> / Construction</div>
@@ -352,9 +360,15 @@ construction = f'''<main id="main" class="construction-page">
         </div>
       </div>
       <div class="hero-canvas-wrap">
-        <canvas data-stage="assemble" data-form="buildings" aria-hidden="true"></canvas>
+        <canvas data-stage="track" data-from="house" data-form="commercial" data-track="#build" data-rot0="-0.5" aria-hidden="true"></canvas>
         <img class="fallback" src="assets/img/z-mark.svg" alt="">
+        <div class="stage-caption" aria-hidden="true">
+          <span class="cap-a"><i></i>Residential units</span>
+          <span class="cap-b"><i></i>Commercial plazas</span>
+        </div>
       </div>
+    </div>
+    <div class="track-hint" aria-hidden="true">Scroll to build</div>
     </div>
   </section>
 

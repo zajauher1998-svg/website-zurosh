@@ -6,8 +6,8 @@ Static website for Zurosh Enterprises (telecom and construction, Pakistan). Ther
 | File | Content |
 |---|---|
 | `index.html` | Home. A 3D voxel **Z** rotates as you scroll, breaks into pixels and re-forms into a split globe (two sectors), a 5G tower, buildings, and finally the Z again. |
-| `telecom.html` | Sector 01: FTTH, 5G tower infrastructure (site acquisition → handover lifecycle), consultancy. |
-| `construction.html` | Sector 02: residential units, commercial plazas, design & build process. |
+| `telecom.html` | Sector 01. Opens on a pixel map of Pakistan with fibre nodes and backbone routes; scrolling turns it into a 5G tower. FTTH, 5G tower lifecycle (site acquisition → handover), consultancy. |
+| `construction.html` | Sector 02. Opens on a house; scrolling rebuilds it into a commercial plaza. Residential units, commercial plazas, design & build process. |
 | `about.html` | Company overview (uses the stacked logo). |
 | `contact.html` | Sector-aware enquiry form (opens the visitor's email app). |
 
@@ -35,5 +35,6 @@ python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
 ## Tech
+- Cities and fibre routes on the Telecom map are set in `CITIES` / `ROUTES` in `assets/js/pixel-stage.js`. The map outline is a simplified shape of Pakistan-administered territory.
 - three.js r160 is bundled locally in `assets/vendor/` (MIT licence included), so there's no CDN dependency.
 - Without WebGL, the static Z mark is shown instead. With `prefers-reduced-motion` set, the bursts, idle motion and page transitions are turned off.

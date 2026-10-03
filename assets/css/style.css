@@ -502,3 +502,59 @@ html.veil-in body::after { content: ""; position: fixed; inset: 0; background: v
 @media (min-width: 861px) {
   .sticky-head { position: sticky; top: calc(var(--header-h) + 36px); }
 }
+
+/* ==========================================================================
+   Pinned hero on sector pages: the canvas stays in view while scrolling
+   drives the morph (map → tower, house → plaza). See initTrack in pixel-stage.js
+   ========================================================================== */
+.page-hero.track-hero { display: block; height: 240vh; min-height: 0; padding: 0; overflow: visible; }
+.track-sticky {
+  position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
+  display: flex; align-items: center; padding-top: var(--header-h);
+}
+.page-hero.telecom.track-hero { background: var(--navy-900); }
+.telecom .track-sticky { background: radial-gradient(1200px 600px at 80% 20%, #213D6E 0%, var(--navy) 45%, var(--navy-900) 100%); }
+.page-hero.construction.track-hero { background: var(--gold-100); }
+.construction .track-sticky { background: linear-gradient(135deg, #FBF7EF 0%, var(--gold-100) 100%); }
+
+.stage-caption {
+  position: absolute; left: 0; right: 0; bottom: -4px; height: 1.6em; text-align: center;
+  font-size: .72rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
+}
+.stage-caption span {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: opacity .4s ease, transform .4s ease;
+}
+.stage-caption i { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(194, 155, 87, .25); }
+.telecom .stage-caption { color: #DCE3EF; }
+.construction .stage-caption { color: var(--navy); }
+.stage-caption .cap-b { opacity: 0; transform: translateY(8px); }
+.is-built .stage-caption .cap-a { opacity: 0; transform: translateY(-8px); }
+.is-built .stage-caption .cap-b { opacity: 1; transform: none; }
+
+.track-hint {
+  position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%);
+  font-size: .68rem; letter-spacing: .32em; text-transform: uppercase; opacity: .7;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; transition: opacity .4s;
+}
+.track-hint::before { content: ""; width: 1px; height: 26px; background: currentColor; animation: hint 1.8s infinite; transform-origin: top; }
+@keyframes hint { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+.telecom .track-hint { color: #DCE3EF; }
+.construction .track-hint { color: var(--navy); }
+.is-built .track-hint { opacity: 0; }
+
+@media (max-width: 860px) {
+  .track-sticky { align-items: flex-start; padding-top: calc(var(--header-h) + 10px); }
+  .track-hero .breadcrumb { display: none; }
+  .track-hero h1 { font-size: 1.9rem; margin-bottom: .4em; }
+  .track-hero .lead { font-size: .95rem; }
+  .track-hero .sector-badge { margin-bottom: 12px; }
+  .track-hero .hero-canvas-wrap { max-width: min(300px, 36vh); margin-bottom: 18px; }
+  .track-hero .hero-copy > div[style] { margin-top: 16px !important; }
+  .track-hint { display: none; }
+  .track-hero .btn { font-size: .82rem; padding: .75em 1.1em; }
+  .stage-caption { font-size: .62rem; letter-spacing: .14em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track-hint::before { animation: none; }
+}

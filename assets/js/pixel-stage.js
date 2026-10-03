@@ -176,6 +176,81 @@
     return pts;
   }
 
+  // sample the surface of a box on a grid; col(face, u, v, nu, nv) picks the colour
+  function boxSurface(pts, b, sp, col) {
+    var nx = Math.max(2, Math.round(b.w / sp)), nz = Math.max(2, Math.round(b.d / sp)), ny = Math.max(2, Math.round(b.h / sp));
+    var x0 = b.x - b.w / 2, z0 = b.z - b.d / 2, u, v;
+    for (v = 0; v <= ny; v++) {
+      var y = b.y + b.h * v / ny;
+      for (u = 0; u <= nx; u++) {
+        pts.push({ x: x0 + b.w * u / nx, y: y, z: z0 + b.d, c: col('front', u, v, nx, ny) });
+        pts.push({ x: x0 + b.w * u / nx, y: y, z: z0, c: col('back', u, v, nx, ny) });
+      }
+      for (u = 1; u < nz; u++) {
+        pts.push({ x: x0 + b.w, y: y, z: z0 + b.d * u / nz, c: col('side', u, v, nz, ny) });
+        pts.push({ x: x0, y: y, z: z0 + b.d * u / nz, c: col('side', u, v, nz, ny) });
+      }
+    }
+    if (b.roof) for (u = 1; u < nx; u++) for (v = 1; v < nz; v++) {
+      pts.push({ x: x0 + b.w * u / nx, y: b.y + b.h, z: z0 + b.d * v / nz, c: 'n' });
+    }
+  }
+
+  // a two-storey family house with a pitched roof
+  function formHouse() {
+    var pts = [], sp = 0.25, W = 6, D = 4, H = 3.75, Y = -4.2, R = 2.3;
+    boxSurface(pts, { x: 0, z: 0, w: W, d: D, h: H, y: Y }, sp, function (face, u, v, nu, nv) {
+      if (u === 0 || u === nu || v === 0 || v === nv) return 'n';
+      if (face === 'front') {
+        var mid = Math.round(nu / 2);
+        if (v <= 7 && Math.abs(u - mid) <= 1) return 'g';                    // front door
+        var inWin = (v >= 3 && v <= 5) || (v >= 10 && v <= 12);              // two floors of windows
+        var col = u % 6;
+        if (inWin && (col === 2 || col === 3) && Math.abs(u - mid) > 2) return 'g';
+      }
+      if (face === 'side' && ((v >= 10 && v <= 12) && (u === Math.round(nu / 2) || u === Math.round(nu / 2) + 1))) return 'g';
+      return 'n';
+    });
+    // gable roof: two slopes meeting at a gold ridge, with triangular gable ends
+    var nx = Math.round((W + 0.6) / sp), ns = Math.round(Math.hypot(D / 2 + 0.3, R) / sp), u, k;
+    for (u = 0; u <= nx; u++) {
+      var x = -W / 2 - 0.3 + (W + 0.6) * u / nx;
+      for (k = 0; k <= ns; k++) {
+        var t = k / ns, y = Y + H + R * t, z = (D / 2 + 0.3) * (1 - t);
+        var c = k === ns ? 'g' : 'n';
+        pts.push({ x: x, y: y, z: z, c: c });
+        if (k < ns) pts.push({ x: x, y: y, z: -z, c: c });
+      }
+    }
+    for (k = 1; k < ns; k++) {
+      var tt = k / ns, yy = Y + H + R * tt, half = (D / 2) * (1 - tt);
+      for (var zz = -half; zz <= half; zz += sp) {
+        pts.push({ x: W / 2, y: yy, z: zz, c: 'n' });
+        pts.push({ x: -W / 2, y: yy, z: zz, c: 'n' });
+      }
+    }
+    // chimney
+    boxSurface(pts, { x: 1.7, z: -0.7, w: 0.6, d: 0.6, h: 1.6, y: Y + H + 0.9, roof: true }, sp, function () { return 'n'; });
+    return pts;
+  }
+
+  // a multi-storey commercial plaza: glass shopfronts, office floors, signage band
+  function formCommercial() {
+    var pts = [], sp = 0.26, Y = -5.2;
+    boxSurface(pts, { x: 0, z: 0, w: 6.4, d: 3.6, h: 3.1, y: Y, roof: true }, sp, function (face, u, v, nu, nv) {
+      if (u === 0 || u === nu) return 'n';
+      if (v === nv || v === nv - 1) return 'n';                               // podium slab
+      return (u % 4 === 0) ? 'n' : 'g';                                        // shopfront glazing
+    });
+    boxSurface(pts, { x: 0, z: -0.2, w: 5.2, d: 3.0, h: 6.9, y: Y + 3.1, roof: true }, sp, function (face, u, v, nu, nv) {
+      if (u === 0 || u === nu) return 'n';
+      if (v >= nv - 2) return 'g';                                             // signage band
+      return (v % 3 === 1 && u % 3 !== 0) ? 'g' : 'n';                         // office window bands
+    });
+    boxSurface(pts, { x: -1.2, z: -0.4, w: 1.4, d: 1.4, h: 0.9, y: Y + 10, roof: true }, sp, function () { return 'n'; });
+    return pts;
+  }
+
   function formGlobe(n) {
     // a sphere split into two hemispheres: telecom (navy) | construction (gold)
     var pts = [], R = 5.1, golden = Math.PI * (3 - Math.sqrt(5));
@@ -184,6 +259,49 @@
       var x = Math.cos(th) * r, z = Math.sin(th) * r;
       var right = x >= 0;
       pts.push({ x: x * R + (right ? 0.55 : -0.55), y: y * R, z: z * R, c: right ? 'g' : 'n' });
+    }
+    return pts;
+  }
+
+  /* Pakistan — simplified outline (lon, lat), Pakistan-administered territory.
+     Clockwise from the Iran border on the Makran coast. */
+  var PK = [
+    [61.6, 25.2], [61.9, 26.4], [63.2, 27.1], [62.8, 28.2], [61.9, 28.6], [60.9, 29.4], [60.9, 29.9],
+    [62.4, 29.4], [64.2, 29.5], [66.3, 29.9], [66.5, 30.9], [67.4, 31.3], [68.2, 31.8], [69.3, 31.9],
+    [69.6, 32.8], [70.1, 33.3], [70.0, 33.9], [71.1, 34.1], [71.6, 35.0], [71.4, 35.6], [71.6, 36.4],
+    [72.6, 36.9], [74.0, 36.9], [75.0, 37.0], [75.6, 36.8], [76.2, 36.0], [77.0, 35.6], [77.6, 35.4],
+    [76.6, 34.9], [75.6, 34.6], [74.6, 34.6], [74.2, 34.1], [74.0, 33.4], [74.6, 32.9], [74.7, 32.4],
+    [74.6, 31.9], [74.6, 31.1], [74.0, 30.6], [73.4, 29.9], [72.8, 29.0], [71.9, 28.1], [70.7, 27.8],
+    [70.0, 27.2], [69.6, 26.6], [70.2, 26.2], [70.1, 25.6], [69.5, 24.8], [69.0, 24.3], [68.2, 23.7],
+    [67.4, 23.9], [67.0, 24.8], [66.7, 25.4], [65.6, 25.3], [64.6, 25.2], [63.5, 25.3], [62.3, 25.1]
+  ];
+  // fibre nodes (major cities) and backbone routes between them
+  var CITIES = {
+    karachi: [67.0, 24.9], hyderabad: [68.4, 25.4], sukkur: [68.9, 27.7], quetta: [67.0, 30.2],
+    gwadar: [62.3, 25.3], multan: [71.5, 30.2], bahawalpur: [71.7, 29.4], faisalabad: [73.1, 31.4],
+    lahore: [74.3, 31.5], sialkot: [74.5, 32.5], islamabad: [73.05, 33.7], peshawar: [71.5, 34.0],
+    gilgit: [74.3, 35.9], dikhan: [70.9, 31.8]
+  };
+  var ROUTES = [
+    ['gwadar', 'karachi'], ['karachi', 'hyderabad'], ['hyderabad', 'sukkur'], ['sukkur', 'quetta'],
+    ['sukkur', 'bahawalpur'], ['bahawalpur', 'multan'], ['quetta', 'multan'], ['multan', 'faisalabad'],
+    ['faisalabad', 'lahore'], ['lahore', 'sialkot'], ['sialkot', 'islamabad'], ['faisalabad', 'islamabad'],
+    ['islamabad', 'peshawar'], ['islamabad', 'gilgit'], ['multan', 'dikhan'], ['dikhan', 'peshawar']
+  ];
+  var MAP_K = 1.02, MAP_LON = 69.3, MAP_LAT = 30.35, MAP_LAYERS = 2;
+  function project(lon, lat) {
+    return [(lon - MAP_LON) * MAP_K * 0.87, (lat - MAP_LAT) * MAP_K];
+  }
+  function formMap() {
+    var pts = [], dlon = CELL / (MAP_K * 0.87), dlat = CELL / MAP_K;
+    for (var lat = 23.6; lat < 37.2; lat += dlat) {
+      for (var lon = 60.8; lon < 77.8; lon += dlon) {
+        if (!inPoly(lon, lat, PK)) continue;
+        var xy = project(lon, lat);
+        for (var l = 0; l < MAP_LAYERS; l++) {
+          pts.push({ x: xy[0], y: xy[1], z: (l - (MAP_LAYERS - 1) / 2) * CELL, c: 'n' });
+        }
+      }
     }
     return pts;
   }
@@ -239,6 +357,9 @@
       tower: pack(fit(formTower(N), N, rand), palette, rand),
       buildings: pack(fit(formBuildings(), N, rand), palette, rand)
     };
+    if (opts.net) this.forms.map = pack(fit(formMap(), N, rand), palette, rand);
+    this.forms.house = pack(fit(formHouse(), N, rand), palette, rand);
+    this.forms.commercial = pack(fit(formCommercial(), N, rand), palette, rand);
 
     // per-pixel randomness: delay, burst direction, spin
     this.rnd = new Float32Array(N);
@@ -298,6 +419,7 @@
     this.group.add(solid);
     this.solidV = -1;
     this.setSolid(1);
+    if (opts.net) this.buildNet();
 
     this.dummy = new THREE.Object3D();
     this.last = '';
@@ -331,6 +453,60 @@
     this.solid.visible = v > 0;
     this.mesh.visible = v < 1;
     this.solidMats.forEach(function (m) { m.opacity = v; });
+  };
+
+  /* fibre network over the map: glowing city nodes, backbone arcs, travelling pulses */
+  Stage.prototype.buildNet = function () {
+    var net = this.net = new THREE.Group(), front = (MAP_LAYERS / 2) * CELL + 0.12;
+    var gold = new THREE.Color(GOLD), mats = this.netMats = [];
+    function mat(color, opacity) {
+      var m = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: opacity, depthWrite: false, side: THREE.DoubleSide });
+      m.userData.base = opacity; mats.push(m); return m;
+    }
+    var pos = {}, coreGeo = new THREE.SphereGeometry(0.15, 16, 12), ringGeo = new THREE.RingGeometry(0.2, 0.25, 40);
+    this.rings = [];
+    Object.keys(CITIES).forEach(function (k, i) {
+      var xy = project(CITIES[k][0], CITIES[k][1]);
+      pos[k] = new THREE.Vector3(xy[0], xy[1], front);
+      var core = new THREE.Mesh(coreGeo, mat(gold, 1));
+      core.position.copy(pos[k]); net.add(core);
+      var ring = new THREE.Mesh(ringGeo, mat(gold, 0.8));
+      ring.position.copy(pos[k]); ring.userData.phase = i * 0.37; net.add(ring);
+      this.rings.push(ring);
+    }, this);
+    this.links = [];
+    var lineMat = new THREE.LineBasicMaterial({ color: GOLD, transparent: true, opacity: 0.75, depthWrite: false });
+    lineMat.userData.base = 0.75; mats.push(lineMat);
+    var pulseGeo = new THREE.SphereGeometry(0.075, 10, 8), pulseMat = mat(0xffffff, 1);
+    ROUTES.forEach(function (r, i) {
+      var a = pos[r[0]], b = pos[r[1]], mid = a.clone().add(b).multiplyScalar(0.5);
+      mid.z += a.distanceTo(b) * 0.18;                       // arcs lift off the map
+      var curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+      net.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(32)), lineMat));
+      for (var j = 0; j < 2; j++) {
+        var pulse = new THREE.Mesh(pulseGeo, pulseMat);
+        pulse.userData = { curve: curve, phase: (i * 0.29 + j * 0.5) % 1, dir: j ? -1 : 1 };
+        net.add(pulse); this.links.push(pulse);
+      }
+    }, this);
+    this.group.add(net);
+  };
+  Stage.prototype.updateNet = function (v, time) {
+    if (!this.net) return;
+    v = clamp(v, 0, 1);
+    this.net.visible = v > 0.01;
+    if (!this.net.visible) return;
+    this.netMats.forEach(function (m) { m.opacity = m.userData.base * v; });
+    var still = this.reduced;
+    this.rings.forEach(function (r) {
+      var f = still ? 0.4 : (time * 0.7 + r.userData.phase) % 1;
+      r.scale.setScalar(1 + f * 2.2);
+      r.material.opacity = r.material.userData.base * v * (1 - f);
+    });
+    this.links.forEach(function (p) {
+      var f = still ? p.userData.phase : (time * 0.28 + p.userData.phase) % 1;
+      p.position.copy(p.userData.curve.getPoint(p.userData.dir > 0 ? f : 1 - f));
+    });
   };
 
   /* place every pixel for a morph between two formations (t: 0..1) */
@@ -475,13 +651,43 @@
     requestAnimationFrame(frame);
   }
 
+  /* ======================================================================
+     Inner pages: morph driven by scrolling through a pinned section
+     (telecom: map of Pakistan with fibre network → 5G tower;
+      construction: house → commercial plaza)
+     ====================================================================== */
+  function initTrack(canvas) {
+    var from = canvas.getAttribute('data-from') || 'map', form = canvas.getAttribute('data-form') || 'tower';
+    var track = document.querySelector(canvas.getAttribute('data-track')) || canvas.parentNode;
+    var stage = new Stage(canvas, { dark: canvas.hasAttribute('data-dark'), net: from === 'map' });
+    stage.setSolid(0);
+    var rot0 = parseFloat(canvas.getAttribute('data-rot0') || '0');
+    var start = performance.now(), visible = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }).observe(canvas);
+    }
+    function frame(now) {
+      requestAnimationFrame(frame);
+      if (!visible) return;
+      var t = (now - start) / 1000, r = track.getBoundingClientRect();
+      var p = clamp(-r.top / Math.max(1, r.height - window.innerHeight), 0, 1);
+      var tm = clamp((p - 0.15) / 0.7, 0, 1);
+      stage.layout(from, form, tm);
+      stage.updateNet(1 - tm / 0.12, t);
+      stage.render(rot0 + ease(clamp((p - 0.1) / 0.75, 0, 1)) * Math.PI * 2, 0, 0, 0.92, 0.7, t);
+      track.classList.toggle('is-built', tm > 0.55);
+    }
+    requestAnimationFrame(frame);
+  }
+
   function boot() {
     var canvases = document.querySelectorAll('canvas[data-stage]');
     if (!canvases.length) return;
     if (!window.THREE || !webglOK()) { document.documentElement.classList.add('no-webgl'); return; }
     [].forEach.call(canvases, function (c) {
       try {
-        if (c.getAttribute('data-stage') === 'scroll') initScroll(c); else initAssemble(c);
+        var mode = c.getAttribute('data-stage');
+        if (mode === 'scroll') initScroll(c); else if (mode === 'track') initTrack(c); else initAssemble(c);
       } catch (err) {
         document.documentElement.classList.add('no-webgl');
         if (window.console) console.error(err);
