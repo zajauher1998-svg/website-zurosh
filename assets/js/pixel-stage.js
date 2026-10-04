@@ -263,14 +263,17 @@
     return pts;
   }
 
-  /* Pakistan — simplified outline (lon, lat), Pakistan-administered territory.
-     Clockwise from the Iran border on the Makran coast. */
+  /* Pakistan — simplified outline (lon, lat) following Pakistan's official map,
+     including the whole of Jammu & Kashmir. Clockwise from the Iran border on the
+     Makran coast. */
   var PK = [
     [61.6, 25.2], [61.9, 26.4], [63.2, 27.1], [62.8, 28.2], [61.9, 28.6], [60.9, 29.4], [60.9, 29.9],
     [62.4, 29.4], [64.2, 29.5], [66.3, 29.9], [66.5, 30.9], [67.4, 31.3], [68.2, 31.8], [69.3, 31.9],
     [69.6, 32.8], [70.1, 33.3], [70.0, 33.9], [71.1, 34.1], [71.6, 35.0], [71.4, 35.6], [71.6, 36.4],
-    [72.6, 36.9], [74.0, 36.9], [75.0, 37.0], [75.6, 36.8], [76.2, 36.0], [77.0, 35.6], [77.6, 35.4],
-    [76.6, 34.9], [75.6, 34.6], [74.6, 34.6], [74.2, 34.1], [74.0, 33.4], [74.6, 32.9], [74.7, 32.4],
+    [72.6, 36.9], [74.0, 36.9], [75.0, 37.0], [75.6, 36.8], [76.2, 36.0], [77.0, 35.6], [77.8, 35.5],
+    // Jammu & Kashmir (incl. Ladakh) — eastern and southern limits
+    [78.3, 34.6], [79.0, 34.3], [78.8, 33.6], [79.4, 33.0], [79.5, 32.6], [78.4, 32.5], [77.8, 32.7],
+    [77.3, 32.9], [76.6, 33.0], [75.9, 32.8], [75.6, 32.4], [75.4, 32.3], [74.9, 32.4],
     [74.6, 31.9], [74.6, 31.1], [74.0, 30.6], [73.4, 29.9], [72.8, 29.0], [71.9, 28.1], [70.7, 27.8],
     [70.0, 27.2], [69.6, 26.6], [70.2, 26.2], [70.1, 25.6], [69.5, 24.8], [69.0, 24.3], [68.2, 23.7],
     [67.4, 23.9], [67.0, 24.8], [66.7, 25.4], [65.6, 25.3], [64.6, 25.2], [63.5, 25.3], [62.3, 25.1]
@@ -288,14 +291,14 @@
     ['faisalabad', 'lahore'], ['lahore', 'sialkot'], ['sialkot', 'islamabad'], ['faisalabad', 'islamabad'],
     ['islamabad', 'peshawar'], ['islamabad', 'gilgit'], ['multan', 'dikhan'], ['dikhan', 'peshawar']
   ];
-  var MAP_K = 1.02, MAP_LON = 69.3, MAP_LAT = 30.35, MAP_LAYERS = 2;
+  var MAP_K = 0.95, MAP_LON = 70.2, MAP_LAT = 30.4, MAP_LAYERS = 2;
   function project(lon, lat) {
     return [(lon - MAP_LON) * MAP_K * 0.87, (lat - MAP_LAT) * MAP_K];
   }
   function formMap() {
     var pts = [], dlon = CELL / (MAP_K * 0.87), dlat = CELL / MAP_K;
     for (var lat = 23.6; lat < 37.2; lat += dlat) {
-      for (var lon = 60.8; lon < 77.8; lon += dlon) {
+      for (var lon = 60.8; lon < 79.6; lon += dlon) {
         if (!inPoly(lon, lat, PK)) continue;
         var xy = project(lon, lat);
         for (var l = 0; l < MAP_LAYERS; l++) {

@@ -35,6 +35,6 @@ python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
 ## Tech
-- Cities and fibre routes on the Telecom map are set in `CITIES` / `ROUTES` in `assets/js/pixel-stage.js`. The map outline is a simplified shape of Pakistan-administered territory.
+- Cities and fibre routes on the Telecom map are set in `CITIES` / `ROUTES` in `assets/js/pixel-stage.js`. The map outline is a simplified shape following Pakistan's official map, including the whole of Jammu & Kashmir.
 - three.js r160 is bundled locally in `assets/vendor/` (MIT licence included), so there's no CDN dependency.
 - Without WebGL, the static Z mark is shown instead. With `prefers-reduced-motion` set, the bursts, idle motion and page transitions are turned off.
