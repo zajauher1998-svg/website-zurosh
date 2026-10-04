@@ -524,3 +524,20 @@ html.veil-in body::after { content: ""; position: fixed; inset: 0; background: v
 @media (max-width: 860px) {
   .stage-caption { font-size: .62rem; letter-spacing: .14em; }
 }
+
+/* Business feasibility report scope (telecom page) */
+.report-scope {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(22px, 3vw, 32px);
+}
+.report-scope h3 { margin-bottom: 1.1em; }
+.report-list { list-style: none; margin: 0; padding: 0; counter-reset: r; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; }
+.report-list li { counter-increment: r; position: relative; padding-left: 44px; min-width: 0; }
+.report-list li::before {
+  content: counter(r, decimal-leading-zero); position: absolute; left: 0; top: 0;
+  width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center;
+  background: var(--navy); color: var(--gold); font-size: .75rem; font-weight: 700;
+}
+.report-list strong { display: block; color: var(--navy); font-size: .98rem; margin-bottom: 2px; }
+.report-list span { display: block; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+@media (max-width: 640px) { .report-list { grid-template-columns: 1fr; } }
