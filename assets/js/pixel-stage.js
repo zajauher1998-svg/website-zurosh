@@ -109,6 +109,7 @@
     }
     // mast + head-frame
     segs.push({ a: [0, H1, 0], b: [0, 6.3, 0], w: 1.4 });
+    segs.push({ a: [0, 6.3, 0], b: [0, 7.0, 0], c: 'g', w: 2.4 });        // antenna tip
     var P = 0.95;
     [[P, P], [P, -P], [-P, -P], [-P, P]].forEach(function (s, j, arr) {
       var nx = arr[(j + 1) % 4];
@@ -423,6 +424,7 @@
     this.solidV = -1;
     this.setSolid(1);
     if (opts.net) this.buildNet();
+    this.buildSignal();
 
     this.dummy = new THREE.Object3D();
     this.last = '';
@@ -512,6 +514,41 @@
     });
   };
 
+  /* signal waves broadcast from the top of the tower: arcs either side of the
+     antenna tip that ripple outward and fade, plus a pulsing beacon */
+  var SIGNAL_Y = 7.0;
+  Stage.prototype.buildSignal = function () {
+    var sig = this.signal = new THREE.Group(), arcs = this.arcs = [];
+    sig.position.set(0, SIGNAL_Y, 0);
+    for (var k = 0; k < 3; k++) {
+      [0, Math.PI].forEach(function (start) {
+        var m = new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide });
+        var arc = new THREE.Mesh(new THREE.RingGeometry(1, 1.09, 40, 1, start - Math.PI / 4, Math.PI / 2), m);
+        arc.userData.phase = k / 3;
+        sig.add(arc); arcs.push(arc);
+      });
+    }
+    var beacon = this.beacon = new THREE.Mesh(
+      new THREE.SphereGeometry(0.17, 16, 12),
+      new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0, depthWrite: false })
+    );
+    sig.add(beacon);
+    sig.visible = false;
+    this.group.add(sig);
+  };
+  Stage.prototype.updateSignal = function (v, time) {
+    v = clamp(v, 0, 1);
+    this.signal.visible = v > 0.01;
+    if (!this.signal.visible) return;
+    var still = this.reduced;
+    this.arcs.forEach(function (a) {
+      var f = still ? 0.5 : (time * 0.55 + a.userData.phase) % 1;     // 0 → 1 as the wave travels out
+      a.scale.setScalar(0.55 + f * 2.2);
+      a.material.opacity = v * (still ? 0.6 : Math.sin(Math.PI * f) * 0.95);
+    });
+    this.beacon.material.opacity = v * (still ? 1 : 0.65 + 0.35 * Math.sin(time * 5));
+  };
+
   /* place every pixel for a morph between two formations (t: 0..1) */
   Stage.prototype.layout = function (from, to, t) {
     var key = from + '|' + to + '|' + t.toFixed(4);
@@ -557,6 +594,8 @@
     g.position.x = x;
     g.position.y = y + (this.reduced ? 0 : Math.sin(time * 0.8) * 0.18 * sway);
     g.scale.setScalar(scale);
+    // keep the signal waves facing the viewer while the tower turns
+    if (this.signal) { this.signal.rotation.y = -g.rotation.y; this.signal.rotation.x = -g.rotation.x; }
     this.renderer.render(this.scene, this.camera);
   };
 
@@ -617,6 +656,7 @@
       stage.setSolid(a.form === 'z' && tm < 0.05 ? 1 - tm / 0.05 : b.form === 'z' && tm > 0.95 ? (tm - 0.95) / 0.05 : 0);
       // fiber network shows only while the pixels rest as the map
       stage.updateNet(a.form === 'map' ? 1 - tm / 0.12 : b.form === 'map' ? (tm - 0.88) / 0.12 : 0, (now - start) / 1000);
+      stage.updateSignal(a.form === 'tower' && b.form === 'tower' ? 1 : a.form === 'tower' ? 1 - tm / 0.12 : b.form === 'tower' ? (tm - 0.88) / 0.12 : 0, (now - start) / 1000);
       stage.render(
         a.rot + (b.rot - a.rot) * tr,
         a.x + (b.x - a.x) * ease(th),
@@ -684,6 +724,7 @@
       stage.layout(a, b, m);
       var atMap = (a === 'map' && m === 0) || (b === 'map' && m === 1) ? 1 : (a === 'map' ? 1 - m / 0.12 : b === 'map' ? (m - 0.88) / 0.12 : 0);
       stage.updateNet(atMap, t);
+      stage.updateSignal(a === 'tower' ? 1 - m / 0.12 : b === 'tower' ? (m - 0.88) / 0.12 : 0, t);
       stage.render(rot0 + ease(clamp(m, 0, 1)) * Math.PI * 2, 0, 0, 0.92, 0.7, t);
       host.classList.toggle('is-built', (b === form && m > 0.5) || (a === form && m < 0.5 && b !== form));
     }

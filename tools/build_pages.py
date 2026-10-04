@@ -210,7 +210,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     </div>
   </section>
 
-  <section class="scene scene-tall right" id="tower-lifecycle" data-kf="tower" data-side="left" data-rot="2">
+  <section class="scene scene-tall right" id="tower-lifecycle" data-kf="tower" data-side="left" data-rot="2" data-scale="0.82">
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">5G Tower Infrastructure</span>
