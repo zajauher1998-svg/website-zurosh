@@ -9,6 +9,7 @@ Static website for Zurosh Enterprises (telecom and construction, Pakistan). Ther
 | `telecom.html` | Sector 01. The hero loops every few seconds between a pixel map of Pakistan (fiber nodes and backbone routes) and a 5G tower. FTTH, 5G tower lifecycle (site acquisition → handover), consultancy. |
 | `construction.html` | Sector 02. The hero loops every few seconds between a house and a commercial plaza. Residential units, commercial plazas, design & build process. |
 | `about.html` | Company overview (uses the stacked logo). |
+| `team.html` | Our Team: management team plus Telecom and Construction division teams. Edit names, roles, bios and photos in the `TEAM` list in `tools/build_pages.py`; photos go in `assets/img/team/`. |
 | `contact.html` | Sector-aware enquiry form (opens the visitor's email app). |
 
 The "Our Sectors" dropdown is a two-panel mega menu: **Telecom** (navy) and **Construction** (light/gold), kept visually separate. Moving between pages plays a navy/gold pixel transition.

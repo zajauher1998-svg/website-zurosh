@@ -85,6 +85,7 @@ def header(current):
         </div>
       </div>
       <a href="about.html"{cur('about')}>About</a>
+      <a href="team.html"{cur('team')}>Our Team</a>
       <a href="contact.html"{cur('contact')}>Contact</a>
       <a class="btn btn-primary" href="contact.html">Start a Project</a>
     </nav>
@@ -120,6 +121,7 @@ FOOTER = f'''<footer class="site-footer">
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Zurosh</a></li>
+          <li><a href="team.html">Our Team</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
           <li><a href="tel:{PHONE.replace(' ', '')}">{PHONE}</a></li>
@@ -503,6 +505,97 @@ about = f'''<main id="main">
 page('about.html', 'About | Zurosh Enterprises',
      'About Zurosh Enterprises, a telecommunications infrastructure and construction company in Pakistan.',
      'about', about)
+
+# =========================================================================== TEAM
+# Edit the team here. Each entry: (name, role, short description, photo path or '').
+# Photos go in assets/img/team/ (square, at least 600 x 600 px). Without a photo,
+# the card shows the person's initials.
+TEAM = {
+    'leadership': [
+        ('Name Surname', 'Chief Executive Officer', 'Add a one-line summary of experience and responsibilities.', ''),
+        ('Name Surname', 'Director, Telecom', 'Add a one-line summary of experience and responsibilities.', ''),
+        ('Name Surname', 'Director, Construction', 'Add a one-line summary of experience and responsibilities.', ''),
+    ],
+    'telecom': [
+        ('Name Surname', 'Head of FTTH Projects', '', ''),
+        ('Name Surname', 'Site Acquisition Manager', '', ''),
+        ('Name Surname', 'Telecom Consultant', '', ''),
+        ('Name Surname', 'Project Engineer', '', ''),
+    ],
+    'construction': [
+        ('Name Surname', 'Head of Construction', '', ''),
+        ('Name Surname', 'Project Manager', '', ''),
+        ('Name Surname', 'Site Engineer', '', ''),
+        ('Name Surname', 'Quantity Surveyor', '', ''),
+    ],
+}
+
+def initials(name):
+    parts = [w for w in name.split() if w[:1].isalpha()]
+    return (parts[0][0] + (parts[-1][0] if len(parts) > 1 else '')).upper() if parts else 'Z'
+
+def member(m, lead=False):
+    name, role, bio, photo = m
+    pic = (f'<img src="{photo}" alt="{name}" loading="lazy">' if photo
+           else f'<span class="monogram" aria-hidden="true">{initials(name)}</span>')
+    bio_html = f'<p>{bio}</p>' if bio else ''
+    return (f'<article class="member reveal{" lead" if lead else ""}"><div class="member-photo">{pic}</div>'
+            f'<div class="member-body"><h3>{name}</h3><div class="member-role">{role}</div>{bio_html}</div></article>')
+
+def team_grid(key, lead=False):
+    return '\n          '.join(member(m, lead) for m in TEAM[key])
+
+team = f'''<main id="main">
+  <section class="page-hero plain">
+    <div class="container" style="grid-template-columns:1fr">
+      <div class="hero-copy">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Our Team</div>
+        <span class="eyebrow">Our Team</span>
+        <h1>The People Behind Zurosh</h1>
+        <p class="lead">Zurosh Enterprises is led by a management team with experience across telecommunications and construction, supported by dedicated specialists in each division.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Leadership</span><h2>Management Team</h2></div>
+      <div class="team-grid lead-grid">
+          {team_grid('leadership', True)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="team-division">
+        <div class="division-head telecom-head reveal">
+          <span class="division-tag">Sector 01</span>
+          <h2>Telecom Division</h2>
+          <p>FTTH networks, 5G tower infrastructure, consultancy and business feasibility reports.</p>
+        </div>
+        <div class="team-grid">
+          {team_grid('telecom')}
+        </div>
+      </div>
+      <div class="team-division">
+        <div class="division-head construction-head reveal">
+          <span class="division-tag">Sector 02</span>
+          <h2>Construction Division</h2>
+          <p>Residential units, commercial plazas, and renovation and extension works.</p>
+        </div>
+        <div class="team-grid">
+          {team_grid('construction')}
+        </div>
+      </div>
+    </div>
+  </section>
+
+{cta('Join Our Team', 'We are always interested in hearing from experienced engineers and project professionals. Send your CV to ' + EMAIL + '.')}
+</main>'''
+page('team.html', 'Our Team | Zurosh Enterprises',
+     'Meet the leadership and specialist teams of Zurosh Enterprises across the Telecom and Construction divisions.',
+     'team', team)
 
 # =========================================================================== CONTACT
 contact = f'''<main id="main">

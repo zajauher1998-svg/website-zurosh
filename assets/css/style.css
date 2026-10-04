@@ -609,3 +609,38 @@ body[data-zone="telecom"] .progress-rail a.active { background: var(--gold); }
 .panel, .panel h2, .panel .lead, .panel .eyebrow { transition: color .6s ease, border-color .6s ease, opacity .8s ease, transform .8s ease; }
 @media (prefers-reduced-motion: reduce) { .zone-bg .zone { transition: none; } }
 body[data-zone="telecom"] .panel { backdrop-filter: blur(24px) saturate(1.05); -webkit-backdrop-filter: blur(24px) saturate(1.05); }
+
+/* ==========================================================================
+   Our Team
+   ========================================================================== */
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+.lead-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+.member {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+  display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s;
+}
+.section.alt .member { background: var(--paper); }
+.member:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.member-photo { aspect-ratio: 1 / 1; max-width: 100%; background: linear-gradient(150deg, var(--navy) 0%, var(--navy-900) 100%); display: grid; place-items: center; position: relative; overflow: hidden; }
+.member-photo::after { content: ""; position: absolute; right: -14%; bottom: -10%; width: 55%; height: 60%; background: url("../img/z-mark.svg") no-repeat center / contain; opacity: .08; filter: brightness(5); }
+.member-photo img { width: 100%; height: 100%; object-fit: cover; }
+.monogram { font-size: 2.4rem; font-weight: 700; letter-spacing: .08em; color: var(--gold); }
+.lead .monogram { font-size: 3rem; }
+.member-body { padding: 18px 20px 22px; }
+.member-body h3 { font-size: 1.05rem; margin-bottom: .25em; }
+.member-role { font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-600); }
+.member-body p { font-size: .9rem; color: var(--muted); margin: .7em 0 0; }
+.team-division + .team-division { margin-top: 64px; }
+.division-head { display: grid; grid-template-columns: auto 1fr; column-gap: 18px; align-items: baseline; margin-bottom: 28px; padding-left: 18px; border-left: 4px solid var(--navy); }
+.division-head.construction-head { border-left-color: var(--gold); }
+.division-head h2 { margin: 0; font-size: clamp(1.5rem, 2.6vw, 2rem); }
+.division-head p { grid-column: 1 / -1; margin: .5em 0 0; color: var(--muted); }
+.division-tag { font-size: .7rem; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--gold-600); grid-column: 1 / -1; margin-bottom: 6px; }
+@media (max-width: 560px) {
+  .team-grid:not(.lead-grid) { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .team-grid:not(.lead-grid) .monogram { font-size: 1.6rem; }
+  .team-grid:not(.lead-grid) .member-body { padding: 12px 12px 14px; }
+  .team-grid:not(.lead-grid) .member-body h3 { font-size: .9rem; }
+  .team-grid:not(.lead-grid) .member-role { font-size: .62rem; letter-spacing: .08em; }
+  .lead-grid .member-photo { aspect-ratio: 4 / 3; }
+}
