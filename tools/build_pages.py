@@ -163,7 +163,8 @@ def cta(title, text, sector=''):
 </section>'''
 
 # =========================================================================== HOME
-home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"></canvas>
+home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom"></div><div class="zone zone-construction"></div></div>
+<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"></canvas>
 <div class="stage-fallback" aria-hidden="true"><img src="assets/img/z-mark.svg" alt=""></div>
 
 <ol class="progress-rail" aria-label="Page sections">
@@ -177,12 +178,12 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
 </ol>
 
 <main id="main">
-  <section class="scene hero-scene" id="top" data-kf="z" data-side="center" data-rot="0">
+  <section class="scene hero-scene" id="top" data-zone="neutral" data-kf="z" data-side="center" data-rot="0">
     <h1 class="visually-hidden">Zurosh Enterprises: Telecommunications Infrastructure and Construction in Pakistan</h1>
     <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span>Scroll</div>
   </section>
 
-  <section class="scene scene-tall" id="sectors" data-kf="globe" data-side="right" data-rot="1">
+  <section class="scene scene-tall" id="sectors" data-zone="neutral" data-kf="globe" data-side="right" data-rot="1">
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Zurosh Enterprises</span>
@@ -196,7 +197,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     </div>
   </section>
 
-  <section class="scene scene-tall right" id="telecom" data-kf="map" data-side="left" data-rot="1" data-scale="0.72">
+  <section class="scene scene-tall right" id="telecom" data-zone="telecom" data-kf="map" data-side="left" data-rot="1" data-scale="0.72">
     <div class="container">
       <div class="panel dark reveal">
         <span class="eyebrow on-dark">Sector 01 · Telecom</span>
@@ -210,7 +211,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     </div>
   </section>
 
-  <section class="scene scene-tall right" id="tower-lifecycle" data-kf="tower" data-side="left" data-rot="2" data-scale="0.82">
+  <section class="scene scene-tall right" id="tower-lifecycle" data-zone="telecom" data-kf="tower" data-side="left" data-rot="2" data-scale="0.82">
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">5G Tower Infrastructure</span>
@@ -227,7 +228,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     </div>
   </section>
 
-  <section class="scene scene-tall" id="construction" data-kf="house" data-side="right" data-rot="2.92">
+  <section class="scene scene-tall" id="construction" data-zone="construction" data-kf="house" data-side="right" data-rot="2.92">
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Sector 02 · Construction</span>
@@ -241,7 +242,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     </div>
   </section>
 
-  <section class="scene scene-tall" id="commercial" data-kf="commercial" data-side="right" data-rot="3.92">
+  <section class="scene scene-tall" id="commercial" data-zone="construction" data-kf="commercial" data-side="right" data-rot="3.92">
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Sector 02 · Construction</span>
@@ -255,7 +256,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     </div>
   </section>
 
-  <section class="scene scene-tall right" id="start" data-kf="z" data-side="left" data-rot="5" data-scale="0.85">
+  <section class="scene scene-tall right" id="start" data-zone="neutral" data-kf="z" data-side="left" data-rot="5" data-scale="0.85">
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Get in Touch</span>

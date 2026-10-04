@@ -350,7 +350,9 @@
   function Stage(canvas, opts) {
     this.canvas = canvas;
     this.opts = opts;
-    var palette = { n: opts.dark ? LIGHT : NAVY, g: GOLD };
+    var palette = { n: opts.dark ? LIGHT : NAVY, g: GOLD }, lightPal = { n: LIGHT, g: GOLD };
+    // shapes shown over a dark backdrop (home page telecom zone) use light pixels
+    function pal(name) { return (opts.lightForms || []).indexOf(name) >= 0 ? lightPal : palette; }
     var rand = rng(1998);
 
     var zPts = formZ();
@@ -358,10 +360,10 @@
     this.forms = {
       z: pack(zPts, palette, rand),
       globe: pack(fit(formGlobe(N), N, rand), palette, rand),
-      tower: pack(fit(formTower(N), N, rand), palette, rand),
+      tower: pack(fit(formTower(N), N, rand), pal('tower'), rand),
       buildings: pack(fit(formBuildings(), N, rand), palette, rand)
     };
-    if (opts.net) this.forms.map = pack(fit(formMap(), N, rand), palette, rand);
+    if (opts.net) this.forms.map = pack(fit(formMap(), N, rand), pal('map'), rand);
     this.forms.house = pack(fit(formHouse(), N, rand), palette, rand);
     this.forms.commercial = pack(fit(formCommercial(), N, rand), palette, rand);
 
@@ -603,7 +605,7 @@
      Home: scroll-driven
      ====================================================================== */
   function initScroll(canvas) {
-    var stage = new Stage(canvas, { net: true });
+    var stage = new Stage(canvas, { net: true, lightForms: ['map', 'tower'] });
     var sections = [].slice.call(document.querySelectorAll('[data-kf]'));
     var rail = [].slice.call(document.querySelectorAll('.progress-rail a'));
     var kf = [], anchors = [];

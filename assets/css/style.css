@@ -567,3 +567,44 @@ html.veil-in body::after { content: ""; position: fixed; inset: 0; background: v
 .report-list strong { display: block; color: var(--navy); font-size: .98rem; margin-bottom: 2px; }
 .report-list span { display: block; color: var(--muted); font-size: .9rem; line-height: 1.55; }
 @media (max-width: 640px) { .report-list { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   Home page sector zones: a full-screen backdrop that crossfades as you
+   scroll from one sector into the next (body[data-zone] is set in main.js)
+   ========================================================================== */
+.zone-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.zone-bg .zone { position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease; }
+.zone-telecom {
+  background:
+    radial-gradient(rgba(255, 255, 255, .07) 1px, transparent 1.6px) 0 0 / 28px 28px,
+    radial-gradient(1100px 700px at 72% 28%, #22406F 0%, var(--navy) 48%, var(--navy-900) 100%);
+}
+.zone-construction {
+  background:
+    linear-gradient(rgba(169, 131, 63, .13) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, rgba(169, 131, 63, .13) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(160deg, #F8F1E4 0%, #EEDFC4 100%);
+}
+body[data-zone="telecom"] .zone-telecom,
+body[data-zone="construction"] .zone-construction { opacity: 1; }
+.home .stage-canvas { z-index: 1; }
+.home main { z-index: 2; }
+
+/* telecom zone: panels become dark glass, buttons turn gold */
+body[data-zone="telecom"] .panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, .13) 0%, rgba(255, 255, 255, .05) 55%, rgba(255, 255, 255, .09) 100%);
+  border-color: rgba(255, 255, 255, .2); color: #E6EAF2;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -1px 0 rgba(0, 0, 0, .2);
+}
+body[data-zone="telecom"] .panel::after { background: linear-gradient(120deg, rgba(255, 255, 255, .14) 0%, rgba(255, 255, 255, 0) 34%); }
+body[data-zone="telecom"] .panel h2 { color: #fff; }
+body[data-zone="telecom"] .panel .lead { color: #CDD5E4; }
+body[data-zone="telecom"] .panel .eyebrow { color: var(--gold); }
+body[data-zone="telecom"] .panel .tag-list li { background: rgba(194, 155, 87, .16); color: var(--gold); }
+body[data-zone="telecom"] .panel .steps-mini li { color: #DCE3EF; }
+body[data-zone="telecom"] .panel .btn-primary { background: var(--gold); color: var(--navy-900); }
+body[data-zone="telecom"] .progress-rail a { background: rgba(255, 255, 255, .25); }
+body[data-zone="telecom"] .progress-rail a.active { background: var(--gold); }
+.panel, .panel h2, .panel .lead, .panel .eyebrow { transition: color .6s ease, border-color .6s ease, opacity .8s ease, transform .8s ease; }
+@media (prefers-reduced-motion: reduce) { .zone-bg .zone { transition: none; } }
+body[data-zone="telecom"] .panel { backdrop-filter: blur(24px) saturate(1.05); -webkit-backdrop-filter: blur(24px) saturate(1.05); }

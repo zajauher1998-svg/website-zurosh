@@ -136,6 +136,24 @@
     leave(url);
   });
 
+  /* ---------- home page sector zones: the backdrop changes per sector ---------- */
+  var zones = [].slice.call(document.querySelectorAll('[data-zone]'));
+  if (zones.length) {
+    var current = '', ticking = false;
+    var setZone = function () {
+      ticking = false;
+      var mid = window.innerHeight / 2, z = 'neutral';
+      for (var i = 0; i < zones.length; i++) {
+        var r = zones[i].getBoundingClientRect();
+        if (r.top <= mid && r.bottom > mid) { z = zones[i].getAttribute('data-zone'); break; }
+      }
+      if (z !== current) { current = z; document.body.setAttribute('data-zone', z); }
+    };
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(setZone); } }, { passive: true });
+    window.addEventListener('resize', setZone);
+    setZone();
+  }
+
   /* ---------- reveal on scroll ---------- */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reduced) {
