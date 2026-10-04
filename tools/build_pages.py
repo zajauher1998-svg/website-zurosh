@@ -65,7 +65,8 @@ def header(current):
             <ul>
               <li><a class="sub" href="telecom.html#ftth"><strong>FTTH Networks</strong><span>Fiber-to-the-home design, deployment and splicing</span></a></li>
               <li><a class="sub" href="telecom.html#towers"><strong>5G Tower Infrastructure</strong><span>Site acquisition through to tower handover</span></a></li>
-              <li><a class="sub" href="telecom.html#consultancy"><strong>Telecom Consultancy</strong><span>Business feasibility reports, planning and regulatory advisory</span></a></li>
+              <li><a class="sub" href="telecom.html#consultancy"><strong>Telecom Consultancy</strong><span>Network planning, regulatory advisory and project management</span></a></li>
+              <li><a class="sub" href="telecom.html#feasibility"><strong>Business Feasibility Reports</strong><span>Customer needs, business model, costing and feasibility</span></a></li>
             </ul>
             <a class="sector-all" href="telecom.html">All Telecom Services <span aria-hidden="true">→</span></a>
           </div>
@@ -320,26 +321,27 @@ telecom = f'''<main id="main" class="telecom-page">
       </article>
 
       <article class="service-block" id="consultancy">
-        <div><div class="num">03</div><h2>Telecom Consultancy</h2><p class="lead">Technical and commercial advisory services for operators, tower companies, developers and investors, including business feasibility reports.</p>
+        <div><div class="num">03</div><h2>Telecom Consultancy</h2><p class="lead">Technical and commercial advisory services for operators, tower companies, developers and investors.</p></div>
+        <div class="feature-grid">
+          {card('consult', 'Network Planning', 'Coverage and capacity planning for 4G, 5G and fiber networks.')}
+          {card('shield', 'Regulatory Advisory', 'Guidance on telecom licensing and compliance requirements in Pakistan.')}
+          {card('clock', 'Project Management', 'Programme governance, vendor management and quality audits.')}
+        </div>
+      </article>
+
+      <article class="service-block" id="feasibility">
+        <div><div class="num">04</div><h2>Business Feasibility Reports</h2><p class="lead">Feasibility studies for telecom projects, prepared for operators, investors, developers and lenders to support investment and rollout decisions.</p>
           <a class="btn btn-primary" href="contact.html?sector=Telecom" style="margin-top:8px">Request a Feasibility Report <span class="arrow" aria-hidden="true">→</span></a></div>
-        <div class="consult-body">
-          <div class="feature-grid">
-            {card('consult', 'Network Planning', 'Coverage and capacity planning for 4G, 5G and fiber networks.')}
-            {card('shield', 'Regulatory Advisory', 'Guidance on telecom licensing and compliance requirements in Pakistan.')}
-            {card('clock', 'Project Management', 'Programme governance, vendor management and quality audits.')}
-          </div>
-          <div class="report-scope reveal" id="feasibility">
-            <h3>Business Feasibility Reports</h3>
-            <p class="report-intro">Feasibility studies for telecom projects, prepared for operators, investors, developers and lenders to support investment and rollout decisions. Each report covers:</p>
-            <ol class="report-list">
-              <li><strong>Customer Needs Assessment</strong><span>Demand analysis, target customers, service requirements and market size in the proposed coverage area.</span></li>
-              <li><strong>Business Model</strong><span>Service offering, pricing, revenue streams and go-to-market approach.</span></li>
-              <li><strong>Costing</strong><span>Capital expenditure on network, towers and equipment, and operating expenditure estimates.</span></li>
-              <li><strong>Financial Feasibility</strong><span>Revenue projections, cash flow, payback period, NPV and IRR.</span></li>
-              <li><strong>Technical Feasibility</strong><span>Network design options, coverage and capacity requirements, and technology selection.</span></li>
-              <li><strong>Risk &amp; Regulatory Review</strong><span>Licensing requirements, regulatory approvals and key project risks.</span></li>
-            </ol>
-          </div>
+        <div class="report-scope reveal">
+          <h3>What Each Report Covers</h3>
+          <ol class="report-list">
+            <li><strong>Customer Needs Assessment</strong><span>Demand analysis, target customers, service requirements and market size in the proposed coverage area.</span></li>
+            <li><strong>Business Model</strong><span>Service offering, pricing, revenue streams and go-to-market approach.</span></li>
+            <li><strong>Costing</strong><span>Capital expenditure on network, towers and equipment, and operating expenditure estimates.</span></li>
+            <li><strong>Financial Feasibility</strong><span>Revenue projections, cash flow, payback period, NPV and IRR.</span></li>
+            <li><strong>Technical Feasibility</strong><span>Network design options, coverage and capacity requirements, and technology selection.</span></li>
+            <li><strong>Risk &amp; Regulatory Review</strong><span>Licensing requirements, regulatory approvals and key project risks.</span></li>
+          </ol>
         </div>
       </article>
     </div>
@@ -474,7 +476,7 @@ about = f'''<main id="main">
       <div class="reveal">
         <span class="eyebrow">Who We Are</span>
         <h2>Two Sectors, Managed Independently</h2>
-        <p>Telecommunications and construction require different expertise, partners and regulatory approvals, so each sector is run as a separate division. Our <strong>Telecom division</strong> delivers FTTH networks, 5G tower infrastructure and consultancy services, including business feasibility reports. Our <strong>Construction division</strong> builds residential units and commercial plazas, and carries out renovation and extension works.</p>
+        <p>Telecommunications and construction require different expertise, partners and regulatory approvals, so each sector is run as a separate division. Our <strong>Telecom division</strong> delivers FTTH networks, 5G tower infrastructure, consultancy services and business feasibility reports. Our <strong>Construction division</strong> builds residential units and commercial plazas, and carries out renovation and extension works.</p>
         <p>Both divisions follow the same principles: clearly defined scope, realistic schedules, safe working practices and complete project documentation.</p>
         <div class="split-sectors" style="margin-top:24px">
           <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G Towers · Consultancy</a>
