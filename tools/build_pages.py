@@ -3,9 +3,10 @@
 import os
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..') + os.sep
 
-EMAIL = 'info@zurosh.com'          # TODO: confirm
-PHONE = '+92 000 0000000'          # TODO: replace
-CITY = 'Pakistan'                  # TODO: add office address
+EMAIL = 'info@zurosh.com'
+PHONE = '+92 323 2222062'          # shown as written; spaces are stripped for the tel: link
+ADDRESS = 'Office-3, 2nd Floor, Galaxy Mall, Airport Road, Lahore'
+MAP_URL = 'https://www.google.com/maps/search/?api=1&amp;query=Galaxy+Mall+Airport+Road+Lahore'
 
 ICON = {
  'tower': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v13M8 22l4-13 4 13M9.5 16h5"/><path d="M8.5 5.5a5 5 0 0 0 0 7M15.5 5.5a5 5 0 0 1 0 7M6 3a8.5 8.5 0 0 0 0 12M18 3a8.5 8.5 0 0 1 0 12"/><circle cx="12" cy="9" r="1.2"/></svg>',
@@ -125,7 +126,7 @@ FOOTER = f'''<footer class="site-footer">
     </div>
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> Zurosh Enterprises. All rights reserved.</span>
-      <span>{CITY}</span>
+      <span>{ADDRESS}</span>
     </div>
   </div>
 </footer>'''
@@ -500,7 +501,7 @@ contact = f'''<main id="main">
       <div class="contact-info reveal">
         <div class="item"><span class="ico">{ICON['mail']}</span><div><small>Email</small><a href="mailto:{EMAIL}">{EMAIL}</a></div></div>
         <div class="item"><span class="ico">{ICON['phone']}</span><div><small>Phone</small><a href="tel:{PHONE.replace(' ', '')}">{PHONE}</a></div></div>
-        <div class="item"><span class="ico">{ICON['map']}</span><div><small>Location</small><span style="font-weight:600;color:var(--navy)">{CITY}</span></div></div>
+        <div class="item"><span class="ico">{ICON['map']}</span><div><small>Office</small><a href="{MAP_URL}" target="_blank" rel="noopener">Office-3, 2nd Floor, Galaxy Mall,<br>Airport Road, Lahore</a></div></div>
         <div class="stacked-logo-feature" style="margin-top:12px;padding:36px">
           <img src="assets/img/zurosh-logo-stacked.svg" alt="Zurosh Enterprises" width="372" height="286" style="width:200px">
         </div>

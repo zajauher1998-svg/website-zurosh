@@ -27,7 +27,7 @@ python3 tools/build_pages.py
 
 Edit the text in that script and re-run it. Don't hand-edit the generated `.html` files, or your changes will be overwritten the next time the script runs.
 
-**Before going live, update these placeholders at the top of `tools/build_pages.py`:** `EMAIL`, `PHONE`, `CITY` (office address).
+Contact details (`EMAIL`, `PHONE`, `ADDRESS`, `MAP_URL`) are set at the top of `tools/build_pages.py`.
 
 ## Preview locally
 ```bash
