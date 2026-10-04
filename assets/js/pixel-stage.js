@@ -251,42 +251,15 @@
     return pts;
   }
 
-  /* "Two Sectors": a sphere split down the middle.
-     Left (navy, Telecom): a network globe drawn as latitude and longitude lines.
-     Right (gold, Construction): a solid shell laid in staggered courses like brickwork.
-     Each point carries its side (s = -1 | 1) so the halves can move independently. */
-  function formGlobe(n, rand) {
-    var R = 5.1, net = [], bricks = [], step = CELL * 0.9, k, j, cnt;
-    for (k = -75; k <= 75; k += 15) {                                   // parallels
-      var lat = k * Math.PI / 180, r = Math.cos(lat) * R, y = Math.sin(lat) * R;
-      cnt = Math.max(2, Math.round(Math.PI * r / step));
-      for (j = 0; j <= cnt; j++) {
-        var th = Math.PI / 2 + Math.PI * j / cnt, deg = th * 180 / Math.PI - 90;
-        // gold nodes where a parallel crosses a meridian
-        var node = Math.abs(deg / 20 - Math.round(deg / 20)) * 20 < 2.2 && k % 30 === 0;
-        net.push({ x: Math.cos(th) * r, y: y, z: Math.sin(th) * r, c: node ? 'g' : 'n', s: -1 });
-      }
+  function formGlobe(n) {
+    // a sphere split into two hemispheres: telecom (navy) | construction (gold)
+    var pts = [], R = 5.1, golden = Math.PI * (3 - Math.sqrt(5));
+    for (var i = 0; i < n; i++) {
+      var y = 1 - (i / (n - 1)) * 2, r = Math.sqrt(1 - y * y), th = golden * i;
+      var x = Math.cos(th) * r, z = Math.sin(th) * r;
+      var right = x >= 0;
+      pts.push({ x: x * R + (right ? 0.55 : -0.55), y: y * R, z: z * R, c: right ? 'g' : 'n' });
     }
-    for (k = 0; k <= 180; k += 20) {                                    // meridians
-      var lon = (90 + k) * Math.PI / 180;
-      cnt = Math.round(Math.PI * R / step);
-      for (j = 0; j <= cnt; j++) {
-        var la = -Math.PI / 2 + Math.PI * j / cnt;
-        net.push({ x: Math.cos(la) * Math.cos(lon) * R, y: Math.sin(la) * R, z: Math.cos(la) * Math.sin(lon) * R, c: 'n', s: -1 });
-      }
-    }
-    var nNet = Math.round(n * 0.4), nBrick = n - nNet;
-    var sp = Math.sqrt(2 * Math.PI * R * R / nBrick), rows = Math.round(Math.PI * R / sp);
-    for (k = 0; k <= rows; k++) {                                       // brick courses
-      var phi = -Math.PI / 2 + Math.PI * k / rows, rr = Math.cos(phi) * R, yy = Math.sin(phi) * R;
-      cnt = Math.max(1, Math.round(Math.PI * rr / sp));
-      for (j = 0; j < cnt; j++) {
-        var t2 = -Math.PI / 2 + Math.PI * (j + (k % 2 ? 0.5 : 0.25)) / cnt;   // offset alternate courses
-        bricks.push({ x: Math.cos(t2) * rr, y: yy, z: Math.sin(t2) * rr, c: 'g', s: 1 });
-      }
-    }
-    var pts = fit(net, nNet, rand).concat(fit(bricks, nBrick, rand));
-    pts.forEach(function (p) { p.x += p.s * 0.55; });
     return pts;
   }
 
@@ -344,7 +317,7 @@
     var base = out.length;
     while (out.length < n) {
       var s = out[Math.floor(rand() * base)];
-      out.push({ x: s.x + (rand() - 0.5) * 0.05, y: s.y + (rand() - 0.5) * 0.05, z: s.z + (rand() - 0.5) * 0.05, c: s.c, s: s.s });
+      out.push({ x: s.x + (rand() - 0.5) * 0.05, y: s.y + (rand() - 0.5) * 0.05, z: s.z + (rand() - 0.5) * 0.05, c: s.c });
     }
     return out;
   }
@@ -353,15 +326,14 @@
   function pack(pts, palette, rand) {
     pts.forEach(function (p) { p.k = p.y + (rand() - 0.5) * 2.2; });
     pts.sort(function (a, b) { return a.k - b.k; });
-    var n = pts.length, P = new Float32Array(n * 3), C = new Float32Array(n * 3), S = new Float32Array(n);
+    var n = pts.length, P = new Float32Array(n * 3), C = new Float32Array(n * 3);
     var navy = new THREE.Color(palette.n), gold = new THREE.Color(palette.g);
     pts.forEach(function (p, i) {
       P[i * 3] = p.x; P[i * 3 + 1] = p.y; P[i * 3 + 2] = p.z;
       var c = p.c === 'g' ? gold : navy;
       C[i * 3] = c.r; C[i * 3 + 1] = c.g; C[i * 3 + 2] = c.b;
-      S[i] = p.s || 0;
     });
-    return { p: P, c: C, s: S };
+    return { p: P, c: C };
   }
 
   function webglOK() {
@@ -384,7 +356,7 @@
     var N = this.N = zPts.length;
     this.forms = {
       z: pack(zPts, palette, rand),
-      globe: pack(formGlobe(N, rand), palette, rand),
+      globe: pack(fit(formGlobe(N), N, rand), palette, rand),
       tower: pack(fit(formTower(N), N, rand), palette, rand),
       buildings: pack(fit(formBuildings(), N, rand), palette, rand)
     };
@@ -542,28 +514,25 @@
 
   /* place every pixel for a morph between two formations (t: 0..1) */
   Stage.prototype.layout = function (from, to, t) {
-    var live = from === 'globe' || to === 'globe';
-    var key = from + '|' + to + '|' + t.toFixed(4) + (live ? '|' + (this.clock || 0).toFixed(3) : '');
+    var key = from + '|' + to + '|' + t.toFixed(4);
     if (key === this.last) return;
     this.last = key;
     var A = this.forms[from], B = this.forms[to], N = this.N;
-    var G = live ? this.globeNow(this.clock || 0) : null;
-    var AP = from === 'globe' ? G : A.p, BP = to === 'globe' ? G : B.p;
     var mat = this.mesh.instanceMatrix.array, col = this.mesh.instanceColor.array;
     var d = this.dummy, burstAmp = this.reduced ? 0 : 3.6, same = from === to;
     for (var i = 0; i < N; i++) {
       var i3 = i * 3, e = 1;
       if (!same && t < 1) {
         // pixels peel away left→right with jitter
-        var delay = clamp((AP[i3] + 5) / 10, 0, 1) * 0.55 + this.rnd[i] * 0.3;
+        var delay = clamp((A.p[i3] + 5) / 10, 0, 1) * 0.55 + this.rnd[i] * 0.3;
         e = ease(clamp((t - delay * 0.4) / 0.6, 0, 1));
       }
       if (same) e = 0;
       var bump = same ? 0 : Math.sin(Math.PI * e);
       d.position.set(
-        AP[i3] + (BP[i3] - AP[i3]) * e + this.burst[i3] * bump * burstAmp,
-        AP[i3 + 1] + (BP[i3 + 1] - AP[i3 + 1]) * e + this.burst[i3 + 1] * bump * burstAmp,
-        AP[i3 + 2] + (BP[i3 + 2] - AP[i3 + 2]) * e + this.burst[i3 + 2] * bump * burstAmp
+        A.p[i3] + (B.p[i3] - A.p[i3]) * e + this.burst[i3] * bump * burstAmp,
+        A.p[i3 + 1] + (B.p[i3 + 1] - A.p[i3 + 1]) * e + this.burst[i3 + 1] * bump * burstAmp,
+        A.p[i3 + 2] + (B.p[i3 + 2] - A.p[i3 + 2]) * e + this.burst[i3 + 2] * bump * burstAmp
       );
       d.rotation.set(this.spin[i * 2] * bump, this.spin[i * 2 + 1] * bump, 0);
       var s = 1 - 0.3 * bump;
@@ -576,20 +545,6 @@
     }
     this.mesh.instanceMatrix.needsUpdate = true;
     this.mesh.instanceColor.needsUpdate = true;
-  };
-
-  /* the two halves counter-rotate about the split axis while the gap between them breathes */
-  Stage.prototype.globeNow = function (t) {
-    var F = this.forms.globe, P = F.p, S = F.s, out = this.gbuf || (this.gbuf = new Float32Array(P.length));
-    var a = this.reduced ? 0 : t * 0.4, gap = this.reduced ? 0.4 : 0.4 + 0.35 * Math.sin(t * 1.1);
-    var ca = Math.cos(a), sa = Math.sin(a);
-    for (var i = 0, n = S.length; i < n; i++) {
-      var i3 = i * 3, side = S[i], y = P[i3 + 1], z = P[i3 + 2];
-      out[i3] = P[i3] + side * gap;
-      out[i3 + 1] = y * ca - z * sa * side;
-      out[i3 + 2] = y * sa * side + z * ca;
-    }
-    return out;
   };
 
   Stage.prototype.render = function (rotY, x, y, scale, sway, time) {
@@ -657,7 +612,6 @@
       var a = kf[i], b = kf[i + 1];
       var tr = ease(clamp(th / 0.65, 0, 1));     // rotate first…
       var tm = clamp((th - 0.22) / 0.78, 0, 1);  // …then shatter & rebuild
-      stage.clock = (now - start) / 1000;
       stage.layout(a.form, b.form, tm);
       // solid logo until the pixels start moving; it returns once they have re-formed a Z
       stage.setSolid(a.form === 'z' && tm < 0.05 ? 1 - tm / 0.05 : b.form === 'z' && tm > 0.95 ? (tm - 0.95) / 0.05 : 0);
