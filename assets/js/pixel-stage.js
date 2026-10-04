@@ -278,7 +278,7 @@
     [70.0, 27.2], [69.6, 26.6], [70.2, 26.2], [70.1, 25.6], [69.5, 24.8], [69.0, 24.3], [68.2, 23.7],
     [67.4, 23.9], [67.0, 24.8], [66.7, 25.4], [65.6, 25.3], [64.6, 25.2], [63.5, 25.3], [62.3, 25.1]
   ];
-  // fibre nodes (major cities) and backbone routes between them
+  // fiber nodes (major cities) and backbone routes between them
   var CITIES = {
     karachi: [67.0, 24.9], hyderabad: [68.4, 25.4], sukkur: [68.9, 27.7], quetta: [67.0, 30.2],
     gwadar: [62.3, 25.3], multan: [71.5, 30.2], bahawalpur: [71.7, 29.4], faisalabad: [73.1, 31.4],
@@ -458,7 +458,7 @@
     this.solidMats.forEach(function (m) { m.opacity = v; });
   };
 
-  /* fibre network over the map: glowing city nodes, backbone arcs, travelling pulses */
+  /* fiber network over the map: glowing city nodes, backbone arcs, travelling pulses */
   Stage.prototype.buildNet = function () {
     var net = this.net = new THREE.Group(), front = (MAP_LAYERS / 2) * CELL + 0.12;
     var gold = new THREE.Color(GOLD), mats = this.netMats = [];
@@ -614,7 +614,7 @@
       stage.layout(a.form, b.form, tm);
       // solid logo until the pixels start moving; it returns once they have re-formed a Z
       stage.setSolid(a.form === 'z' && tm < 0.05 ? 1 - tm / 0.05 : b.form === 'z' && tm > 0.95 ? (tm - 0.95) / 0.05 : 0);
-      // fibre network shows only while the pixels rest as the map
+      // fiber network shows only while the pixels rest as the map
       stage.updateNet(a.form === 'map' ? 1 - tm / 0.12 : b.form === 'map' ? (tm - 0.88) / 0.12 : 0, (now - start) / 1000);
       stage.render(
         a.rot + (b.rot - a.rot) * tr,
@@ -658,7 +658,7 @@
 
   /* ======================================================================
      Inner pages: morph driven by scrolling through a pinned section
-     (telecom: map of Pakistan with fibre network → 5G tower;
+     (telecom: map of Pakistan with fiber network → 5G tower;
       construction: house → commercial plaza)
      ====================================================================== */
   function initTrack(canvas) {

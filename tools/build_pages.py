@@ -63,7 +63,7 @@ def header(current):
               <div><div class="sector-label">Sector 01</div><div class="sector-title">Telecom</div></div>
             </div>
             <ul>
-              <li><a class="sub" href="telecom.html#ftth"><strong>FTTH Networks</strong><span>Fibre-to-the-home design, deployment and splicing</span></a></li>
+              <li><a class="sub" href="telecom.html#ftth"><strong>FTTH Networks</strong><span>Fiber-to-the-home design, deployment and splicing</span></a></li>
               <li><a class="sub" href="telecom.html#towers"><strong>5G Tower Infrastructure</strong><span>Site acquisition through to tower handover</span></a></li>
               <li><a class="sub" href="telecom.html#consultancy"><strong>Telecom Consultancy</strong><span>Planning, feasibility and regulatory advisory</span></a></li>
             </ul>
@@ -185,7 +185,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
       <div class="panel reveal">
         <span class="eyebrow">Zurosh Enterprises</span>
         <h2>Two Sectors.<br>One Standard.</h2>
-        <p class="lead">Zurosh Enterprises operates through two dedicated divisions. Our Telecom division delivers fibre networks and tower infrastructure for operators, and our Construction division develops residential and commercial properties. Each division is led by its own specialist team and works to common standards of quality, safety and accountability.</p>
+        <p class="lead">Zurosh Enterprises operates through two dedicated divisions. Our Telecom division delivers fiber networks and tower infrastructure for operators, and our Construction division develops residential and commercial properties. Each division is led by its own specialist team and works to common standards of quality, safety and accountability.</p>
         <div class="split-sectors">
           <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G Towers · Consultancy</a>
           <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial Plazas</a>
@@ -198,8 +198,8 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     <div class="container">
       <div class="panel dark reveal">
         <span class="eyebrow on-dark">Sector 01 · Telecom</span>
-        <h2>Fibre Across Pakistan</h2>
-        <p class="lead">We plan, deploy and commission fibre optic networks and telecom infrastructure for operators and developers in every province of Pakistan.</p>
+        <h2>Fiber Across Pakistan</h2>
+        <p class="lead">We plan, deploy and commission fiber optic networks and telecom infrastructure for operators and developers in every province of Pakistan.</p>
         <ul class="tag-list">
           <li>FTTH Deployment</li><li>5G Tower Infrastructure</li><li>Site Acquisition</li><li>Telecom Consultancy</li>
         </ul>
@@ -258,7 +258,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
       <div class="panel reveal">
         <span class="eyebrow">Get in Touch</span>
         <h2>Start Your Project</h2>
-        <p class="lead">Contact us to discuss a fibre rollout, tower programme or construction project.</p>
+        <p class="lead">Contact us to discuss a fiber rollout, tower programme or construction project.</p>
         <a class="btn btn-primary" href="contact.html">Contact Us <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
@@ -279,7 +279,7 @@ telecom = f'''<main id="main" class="telecom-page">
       <div class="hero-copy">
         <div class="breadcrumb"><a href="index.html">Home</a> / Telecom</div>
         <span class="sector-badge">{ICON['tower'].replace('<svg', '<svg width="16" height="16"')} Sector 01 · Telecom</span>
-        <h1>Telecom Infrastructure from Fibre to 5G</h1>
+        <h1>Telecom Infrastructure from Fiber to 5G</h1>
         <p class="lead">Zurosh Enterprises designs, builds and commissions telecommunications infrastructure in Pakistan, including FTTH networks, turnkey 5G tower sites and specialist consultancy.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
           <a class="btn btn-gold" href="#towers">5G Towers <span class="arrow" aria-hidden="true">→</span></a>
@@ -290,7 +290,7 @@ telecom = f'''<main id="main" class="telecom-page">
         <canvas data-stage="track" data-from="map" data-form="tower" data-track="#network" data-dark aria-hidden="true"></canvas>
         <img class="fallback" src="assets/img/z-mark.svg" alt="">
         <div class="stage-caption" aria-hidden="true">
-          <span class="cap-a"><i></i>Fibre Backbone Across Pakistan</span>
+          <span class="cap-a"><i></i>Fiber Backbone Across Pakistan</span>
           <span class="cap-b"><i></i>5G Tower Infrastructure</span>
         </div>
       </div>
@@ -302,10 +302,10 @@ telecom = f'''<main id="main" class="telecom-page">
   <section class="section">
     <div class="container">
       <article class="service-block" id="ftth">
-        <div><div class="num">01</div><h2>FTTH Networks</h2><p class="lead">Fibre-to-the-home networks for housing societies, apartment buildings, commercial areas and service providers.</p></div>
+        <div><div class="num">01</div><h2>FTTH Networks</h2><p class="lead">Fiber-to-the-home networks for housing societies, apartment buildings, commercial areas and service providers.</p></div>
         <div class="feature-grid">
           {card('map', 'Survey &amp; Network Design', 'Route surveys, GIS mapping and GPON / XGS-PON network design.')}
-          {card('fiber', 'Civil &amp; Cable Works', 'Trenching, ducting, and aerial or underground fibre installation.')}
+          {card('fiber', 'Civil &amp; Cable Works', 'Trenching, ducting, and aerial or underground fiber installation.')}
           {card('layers', 'Splicing &amp; Termination', 'Fusion splicing, ODF, FDT and FAT installation, and drop cable connections.')}
           {card('shield', 'Testing &amp; Documentation', 'OTDR and optical power testing, with complete as-built records.')}
         </div>
@@ -324,7 +324,7 @@ telecom = f'''<main id="main" class="telecom-page">
       <article class="service-block" id="consultancy">
         <div><div class="num">03</div><h2>Telecom Consultancy</h2><p class="lead">Technical and commercial advisory services for operators, tower companies, developers and investors.</p></div>
         <div class="feature-grid">
-          {card('consult', 'Network Planning', 'Coverage and capacity planning for 4G, 5G and fibre networks.')}
+          {card('consult', 'Network Planning', 'Coverage and capacity planning for 4G, 5G and fiber networks.')}
           {card('doc', 'Feasibility &amp; Costing', 'Business cases, bills of quantities and rollout cost estimates.')}
           {card('shield', 'Regulatory Advisory', 'Guidance on telecom licensing and compliance requirements in Pakistan.')}
           {card('clock', 'Project Management', 'Programme governance, vendor management and quality audits.')}
@@ -354,7 +354,7 @@ telecom = f'''<main id="main" class="telecom-page">
     </div>
   </section>
 
-{cta('Planning a Fibre or Tower Rollout?', 'Send us your scope and timeline, and our team will prepare a proposal.', 'Telecom')}
+{cta('Planning a Fiber or Tower Rollout?', 'Send us your scope and timeline, and our team will prepare a proposal.', 'Telecom')}
 </main>'''
 page('telecom.html', 'Telecom Services | Zurosh Enterprises',
      'FTTH networks, turnkey 5G tower infrastructure from site acquisition to handover, and telecom consultancy in Pakistan.',
