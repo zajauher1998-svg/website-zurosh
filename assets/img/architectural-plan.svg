@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+<g fill="none" stroke="#15284A" stroke-linecap="round" stroke-linejoin="round" font-family="Montserrat, Arial, sans-serif">
+<rect x="150" y="110" width="1000" height="760" stroke-width="2"/><rect x="164" y="124" width="972" height="732" stroke-width="1"/>
+<path d="M850 790H1136M850 790V856M1046 790V856" stroke-width="1"/>
+<g fill="#15284A" stroke="none" font-size="13" letter-spacing="3"><text x="862" y="818" letter-spacing="2">GROUND FLOOR PLAN</text><text x="862" y="842" font-size="11">SCALE 1:100</text><text x="1056" y="818" font-size="10" letter-spacing="1">A-101</text><text x="1056" y="842" font-size="10" letter-spacing="1">REV 02</text></g>
+<path d="M260 200H520" stroke-width="7"/>
+<path d="M600 200H760" stroke-width="7"/>
+<path d="M840 200H1040" stroke-width="7"/>
+<path d="M1040 200V330" stroke-width="7"/>
+<path d="M1040 410V760" stroke-width="7"/>
+<path d="M1040 760H760" stroke-width="7"/>
+<path d="M680 760H520" stroke-width="7"/>
+<path d="M440 760H260" stroke-width="7"/>
+<path d="M260 760V560" stroke-width="7"/>
+<path d="M260 480V200" stroke-width="7"/>
+<path d="M520 196H600M520 200H600M520 204H600" stroke-width="1.2"/>
+<path d="M760 196H840M760 200H840M760 204H840" stroke-width="1.2"/>
+<path d="M1036 330V410M1040 330V410M1044 330V410" stroke-width="1.2"/>
+<path d="M256 480V560M260 480V560M264 480V560" stroke-width="1.2"/>
+<path d="M440 756H520M440 760H520M440 764H520" stroke-width="1.2"/>
+<path d="M680 760V680" stroke-width="2"/><path d="M680 680A80 80 0 0 1 760 760" stroke-width="1" stroke-dasharray="4 4"/>
+<path d="M640 200V330" stroke-width="4"/>
+<path d="M640 410V760" stroke-width="4"/>
+<path d="M260 470H560" stroke-width="4"/>
+<path d="M640 420H900" stroke-width="4"/>
+<path d="M960 420H1040" stroke-width="4"/>
+<path d="M840 420V600" stroke-width="4"/>
+<path d="M840 660V760" stroke-width="4"/>
+<path d="M640 410H580" stroke-width="1.5"/><path d="M580 410A60 60 0 0 1 640 350" stroke-width="1" stroke-dasharray="4 4"/>
+<path d="M900 420V480" stroke-width="1.5"/><path d="M900 480A60 60 0 0 0 960 420" stroke-width="1" stroke-dasharray="4 4"/>
+<path d="M840 600H880" stroke-width="1.5"/><path d="M880 600A60 60 0 0 1 840 660" stroke-width="1" stroke-dasharray="4 4"/>
+<path d="M560 470V530" stroke-width="1.5"/><path d="M560 530A60 60 0 0 0 620 470" stroke-width="1" stroke-dasharray="4 4"/>
+<rect x="300" y="560" width="170" height="60" rx="8" stroke-width="1.4"/><path d="M300 580H470" stroke-width="1"/>
+<rect x="330" y="650" width="110" height="60" rx="4" stroke-width="1.2"/>
+<rect x="290" y="240" width="140" height="190" rx="4" stroke-width="1.4"/><rect x="302" y="250" width="54" height="34" rx="6" stroke-width="1"/><rect x="364" y="250" width="54" height="34" rx="6" stroke-width="1"/><path d="M290 300H430" stroke-width="1"/>
+<rect x="880" y="470" width="0" height="0"/>
+<path d="M660 220H1020V260M660 220V300" stroke-width="1.4"/><circle cx="720" cy="240" r="9" stroke-width="1"/><circle cx="750" cy="240" r="9" stroke-width="1"/><rect x="900" y="280" width="90" height="60" rx="4" stroke-width="1"/>
+<rect x="680" y="560" width="120" height="160" rx="4" stroke-width="1.4"/><rect x="690" y="570" width="45" height="28" rx="5" stroke-width="1"/><rect x="745" y="570" width="45" height="28" rx="5" stroke-width="1"/>
+<rect x="980" y="440" width="44" height="80" rx="18" stroke-width="1.2"/><rect x="870" y="690" width="140" height="56" rx="6" stroke-width="1.2"/><circle cx="1000" cy="620" r="16" stroke-width="1.2"/>
+<g fill="#15284A" stroke="none" font-size="14" letter-spacing="4" text-anchor="middle"><text x="450" y="520">LIVING</text><text x="360" y="455" font-size="12">BEDROOM 1</text><text x="840" y="385">KITCHEN · DINING</text><text x="740" y="545" font-size="12">BEDROOM 2</text><text x="940" y="560" font-size="12">BATH</text></g>
+<path d="M260 160H1040M260 150V170M1040 150V170M640 152V168" stroke-width="1"/>
+<g fill="#15284A" stroke="none" font-size="12" letter-spacing="2" text-anchor="middle"><text x="450" y="152">24'-0"</text><text x="840" y="152">26'-0"</text></g>
+<path d="M210 200V760M200 200H220M200 760H220M200 470H220" stroke-width="1"/>
+<g fill="#15284A" stroke="none" font-size="12" letter-spacing="2"><text x="0" y="0" transform="translate(196 345) rotate(-90)" text-anchor="middle">18'-0"</text><text x="0" y="0" transform="translate(196 615) rotate(-90)" text-anchor="middle">20'-0"</text></g>
+<g transform="translate(1080 680)"><circle r="30" stroke-width="1.2"/><path d="M0 -26L9 10L0 4L-9 10Z" stroke-width="1.2"/><text y="-38" fill="#15284A" stroke="none" font-size="13" text-anchor="middle">N</text></g>
+<g transform="translate(1230 90) rotate(12)" stroke-width="2"><path d="M0 0L300 300H0Z"/><path d="M40 100L170 230H40Z" stroke-width="1.4"/>
+<path d="M20 300V293" stroke-width="1"/>
+<path d="M40 300V293" stroke-width="1"/>
+<path d="M60 300V293" stroke-width="1"/>
+<path d="M80 300V293" stroke-width="1"/>
+<path d="M100 300V286" stroke-width="1"/>
+<path d="M120 300V293" stroke-width="1"/>
+<path d="M140 300V293" stroke-width="1"/>
+<path d="M160 300V293" stroke-width="1"/>
+<path d="M180 300V293" stroke-width="1"/>
+<path d="M200 300V286" stroke-width="1"/>
+<path d="M220 300V293" stroke-width="1"/>
+<path d="M240 300V293" stroke-width="1"/>
+<path d="M260 300V293" stroke-width="1"/>
+<path d="M280 300V293" stroke-width="1"/>
+</g>
+<g transform="translate(1330 470) rotate(-14)" stroke-width="2">
+<rect x="-7" y="-70" width="14" height="38" rx="5"/><circle r="16" stroke-width="2"/><circle r="5" stroke-width="1.4"/>
+<path d="M-10 12L-118 300L-104 304L-2 18"/><path d="M10 12L112 296L126 292L2 18"/>
+<path d="M-118 300L-116 330M-104 304L-116 330" stroke-width="1.4"/>
+<path d="M112 296L118 318L126 292M118 318L119 336" stroke-width="1.4"/>
+<path d="M-60 150L56 150" stroke-width="1.2"/><circle cx="-2" cy="150" r="6" stroke-width="1.2"/></g>
+<g transform="translate(1000 940) rotate(-24)" stroke-width="2">
+<path d="M0 -14H460V14H0Z"/><path d="M0 -5H460M0 5H460" stroke-width="1"/>
+<path d="M460 -14H500V14H460Z"/><path d="M470 -14V14M480 -14V14M490 -14V14" stroke-width="1"/>
+<path d="M500 -14H538Q548 -14 548 0Q548 14 538 14H500"/>
+<path d="M0 -14L-70 0L0 14"/><path d="M-48 -4L-70 0L-48 4" stroke-width="1.6"/></g>
+<g transform="translate(40 930) rotate(-4)" stroke-width="2"><rect x="0" y="-36" width="640" height="36" rx="3"/>
+<path d="M10 -36V-29" stroke-width="1"/>
+<path d="M20 -36V-29" stroke-width="1"/>
+<path d="M30 -36V-29" stroke-width="1"/>
+<path d="M40 -36V-29" stroke-width="1"/>
+<path d="M50 -36V-24" stroke-width="1"/>
+<path d="M60 -36V-29" stroke-width="1"/>
+<path d="M70 -36V-29" stroke-width="1"/>
+<path d="M80 -36V-29" stroke-width="1"/>
+<path d="M90 -36V-29" stroke-width="1"/>
+<path d="M100 -36V-18" stroke-width="1"/>
+<path d="M110 -36V-29" stroke-width="1"/>
+<path d="M120 -36V-29" stroke-width="1"/>
+<path d="M130 -36V-29" stroke-width="1"/>
+<path d="M140 -36V-29" stroke-width="1"/>
+<path d="M150 -36V-24" stroke-width="1"/>
+<path d="M160 -36V-29" stroke-width="1"/>
+<path d="M170 -36V-29" stroke-width="1"/>
+<path d="M180 -36V-29" stroke-width="1"/>
+<path d="M190 -36V-29" stroke-width="1"/>
+<path d="M200 -36V-18" stroke-width="1"/>
+<path d="M210 -36V-29" stroke-width="1"/>
+<path d="M220 -36V-29" stroke-width="1"/>
+<path d="M230 -36V-29" stroke-width="1"/>
+<path d="M240 -36V-29" stroke-width="1"/>
+<path d="M250 -36V-24" stroke-width="1"/>
+<path d="M260 -36V-29" stroke-width="1"/>
+<path d="M270 -36V-29" stroke-width="1"/>
+<path d="M280 -36V-29" stroke-width="1"/>
+<path d="M290 -36V-29" stroke-width="1"/>
+<path d="M300 -36V-18" stroke-width="1"/>
+<path d="M310 -36V-29" stroke-width="1"/>
+<path d="M320 -36V-29" stroke-width="1"/>
+<path d="M330 -36V-29" stroke-width="1"/>
+<path d="M340 -36V-29" stroke-width="1"/>
+<path d="M350 -36V-24" stroke-width="1"/>
+<path d="M360 -36V-29" stroke-width="1"/>
+<path d="M370 -36V-29" stroke-width="1"/>
+<path d="M380 -36V-29" stroke-width="1"/>
+<path d="M390 -36V-29" stroke-width="1"/>
+<path d="M400 -36V-18" stroke-width="1"/>
+<path d="M410 -36V-29" stroke-width="1"/>
+<path d="M420 -36V-29" stroke-width="1"/>
+<path d="M430 -36V-29" stroke-width="1"/>
+<path d="M440 -36V-29" stroke-width="1"/>
+<path d="M450 -36V-24" stroke-width="1"/>
+<path d="M460 -36V-29" stroke-width="1"/>
+<path d="M470 -36V-29" stroke-width="1"/>
+<path d="M480 -36V-29" stroke-width="1"/>
+<path d="M490 -36V-29" stroke-width="1"/>
+<path d="M500 -36V-18" stroke-width="1"/>
+<path d="M510 -36V-29" stroke-width="1"/>
+<path d="M520 -36V-29" stroke-width="1"/>
+<path d="M530 -36V-29" stroke-width="1"/>
+<path d="M540 -36V-29" stroke-width="1"/>
+<path d="M550 -36V-24" stroke-width="1"/>
+<path d="M560 -36V-29" stroke-width="1"/>
+<path d="M570 -36V-29" stroke-width="1"/>
+<path d="M580 -36V-29" stroke-width="1"/>
+<path d="M590 -36V-29" stroke-width="1"/>
+<path d="M600 -36V-18" stroke-width="1"/>
+<path d="M610 -36V-29" stroke-width="1"/>
+<path d="M620 -36V-29" stroke-width="1"/>
+<path d="M630 -36V-29" stroke-width="1"/>
+</g>
+<path d="M60 60L1560 980M1450 40L1300 980" stroke-width=".8" stroke-dasharray="2 10"/>
+<circle cx="1180" cy="210" r="120" stroke-width=".8" stroke-dasharray="3 8"/>
+</g></svg>

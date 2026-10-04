@@ -460,6 +460,10 @@
     this.solid.visible = v > 0;
     this.mesh.visible = v < 1;
     this.solidMats.forEach(function (m) { m.opacity = v; });
+    // crossfade: the pixels fade out as the solid logo fades in (and back)
+    var pm = this.mesh.material, fading = v > 0 && v < 1;
+    if (pm.transparent !== fading) { pm.transparent = fading; pm.needsUpdate = true; }
+    pm.opacity = fading ? 1 - v * v : 1;
   };
 
   /* fiber network over the map: glowing city nodes, backbone arcs, travelling pulses */
@@ -655,7 +659,9 @@
       var tm = clamp((th - 0.22) / 0.78, 0, 1);  // …then shatter & rebuild
       stage.layout(a.form, b.form, tm);
       // solid logo until the pixels start moving; it returns once they have re-formed a Z
-      stage.setSolid(a.form === 'z' && tm < 0.05 ? 1 - tm / 0.05 : b.form === 'z' && tm > 0.95 ? (tm - 0.95) / 0.05 : 0);
+      // the opening logo dissolves quickly; the closing logo settles in gradually
+      var sm = function (x) { x = clamp(x, 0, 1); return x * x * (3 - 2 * x); };
+      stage.setSolid(a.form === 'z' && tm < 0.08 ? 1 - sm(tm / 0.08) : b.form === 'z' && tm > 0.72 ? sm((tm - 0.72) / 0.28) : 0);
       // fiber network shows only while the pixels rest as the map
       stage.updateNet(a.form === 'map' ? 1 - tm / 0.12 : b.form === 'map' ? (tm - 0.88) / 0.12 : 0, (now - start) / 1000);
       stage.updateSignal(a.form === 'tower' && b.form === 'tower' ? 1 : a.form === 'tower' ? 1 - tm / 0.12 : b.form === 'tower' ? (tm - 0.88) / 0.12 : 0, (now - start) / 1000);

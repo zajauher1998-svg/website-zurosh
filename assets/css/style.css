@@ -579,11 +579,12 @@ html.veil-in body::after { content: ""; position: fixed; inset: 0; background: v
     radial-gradient(rgba(255, 255, 255, .07) 1px, transparent 1.6px) 0 0 / 28px 28px,
     radial-gradient(1100px 700px at 72% 28%, #22406F 0%, var(--navy) 48%, var(--navy-900) 100%);
 }
-.zone-construction {
-  background:
-    linear-gradient(rgba(169, 131, 63, .13) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(90deg, rgba(169, 131, 63, .13) 1px, transparent 1px) 0 0 / 44px 44px,
-    linear-gradient(160deg, #F8F1E4 0%, #EEDFC4 100%);
+.zone-construction { background: linear-gradient(160deg, #F8F1E4 0%, #EEDFC4 100%); }
+/* faint architectural drawing: floor plan with compass, set square, ruler and pencil */
+.zone-construction::before {
+  content: ""; position: absolute; inset: 0;
+  background: url("../img/architectural-plan.svg") center / cover no-repeat;
+  opacity: .16;
 }
 body[data-zone="telecom"] .zone-telecom,
 body[data-zone="construction"] .zone-construction { opacity: 1; }
