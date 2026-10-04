@@ -320,28 +320,26 @@ telecom = f'''<main id="main" class="telecom-page">
       </article>
 
       <article class="service-block" id="consultancy">
-        <div><div class="num">03</div><h2>Telecom Consultancy</h2><p class="lead">Technical and commercial advisory services for operators, tower companies, developers and investors.</p></div>
-        <div class="feature-grid">
-          {card('consult', 'Network Planning', 'Coverage and capacity planning for 4G, 5G and fiber networks.')}
-          {card('doc', 'Business Feasibility Reports', 'Assessment of customer needs, business model, costing and financial viability for telecom projects.')}
-          {card('shield', 'Regulatory Advisory', 'Guidance on telecom licensing and compliance requirements in Pakistan.')}
-          {card('clock', 'Project Management', 'Programme governance, vendor management and quality audits.')}
-        </div>
-      </article>
-
-      <article class="service-block" id="feasibility">
-        <div><div class="num">04</div><h2>Business Feasibility Reports</h2><p class="lead">Feasibility studies for telecom projects, prepared for operators, investors, developers and lenders to support investment and rollout decisions.</p>
+        <div><div class="num">03</div><h2>Telecom Consultancy</h2><p class="lead">Technical and commercial advisory services for operators, tower companies, developers and investors, including business feasibility reports.</p>
           <a class="btn btn-primary" href="contact.html?sector=Telecom" style="margin-top:8px">Request a Feasibility Report <span class="arrow" aria-hidden="true">→</span></a></div>
-        <div class="report-scope reveal">
-          <h3>What Each Report Covers</h3>
-          <ol class="report-list">
-            <li><strong>Customer Needs Assessment</strong><span>Demand analysis, target customers, service requirements and market size in the proposed coverage area.</span></li>
-            <li><strong>Business Model</strong><span>Service offering, pricing, revenue streams and go-to-market approach.</span></li>
-            <li><strong>Costing</strong><span>Capital expenditure on network, towers and equipment, and operating expenditure estimates.</span></li>
-            <li><strong>Financial Feasibility</strong><span>Revenue projections, cash flow, payback period, NPV and IRR.</span></li>
-            <li><strong>Technical Feasibility</strong><span>Network design options, coverage and capacity requirements, and technology selection.</span></li>
-            <li><strong>Risk &amp; Regulatory Review</strong><span>Licensing requirements, regulatory approvals and key project risks.</span></li>
-          </ol>
+        <div class="consult-body">
+          <div class="feature-grid">
+            {card('consult', 'Network Planning', 'Coverage and capacity planning for 4G, 5G and fiber networks.')}
+            {card('shield', 'Regulatory Advisory', 'Guidance on telecom licensing and compliance requirements in Pakistan.')}
+            {card('clock', 'Project Management', 'Programme governance, vendor management and quality audits.')}
+          </div>
+          <div class="report-scope reveal" id="feasibility">
+            <h3>Business Feasibility Reports</h3>
+            <p class="report-intro">Feasibility studies for telecom projects, prepared for operators, investors, developers and lenders to support investment and rollout decisions. Each report covers:</p>
+            <ol class="report-list">
+              <li><strong>Customer Needs Assessment</strong><span>Demand analysis, target customers, service requirements and market size in the proposed coverage area.</span></li>
+              <li><strong>Business Model</strong><span>Service offering, pricing, revenue streams and go-to-market approach.</span></li>
+              <li><strong>Costing</strong><span>Capital expenditure on network, towers and equipment, and operating expenditure estimates.</span></li>
+              <li><strong>Financial Feasibility</strong><span>Revenue projections, cash flow, payback period, NPV and IRR.</span></li>
+              <li><strong>Technical Feasibility</strong><span>Network design options, coverage and capacity requirements, and technology selection.</span></li>
+              <li><strong>Risk &amp; Regulatory Review</strong><span>Licensing requirements, regulatory approvals and key project risks.</span></li>
+            </ol>
+          </div>
         </div>
       </article>
     </div>
