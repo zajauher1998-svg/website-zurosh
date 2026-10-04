@@ -77,7 +77,7 @@ def header(current):
             <ul>
               <li><a class="sub" href="construction.html#residential"><strong>Residential Units</strong><span>Houses, villas and apartment buildings</span></a></li>
               <li><a class="sub" href="construction.html#commercial"><strong>Commercial Plazas</strong><span>Retail, office and mixed-use plazas</span></a></li>
-              <li><a class="sub" href="construction.html#process"><strong>Design &amp; Build</strong><span>Approvals, construction and handover</span></a></li>
+              <li><a class="sub" href="construction.html#renovation"><strong>Renovation &amp; Extension</strong><span>Extensions, remodelling and refurbishment</span></a></li>
             </ul>
             <a class="sector-all" href="construction.html">All Construction Services <span aria-hidden="true">→</span></a>
           </div>
@@ -111,7 +111,7 @@ FOOTER = f'''<footer class="site-footer">
         <ul>
           <li><a href="construction.html#residential">Residential Units</a></li>
           <li><a href="construction.html#commercial">Commercial Plazas</a></li>
-          <li><a href="construction.html#process">Design &amp; Build</a></li>
+          <li><a href="construction.html#renovation">Renovation &amp; Extension</a></li>
         </ul>
       </div>
       <div>
@@ -188,7 +188,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
         <p class="lead">Zurosh Enterprises operates through two dedicated divisions. Our Telecom division delivers fiber networks and tower infrastructure for operators, and our Construction division develops residential and commercial properties. Each division is led by its own specialist team and works to common standards of quality, safety and accountability.</p>
         <div class="split-sectors">
           <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G Towers · Consultancy</a>
-          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial Plazas</a>
+          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Plazas · Renovation</a>
         </div>
       </div>
     </div>
@@ -232,7 +232,7 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
         <h2>Residential Construction</h2>
         <p class="lead">We construct houses, villas and apartment buildings to approved designs, with full site supervision from foundation to finishing.</p>
         <ul class="tag-list">
-          <li>Houses &amp; Villas</li><li>Apartment Buildings</li><li>Housing Schemes</li><li>Turnkey Finishing</li>
+          <li>Houses &amp; Villas</li><li>Apartment Buildings</li><li>Renovation &amp; Extension</li><li>Turnkey Finishing</li>
         </ul>
         <a class="btn btn-primary" href="construction.html#residential">Residential Units <span class="arrow" aria-hidden="true">→</span></a>
       </div>
@@ -369,7 +369,7 @@ construction = f'''<main id="main" class="construction-page">
         <div class="breadcrumb"><a href="index.html">Home</a> / Construction</div>
         <span class="sector-badge">{ICON['building'].replace('<svg', '<svg width="16" height="16"')} Sector 02 · Construction</span>
         <h1>Residential and Commercial Construction</h1>
-        <p class="lead">Zurosh Enterprises constructs houses, apartment buildings and commercial plazas across Pakistan, managing each project from design and approvals through to handover.</p>
+        <p class="lead">Zurosh Enterprises constructs residential units and commercial plazas and carries out renovation and extension works across Pakistan, managing each project from design and approvals through to handover.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
           <a class="btn btn-primary" href="#residential">Our Services <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="contact.html?sector=Construction">Discuss a Project</a>
@@ -391,12 +391,12 @@ construction = f'''<main id="main" class="construction-page">
   <section class="section">
     <div class="container">
       <article class="service-block" id="residential">
-        <div><div class="num">01</div><h2>Residential Units</h2><p class="lead">Residential construction for families, investors and housing developers.</p></div>
+        <div><div class="num">01</div><h2>Residential Units</h2><p class="lead">Residential construction for families and investors.</p></div>
         <div class="feature-grid">
-          {card('home', 'Houses &amp; Villas', 'Grey structure and turnkey construction of individual houses and villas.')}
+          {card('home', 'Houses &amp; Villas', 'Construction of individual houses and villas to approved designs.')}
           {card('building', 'Apartment Buildings', 'Low-rise and mid-rise apartment buildings with efficient, durable layouts.')}
-          {card('layers', 'Housing Schemes', 'Multi-unit residential developments, including roads and utilities.')}
-          {card('hardhat', 'Renovation &amp; Extension', 'Structural additions, remodelling and refurbishment.')}
+          {card('layers', 'Grey Structure', 'Foundations, frame, masonry and roofing, ready for the client’s own finishing works.')}
+          {card('shield', 'Turnkey Construction', 'Complete construction from foundation to final finishes, ready for occupation.')}
         </div>
       </article>
 
@@ -407,6 +407,16 @@ construction = f'''<main id="main" class="construction-page">
           {card('building', 'Office Buildings', 'Office space with modern building services and utilities.')}
           {card('layers', 'Mixed-Use Developments', 'Commercial podiums combined with residential or office floors.')}
           {card('shield', 'MEP &amp; Finishing', 'Electrical, plumbing, HVAC, façades and interior finishing.')}
+        </div>
+      </article>
+
+      <article class="service-block" id="renovation">
+        <div><div class="num">03</div><h2>Renovation &amp; Extension</h2><p class="lead">Renovation, extension and refurbishment of existing residential and commercial buildings.</p></div>
+        <div class="feature-grid">
+          {card('building', 'Extensions &amp; Additional Floors', 'Structural extensions and additional storeys, designed and approved by the relevant authority.')}
+          {card('hardhat', 'Renovation &amp; Remodelling', 'Layout changes, upgrades and remodelling of existing spaces.')}
+          {card('layers', 'Structural Repairs', 'Strengthening and repair of foundations, columns, beams and slabs.')}
+          {card('home', 'Refurbishment &amp; Finishing', 'New finishes, MEP upgrades and interior refurbishment.')}
         </div>
       </article>
     </div>
@@ -431,7 +441,7 @@ construction = f'''<main id="main" class="construction-page">
 {cta('Planning a Construction Project?', 'Share your site details and requirements, and our team will be in touch.', 'Construction')}
 </main>'''
 page('construction.html', 'Construction | Zurosh Enterprises',
-     'Residential and commercial construction across Pakistan by Zurosh Enterprises, covering design, approvals, construction and handover.',
+     'Residential units, commercial plazas, and renovation and extension works across Pakistan by Zurosh Enterprises.',
      'construction', construction, three=True)
 
 # =========================================================================== ABOUT
@@ -455,11 +465,11 @@ about = f'''<main id="main">
       <div class="reveal">
         <span class="eyebrow">Who We Are</span>
         <h2>Two Sectors, Managed Independently</h2>
-        <p>Telecommunications and construction require different expertise, partners and regulatory approvals, so each sector is run as a separate division. Our <strong>Telecom division</strong> delivers FTTH networks, 5G tower infrastructure and consultancy services. Our <strong>Construction division</strong> builds residential units and commercial plazas.</p>
+        <p>Telecommunications and construction require different expertise, partners and regulatory approvals, so each sector is run as a separate division. Our <strong>Telecom division</strong> delivers FTTH networks, 5G tower infrastructure and consultancy services. Our <strong>Construction division</strong> builds residential units and commercial plazas, and carries out renovation and extension works.</p>
         <p>Both divisions follow the same principles: clearly defined scope, realistic schedules, safe working practices and complete project documentation.</p>
         <div class="split-sectors" style="margin-top:24px">
           <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G Towers · Consultancy</a>
-          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial Plazas</a>
+          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Plazas · Renovation</a>
         </div>
       </div>
     </div>

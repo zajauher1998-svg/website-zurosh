@@ -182,7 +182,7 @@
     // keep service options in step with the chosen sector
     var services = {
       Telecom: ['FTTH Network Deployment', '5G Tower Infrastructure (Turnkey)', 'Site Acquisition', 'Telecom Consultancy', 'Other Telecom Services'],
-      Construction: ['Residential Units', 'Commercial Plazas', 'Design & Build', 'Project Management', 'Other Construction Services']
+      Construction: ['Residential Units', 'Commercial Plazas', 'Renovation & Extension', 'Other Construction Services']
     };
     var select = form.querySelector('select[name="service"]');
     function fill() {
