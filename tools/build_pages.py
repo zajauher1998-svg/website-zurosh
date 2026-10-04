@@ -44,10 +44,10 @@ def head(title, desc):
 
 def header(current):
     def cur(k): return ' aria-current="page"' if current == k else ''
-    return f'''<a class="skip-link" href="#main">Skip to content</a>
+    return f'''<a class="skip-link" href="#main">Skip to Content</a>
 <header class="site-header">
   <div class="container">
-    <a class="brand" href="index.html" aria-label="Zurosh Enterprises — home">
+    <a class="brand" href="index.html" aria-label="Zurosh Enterprises home page">
       <img src="assets/img/zurosh-logo-horizontal.svg" alt="Zurosh Enterprises" width="533" height="102">
     </a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span></button>
@@ -62,11 +62,11 @@ def header(current):
               <div><div class="sector-label">Sector 01</div><div class="sector-title">Telecom</div></div>
             </div>
             <ul>
-              <li><a class="sub" href="telecom.html#ftth"><strong>FTTH Networks</strong><span>Fibre-to-the-home design, rollout &amp; splicing</span></a></li>
+              <li><a class="sub" href="telecom.html#ftth"><strong>FTTH Networks</strong><span>Fibre-to-the-home design, deployment and splicing</span></a></li>
               <li><a class="sub" href="telecom.html#towers"><strong>5G Tower Infrastructure</strong><span>Site acquisition through to tower handover</span></a></li>
-              <li><a class="sub" href="telecom.html#consultancy"><strong>Telecom Consultancy</strong><span>Planning, feasibility &amp; regulatory advisory</span></a></li>
+              <li><a class="sub" href="telecom.html#consultancy"><strong>Telecom Consultancy</strong><span>Planning, feasibility and regulatory advisory</span></a></li>
             </ul>
-            <a class="sector-all" href="telecom.html">All telecom services <span aria-hidden="true">→</span></a>
+            <a class="sector-all" href="telecom.html">All Telecom Services <span aria-hidden="true">→</span></a>
           </div>
           <div class="sector sector-construction">
             <div class="sector-head">
@@ -74,17 +74,17 @@ def header(current):
               <div><div class="sector-label">Sector 02</div><div class="sector-title">Construction</div></div>
             </div>
             <ul>
-              <li><a class="sub" href="construction.html#residential"><strong>Residential Units</strong><span>Homes, villas &amp; apartment blocks</span></a></li>
-              <li><a class="sub" href="construction.html#commercial"><strong>Commercial Plazas</strong><span>Retail, office &amp; mixed-use plazas</span></a></li>
-              <li><a class="sub" href="construction.html#process"><strong>Design &amp; Build</strong><span>Approvals, construction &amp; handover</span></a></li>
+              <li><a class="sub" href="construction.html#residential"><strong>Residential Units</strong><span>Houses, villas and apartment buildings</span></a></li>
+              <li><a class="sub" href="construction.html#commercial"><strong>Commercial Plazas</strong><span>Retail, office and mixed-use plazas</span></a></li>
+              <li><a class="sub" href="construction.html#process"><strong>Design &amp; Build</strong><span>Approvals, construction and handover</span></a></li>
             </ul>
-            <a class="sector-all" href="construction.html">All construction services <span aria-hidden="true">→</span></a>
+            <a class="sector-all" href="construction.html">All Construction Services <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
       <a href="about.html"{cur('about')}>About</a>
       <a href="contact.html"{cur('contact')}>Contact</a>
-      <a class="btn btn-primary" href="contact.html">Start a project</a>
+      <a class="btn btn-primary" href="contact.html">Start a Project</a>
     </nav>
   </div>
 </header>'''
@@ -94,14 +94,14 @@ FOOTER = f'''<footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="assets/img/zurosh-logo-stacked-white.svg" alt="Zurosh Enterprises" width="372" height="286" loading="lazy">
-        <p>Telecom infrastructure and construction across Pakistan — two sectors, one standard of delivery.</p>
+        <p>Telecommunications infrastructure and construction services across Pakistan.</p>
       </div>
       <div>
         <h4 class="t">Telecom</h4>
         <ul>
           <li><a href="telecom.html#ftth">FTTH Networks</a></li>
           <li><a href="telecom.html#towers">5G Tower Infrastructure</a></li>
-          <li><a href="telecom.html#lifecycle">Site Acquisition → Handover</a></li>
+          <li><a href="telecom.html#lifecycle">Site Acquisition to Handover</a></li>
           <li><a href="telecom.html#consultancy">Telecom Consultancy</a></li>
         </ul>
       </div>
@@ -154,7 +154,7 @@ def cta(title, text, sector=''):
   <div class="container">
     <div class="cta-band reveal">
       <div><h2>{title}</h2><p>{text}</p></div>
-      <a class="btn btn-gold" href="contact.html{q}">Talk to our team <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-gold" href="contact.html{q}">Contact Our Team <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>'''
@@ -165,17 +165,17 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
 
 <ol class="progress-rail" aria-label="Page sections">
   <li><a href="#top"><span>Zurosh</span></a></li>
-  <li><a href="#sectors"><span>Two sectors</span></a></li>
+  <li><a href="#sectors"><span>Two Sectors</span></a></li>
   <li><a href="#telecom"><span>Telecom</span></a></li>
-  <li><a href="#tower-lifecycle"><span>Tower lifecycle</span></a></li>
+  <li><a href="#tower-lifecycle"><span>Tower Lifecycle</span></a></li>
   <li><a href="#construction"><span>Residential</span></a></li>
   <li><a href="#commercial"><span>Commercial</span></a></li>
-  <li><a href="#start"><span>Start a project</span></a></li>
+  <li><a href="#start"><span>Start a Project</span></a></li>
 </ol>
 
 <main id="main">
   <section class="scene hero-scene" id="top" data-kf="z" data-side="center" data-rot="0">
-    <h1 class="visually-hidden">Zurosh Enterprises — telecom infrastructure and construction in Pakistan</h1>
+    <h1 class="visually-hidden">Zurosh Enterprises: Telecommunications Infrastructure and Construction in Pakistan</h1>
     <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span>Scroll</div>
   </section>
 
@@ -183,11 +183,11 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Zurosh Enterprises</span>
-        <h2>Two sectors.<br>One standard.</h2>
-        <p class="lead">We build the networks that connect Pakistan and the buildings people live and work in. Two separate specialist divisions, each with its own teams — held to the same standard of delivery.</p>
+        <h2>Two Sectors.<br>One Standard.</h2>
+        <p class="lead">Zurosh Enterprises operates through two dedicated divisions. Our Telecom division delivers fibre networks and tower infrastructure for operators, and our Construction division develops residential and commercial properties. Each division is led by its own specialist team and works to common standards of quality, safety and accountability.</p>
         <div class="split-sectors">
-          <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G towers · Consultancy</a>
-          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial plazas</a>
+          <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G Towers · Consultancy</a>
+          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial Plazas</a>
         </div>
       </div>
     </div>
@@ -197,12 +197,12 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     <div class="container">
       <div class="panel dark reveal">
         <span class="eyebrow on-dark">Sector 01 · Telecom</span>
-        <h2>Fibre across Pakistan.</h2>
-        <p class="lead">From Karachi to Gilgit, we plan, lay and commission the fibre that connects the country — and the towers that carry it into the air.</p>
+        <h2>Fibre Across Pakistan</h2>
+        <p class="lead">We plan, deploy and commission fibre optic networks and telecom infrastructure for operators and developers in every province of Pakistan.</p>
         <ul class="tag-list">
-          <li>FTTH deployment</li><li>5G tower infrastructure</li><li>Site acquisition</li><li>Telecom consultancy</li>
+          <li>FTTH Deployment</li><li>5G Tower Infrastructure</li><li>Site Acquisition</li><li>Telecom Consultancy</li>
         </ul>
-        <a class="btn btn-gold" href="telecom.html">Explore telecom <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-gold" href="telecom.html">Explore Telecom <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -211,15 +211,15 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">5G Tower Infrastructure</span>
-        <h2>From site acquisition to handover.</h2>
-        <p class="lead">One accountable partner across the full tower lifecycle.</p>
+        <h2>From Site Acquisition to Handover</h2>
+        <p class="lead">A single point of accountability at every stage of the tower lifecycle.</p>
         <ol class="steps-mini">
-          <li>Site hunting &amp; acquisition</li><li>Survey &amp; design</li>
-          <li>Permits &amp; approvals</li><li>Civil works &amp; foundation</li>
-          <li>Tower erection</li><li>Power &amp; installation</li>
-          <li>Testing &amp; commissioning</li><li>Handover</li>
+          <li>Site Hunting &amp; Acquisition</li><li>Survey &amp; Design</li>
+          <li>Permits &amp; Approvals</li><li>Civil Works &amp; Foundation</li>
+          <li>Tower Erection</li><li>Power &amp; Installation</li>
+          <li>Testing &amp; Commissioning</li><li>Handover</li>
         </ol>
-        <a class="btn btn-primary" href="telecom.html#lifecycle">See the lifecycle <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-primary" href="telecom.html#lifecycle">View the Lifecycle <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -228,12 +228,12 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Sector 02 · Construction</span>
-        <h2>Homes built to last.</h2>
-        <p class="lead">Houses, villas and apartment blocks across Pakistan — delivered with the same engineering discipline as our networks.</p>
+        <h2>Residential Construction</h2>
+        <p class="lead">We construct houses, villas and apartment buildings to approved designs, with full site supervision from foundation to finishing.</p>
         <ul class="tag-list">
-          <li>Houses &amp; villas</li><li>Apartment blocks</li><li>Housing schemes</li><li>Turnkey finishing</li>
+          <li>Houses &amp; Villas</li><li>Apartment Buildings</li><li>Housing Schemes</li><li>Turnkey Finishing</li>
         </ul>
-        <a class="btn btn-primary" href="construction.html#residential">Residential units <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-primary" href="construction.html#residential">Residential Units <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -242,12 +242,12 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Sector 02 · Construction</span>
-        <h2>Commercial plazas.</h2>
-        <p class="lead">Retail, office and mixed-use plazas designed for footfall and long-term value, from approvals to handover.</p>
+        <h2>Commercial Plazas</h2>
+        <p class="lead">We develop retail, office and mixed-use plazas, managing design, regulatory approvals, construction and handover.</p>
         <ul class="tag-list">
-          <li>Retail plazas</li><li>Office buildings</li><li>Mixed-use</li><li>Design &amp; build</li>
+          <li>Retail Plazas</li><li>Office Buildings</li><li>Mixed-Use</li><li>Design &amp; Build</li>
         </ul>
-        <a class="btn btn-primary" href="construction.html#commercial">Explore construction <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-primary" href="construction.html#commercial">Explore Construction <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -255,16 +255,16 @@ home = f'''<canvas class="stage-canvas" data-stage="scroll" aria-hidden="true"><
   <section class="scene scene-tall right" id="start" data-kf="z" data-side="left" data-rot="5" data-scale="0.85">
     <div class="container">
       <div class="panel reveal">
-        <span class="eyebrow">Start a project</span>
-        <h2>Let's build what's next.</h2>
-        <p class="lead">Tell us about your network rollout, tower programme or building project.</p>
-        <a class="btn btn-primary" href="contact.html">Get in touch <span class="arrow" aria-hidden="true">→</span></a>
+        <span class="eyebrow">Get in Touch</span>
+        <h2>Start Your Project</h2>
+        <p class="lead">Contact us to discuss a fibre rollout, tower programme or construction project.</p>
+        <a class="btn btn-primary" href="contact.html">Contact Us <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
 </main>'''
 page('index.html', 'Zurosh Enterprises | Telecom & Construction, Pakistan',
-     'Zurosh Enterprises delivers FTTH networks, 5G tower infrastructure, telecom consultancy, and residential and commercial construction across Pakistan.',
+     'Zurosh Enterprises provides FTTH networks, 5G tower infrastructure, telecom consultancy, and residential and commercial construction across Pakistan.',
      'home', home, 'home', three=True)
 
 # =========================================================================== TELECOM
@@ -278,55 +278,55 @@ telecom = f'''<main id="main" class="telecom-page">
       <div class="hero-copy">
         <div class="breadcrumb"><a href="index.html">Home</a> / Telecom</div>
         <span class="sector-badge">{ICON['tower'].replace('<svg', '<svg width="16" height="16"')} Sector 01 · Telecom</span>
-        <h1>Telecom infrastructure, from fibre to 5G.</h1>
-        <p class="lead">Zurosh designs, builds and commissions the networks Pakistan runs on — FTTH rollouts, turnkey 5G tower sites and the consultancy that keeps programmes on track.</p>
+        <h1>Telecom Infrastructure from Fibre to 5G</h1>
+        <p class="lead">Zurosh Enterprises designs, builds and commissions telecommunications infrastructure in Pakistan, including FTTH networks, turnkey 5G tower sites and specialist consultancy.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
-          <a class="btn btn-gold" href="#towers">5G towers <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn-ghost on-dark" href="contact.html?sector=Telecom">Request a proposal</a>
+          <a class="btn btn-gold" href="#towers">5G Towers <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost on-dark" href="contact.html?sector=Telecom">Request a Proposal</a>
         </div>
       </div>
       <div class="hero-canvas-wrap">
         <canvas data-stage="track" data-from="map" data-form="tower" data-track="#network" data-dark aria-hidden="true"></canvas>
         <img class="fallback" src="assets/img/z-mark.svg" alt="">
         <div class="stage-caption" aria-hidden="true">
-          <span class="cap-a"><i></i>Fibre backbone across Pakistan</span>
-          <span class="cap-b"><i></i>5G tower infrastructure</span>
+          <span class="cap-a"><i></i>Fibre Backbone Across Pakistan</span>
+          <span class="cap-b"><i></i>5G Tower Infrastructure</span>
         </div>
       </div>
     </div>
-    <div class="track-hint" aria-hidden="true">Scroll to build</div>
+    <div class="track-hint" aria-hidden="true">Scroll to Build</div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <article class="service-block" id="ftth">
-        <div><div class="num">01</div><h2>FTTH Networks</h2><p class="lead">Fibre-to-the-home for housing societies, apartment blocks, commercial areas and operators.</p></div>
+        <div><div class="num">01</div><h2>FTTH Networks</h2><p class="lead">Fibre-to-the-home networks for housing societies, apartment buildings, commercial areas and service providers.</p></div>
         <div class="feature-grid">
-          {card('map', 'Survey &amp; network design', 'Route surveys, GIS mapping and optimised GPON / XGS-PON architecture.')}
-          {card('fiber', 'Civil &amp; cable works', 'Trenching, ducting, aerial and underground fibre laying with minimal disruption.')}
-          {card('layers', 'Splicing &amp; termination', 'Fusion splicing, ODF / FDT / FAT installation and drop-cable connections.')}
-          {card('shield', 'Testing &amp; documentation', 'OTDR and power-meter testing with complete as-built records.')}
+          {card('map', 'Survey &amp; Network Design', 'Route surveys, GIS mapping and GPON / XGS-PON network design.')}
+          {card('fiber', 'Civil &amp; Cable Works', 'Trenching, ducting, and aerial or underground fibre installation.')}
+          {card('layers', 'Splicing &amp; Termination', 'Fusion splicing, ODF, FDT and FAT installation, and drop cable connections.')}
+          {card('shield', 'Testing &amp; Documentation', 'OTDR and optical power testing, with complete as-built records.')}
         </div>
       </article>
 
       <article class="service-block" id="towers">
-        <div><div class="num">02</div><h2>5G Tower Infrastructure</h2><p class="lead">Turnkey tower sites — one partner from the first site search to the final handover.</p></div>
+        <div><div class="num">02</div><h2>5G Tower Infrastructure</h2><p class="lead">Turnkey tower sites delivered under a single contract, from site search to final handover.</p></div>
         <div class="feature-grid">
-          {card('map', 'Site acquisition', 'Site hunting, landlord negotiation, lease agreements and title verification.')}
-          {card('doc', 'Permits &amp; approvals', 'NOCs and approvals from the relevant authorities, managed for you.')}
-          {card('hardhat', 'Civil &amp; erection', 'Foundations, greenfield and rooftop towers, monopoles and shelters.')}
-          {card('tower', 'Installation &amp; commissioning', 'Antennas, RRUs, microwave links, power systems, testing and integration.')}
+          {card('map', 'Site Acquisition', 'Site hunting, landlord negotiation, lease agreements and title verification.')}
+          {card('doc', 'Permits &amp; Approvals', 'NOCs and statutory approvals from the relevant authorities.')}
+          {card('hardhat', 'Civil Works &amp; Erection', 'Foundations, greenfield and rooftop towers, monopoles and equipment shelters.')}
+          {card('tower', 'Installation &amp; Commissioning', 'Antennas, RRUs, microwave links, power systems, testing and integration.')}
         </div>
       </article>
 
       <article class="service-block" id="consultancy">
-        <div><div class="num">03</div><h2>Telecom Consultancy</h2><p class="lead">Independent, practical advice for operators, tower companies, developers and investors.</p></div>
+        <div><div class="num">03</div><h2>Telecom Consultancy</h2><p class="lead">Technical and commercial advisory services for operators, tower companies, developers and investors.</p></div>
         <div class="feature-grid">
-          {card('consult', 'Network planning', 'Coverage and capacity planning for 4G / 5G and fibre networks.')}
-          {card('doc', 'Feasibility &amp; costing', 'Business cases, BOQs and rollout cost modelling.')}
-          {card('shield', 'Regulatory advisory', 'Guidance on licensing and compliance in Pakistan’s telecom landscape.')}
-          {card('clock', 'Project management', 'Programme governance, vendor management and quality audits.')}
+          {card('consult', 'Network Planning', 'Coverage and capacity planning for 4G, 5G and fibre networks.')}
+          {card('doc', 'Feasibility &amp; Costing', 'Business cases, bills of quantities and rollout cost estimates.')}
+          {card('shield', 'Regulatory Advisory', 'Guidance on telecom licensing and compliance requirements in Pakistan.')}
+          {card('clock', 'Project Management', 'Programme governance, vendor management and quality audits.')}
         </div>
       </article>
     </div>
@@ -335,25 +335,25 @@ telecom = f'''<main id="main" class="telecom-page">
   <section class="section navy" id="lifecycle">
     <div class="container two-col" style="align-items:start">
       <div class="section-head reveal sticky-head">
-        <span class="eyebrow on-dark">Tower lifecycle</span>
-        <h2>From site acquisition to handing over the tower.</h2>
-        <p>Every step is run by one accountable team, so operators get a single point of contact and a single timeline — not a chain of subcontractors.</p>
-        <a class="btn btn-gold" href="contact.html?sector=Telecom" style="margin-top:12px">Plan a rollout <span class="arrow" aria-hidden="true">→</span></a>
+        <span class="eyebrow on-dark">Tower Lifecycle</span>
+        <h2>From Site Acquisition to Tower Handover</h2>
+        <p>Each stage is managed by a single project team, giving operators one point of contact and one consolidated schedule.</p>
+        <a class="btn btn-gold" href="contact.html?sector=Telecom" style="margin-top:12px">Plan a Rollout <span class="arrow" aria-hidden="true">→</span></a>
       </div>
       <ol class="timeline">
-        <li class="reveal"><h3>Site hunting &amp; acquisition</h3><p>Candidate search against the operator’s search ring, landlord negotiation and lease signing.</p></li>
-        <li class="reveal"><h3>Survey &amp; design</h3><p>Technical site surveys, soil testing, structural and electrical design.</p></li>
-        <li class="reveal"><h3>Permits &amp; approvals</h3><p>NOCs and approvals from the relevant municipal and regulatory authorities.</p></li>
-        <li class="reveal"><h3>Civil works &amp; foundation</h3><p>Excavation, foundations, boundary walls, shelters and access.</p></li>
-        <li class="reveal"><h3>Tower erection</h3><p>Greenfield lattice towers, monopoles and rooftop structures erected to design.</p></li>
-        <li class="reveal"><h3>Power &amp; installation</h3><p>Grid connection, generators, batteries and solar; antennas, RRUs and microwave links.</p></li>
-        <li class="reveal"><h3>Testing &amp; commissioning</h3><p>Alignment, integration and acceptance testing with the operator.</p></li>
-        <li class="reveal"><h3>Handover</h3><p>Site handed over with full documentation, as-built drawings and warranties.</p></li>
+        <li class="reveal"><h3>Site Hunting &amp; Acquisition</h3><p>Identification of candidate sites within the operator’s search ring, landlord negotiation and lease execution.</p></li>
+        <li class="reveal"><h3>Survey &amp; Design</h3><p>Technical site surveys, soil investigation, and structural and electrical design.</p></li>
+        <li class="reveal"><h3>Permits &amp; Approvals</h3><p>NOCs and approvals from the relevant municipal and regulatory authorities.</p></li>
+        <li class="reveal"><h3>Civil Works &amp; Foundation</h3><p>Excavation, foundations, boundary walls, equipment shelters and site access.</p></li>
+        <li class="reveal"><h3>Tower Erection</h3><p>Erection of greenfield lattice towers, monopoles and rooftop structures to approved designs.</p></li>
+        <li class="reveal"><h3>Power &amp; Installation</h3><p>Grid connection, generators, batteries and solar systems, followed by installation of antennas, RRUs and microwave links.</p></li>
+        <li class="reveal"><h3>Testing &amp; Commissioning</h3><p>Alignment, integration and acceptance testing with the operator.</p></li>
+        <li class="reveal"><h3>Handover</h3><p>Formal site handover with complete documentation, as-built drawings and warranties.</p></li>
       </ol>
     </div>
   </section>
 
-{cta('Planning a fibre or tower rollout?', 'Share your scope and timeline — we will come back with a plan.', 'Telecom')}
+{cta('Planning a Fibre or Tower Rollout?', 'Send us your scope and timeline, and our team will prepare a proposal.', 'Telecom')}
 </main>'''
 page('telecom.html', 'Telecom Services | Zurosh Enterprises',
      'FTTH networks, turnkey 5G tower infrastructure from site acquisition to handover, and telecom consultancy in Pakistan.',
@@ -367,45 +367,45 @@ construction = f'''<main id="main" class="construction-page">
       <div class="hero-copy">
         <div class="breadcrumb"><a href="index.html">Home</a> / Construction</div>
         <span class="sector-badge">{ICON['building'].replace('<svg', '<svg width="16" height="16"')} Sector 02 · Construction</span>
-        <h1>Residential and commercial construction.</h1>
-        <p class="lead">Homes, apartment blocks and commercial plazas built across Pakistan — planned carefully, built well and handed over on schedule.</p>
+        <h1>Residential and Commercial Construction</h1>
+        <p class="lead">Zurosh Enterprises constructs houses, apartment buildings and commercial plazas across Pakistan, managing each project from design and approvals through to handover.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
-          <a class="btn btn-primary" href="#residential">Our work <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn btn-ghost" href="contact.html?sector=Construction">Discuss a project</a>
+          <a class="btn btn-primary" href="#residential">Our Services <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="contact.html?sector=Construction">Discuss a Project</a>
         </div>
       </div>
       <div class="hero-canvas-wrap">
         <canvas data-stage="track" data-from="house" data-form="commercial" data-track="#build" data-rot0="-0.5" aria-hidden="true"></canvas>
         <img class="fallback" src="assets/img/z-mark.svg" alt="">
         <div class="stage-caption" aria-hidden="true">
-          <span class="cap-a"><i></i>Residential units</span>
-          <span class="cap-b"><i></i>Commercial plazas</span>
+          <span class="cap-a"><i></i>Residential Units</span>
+          <span class="cap-b"><i></i>Commercial Plazas</span>
         </div>
       </div>
     </div>
-    <div class="track-hint" aria-hidden="true">Scroll to build</div>
+    <div class="track-hint" aria-hidden="true">Scroll to Build</div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <article class="service-block" id="residential">
-        <div><div class="num">01</div><h2>Residential Units</h2><p class="lead">Quality homes for families, investors and housing developers.</p></div>
+        <div><div class="num">01</div><h2>Residential Units</h2><p class="lead">Residential construction for families, investors and housing developers.</p></div>
         <div class="feature-grid">
-          {card('home', 'Houses &amp; villas', 'Grey structure and turnkey finishing for individual homes and villas.')}
-          {card('building', 'Apartment blocks', 'Low- and mid-rise apartments with efficient, durable layouts.')}
-          {card('layers', 'Housing schemes', 'Multi-unit residential developments, including infrastructure.')}
-          {card('hardhat', 'Renovation &amp; extension', 'Structural additions, remodelling and refurbishment.')}
+          {card('home', 'Houses &amp; Villas', 'Grey structure and turnkey construction of individual houses and villas.')}
+          {card('building', 'Apartment Buildings', 'Low-rise and mid-rise apartment buildings with efficient, durable layouts.')}
+          {card('layers', 'Housing Schemes', 'Multi-unit residential developments, including roads and utilities.')}
+          {card('hardhat', 'Renovation &amp; Extension', 'Structural additions, remodelling and refurbishment.')}
         </div>
       </article>
 
       <article class="service-block" id="commercial">
-        <div><div class="num">02</div><h2>Commercial Plazas</h2><p class="lead">Retail, office and mixed-use plazas designed for footfall and long-term value.</p></div>
+        <div><div class="num">02</div><h2>Commercial Plazas</h2><p class="lead">Retail, office and mixed-use plazas planned for commercial viability and long-term value.</p></div>
         <div class="feature-grid">
-          {card('plaza', 'Retail plazas', 'Shop-front plazas with ground-floor retail and upper-floor units.')}
-          {card('building', 'Office buildings', 'Functional office space with modern services and utilities.')}
-          {card('layers', 'Mixed-use developments', 'Commercial podiums combined with residential or office floors.')}
-          {card('shield', 'MEP &amp; finishing', 'Electrical, plumbing, HVAC, façades and interior finishing.')}
+          {card('plaza', 'Retail Plazas', 'Plazas with ground-floor retail and upper-floor commercial units.')}
+          {card('building', 'Office Buildings', 'Office space with modern building services and utilities.')}
+          {card('layers', 'Mixed-Use Developments', 'Commercial podiums combined with residential or office floors.')}
+          {card('shield', 'MEP &amp; Finishing', 'Electrical, plumbing, HVAC, façades and interior finishing.')}
         </div>
       </article>
     </div>
@@ -414,23 +414,23 @@ construction = f'''<main id="main" class="construction-page">
   <section class="section alt" id="process">
     <div class="container">
       <div class="section-head center reveal">
-        <span class="eyebrow">Design &amp; build</span>
-        <h2>How we deliver a building</h2>
-        <p class="lead" style="margin-inline:auto">A clear, staged process with one team responsible from the first drawing to the keys.</p>
+        <span class="eyebrow">Design &amp; Build</span>
+        <h2>Our Delivery Process</h2>
+        <p class="lead" style="margin-inline:auto">A structured four-stage process, managed by a single project team from initial design to handover.</p>
       </div>
       <div class="feature-grid">
-        {card('doc', '1 · Plan &amp; design', 'Brief, architectural and structural design, BOQ and budget.')}
-        {card('shield', '2 · Approvals', 'Building plan approvals from the relevant development authority.')}
-        {card('hardhat', '3 · Construction', 'Structure, MEP and finishing, with on-site supervision and quality checks.')}
-        {card('home', '4 · Handover', 'Snagging, final inspection and handover with documentation.')}
+        {card('doc', '1 · Planning &amp; Design', 'Client brief, architectural and structural design, bill of quantities and budget.')}
+        {card('shield', '2 · Approvals', 'Building plan approval from the relevant development authority.')}
+        {card('hardhat', '3 · Construction', 'Structural, MEP and finishing works under continuous site supervision and quality control.')}
+        {card('home', '4 · Handover', 'Snagging, final inspection and handover with complete documentation.')}
       </div>
     </div>
   </section>
 
-{cta('Have a site or a plan in mind?', 'Tell us what you want to build and where.', 'Construction')}
+{cta('Planning a Construction Project?', 'Share your site details and requirements, and our team will be in touch.', 'Construction')}
 </main>'''
 page('construction.html', 'Construction | Zurosh Enterprises',
-     'Residential units and commercial plazas built across Pakistan by Zurosh Enterprises — design, approvals, construction and handover.',
+     'Residential and commercial construction across Pakistan by Zurosh Enterprises, covering design, approvals, construction and handover.',
      'construction', construction, three=True)
 
 # =========================================================================== ABOUT
@@ -439,9 +439,9 @@ about = f'''<main id="main">
     <div class="container" style="grid-template-columns:1fr">
       <div class="hero-copy">
         <div class="breadcrumb"><a href="index.html">Home</a> / About</div>
-        <span class="eyebrow">About Zurosh</span>
-        <h1>Connecting and building Pakistan.</h1>
-        <p class="lead">Zurosh Enterprises works in two distinct sectors — telecom infrastructure and construction — each run by its own specialist team.</p>
+        <span class="eyebrow">About Us</span>
+        <h1>Connecting and Building Pakistan</h1>
+        <p class="lead">Zurosh Enterprises is a Pakistani company working in telecommunications infrastructure and construction, with a dedicated team for each sector.</p>
       </div>
     </div>
   </section>
@@ -452,13 +452,13 @@ about = f'''<main id="main">
         <img src="assets/img/zurosh-logo-stacked.svg" alt="Zurosh Enterprises" width="372" height="286">
       </div>
       <div class="reveal">
-        <span class="eyebrow">Who we are</span>
-        <h2>Two sectors, kept deliberately separate.</h2>
-        <p>Telecom and construction need different skills, partners and regulations. So we keep them apart: our <strong>telecom division</strong> handles FTTH networks, 5G tower infrastructure and consultancy, and our <strong>construction division</strong> builds residential units and commercial plazas.</p>
-        <p>What they share is the way we work: clear scopes, honest timelines, safe sites and documentation you can rely on.</p>
+        <span class="eyebrow">Who We Are</span>
+        <h2>Two Sectors, Managed Independently</h2>
+        <p>Telecommunications and construction require different expertise, partners and regulatory approvals, so each sector is run as a separate division. Our <strong>Telecom division</strong> delivers FTTH networks, 5G tower infrastructure and consultancy services. Our <strong>Construction division</strong> builds residential units and commercial plazas.</p>
+        <p>Both divisions follow the same principles: clearly defined scope, realistic schedules, safe working practices and complete project documentation.</p>
         <div class="split-sectors" style="margin-top:24px">
-          <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G towers · Consultancy</a>
-          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial plazas</a>
+          <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G Towers · Consultancy</a>
+          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial Plazas</a>
         </div>
       </div>
     </div>
@@ -466,20 +466,20 @@ about = f'''<main id="main">
 
   <section class="section alt">
     <div class="container">
-      <div class="section-head center reveal"><span class="eyebrow">How we work</span><h2>What we stand for</h2></div>
+      <div class="section-head center reveal"><span class="eyebrow">Our Principles</span><h2>What We Stand For</h2></div>
       <div class="values">
-        {card('shield', 'Safety first', 'Safe sites and safe work at height, on every tower and every building.')}
-        {card('clock', 'On schedule', 'Realistic plans, tracked weekly, with no surprises at handover.')}
-        {card('layers', 'One point of contact', 'One accountable team from first survey to final handover.')}
-        {card('doc', 'Complete documentation', 'As-built drawings, test results and warranties as standard.')}
+        {card('shield', 'Safety', 'Safe working practices on every site, including all work at height.')}
+        {card('clock', 'Schedule Discipline', 'Realistic programmes, monitored weekly and reported transparently.')}
+        {card('layers', 'Single Point of Contact', 'One project team accountable from the first survey to final handover.')}
+        {card('doc', 'Complete Documentation', 'As-built drawings, test results and warranties provided as standard.')}
       </div>
     </div>
   </section>
 
-{cta('Work with Zurosh', 'Whether it is a network or a building, let’s talk.')}
+{cta('Work with Zurosh Enterprises', 'Contact us to discuss your telecom or construction requirements.')}
 </main>'''
 page('about.html', 'About | Zurosh Enterprises',
-     'About Zurosh Enterprises — telecom infrastructure and construction in Pakistan.',
+     'About Zurosh Enterprises, a telecommunications infrastructure and construction company in Pakistan.',
      'about', about)
 
 # =========================================================================== CONTACT
@@ -489,8 +489,8 @@ contact = f'''<main id="main">
       <div class="hero-copy">
         <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
         <span class="eyebrow">Contact</span>
-        <h1>Let’s talk about your project.</h1>
-        <p class="lead">Choose your sector, tell us a little about the work, and the right team will get back to you.</p>
+        <h1>Discuss Your Project</h1>
+        <p class="lead">Select the relevant sector and share a few details about your project. The appropriate team will respond to your enquiry.</p>
       </div>
     </div>
   </section>
@@ -508,7 +508,7 @@ contact = f'''<main id="main">
 
       <form class="form reveal" id="enquiry-form" data-to="{EMAIL}" novalidate>
         <fieldset class="field">
-          <legend>Which sector?</legend>
+          <legend>Sector</legend>
           <div class="sector-pick">
             <label><input type="radio" name="sector" value="Telecom" checked> Telecom</label>
             <label><input type="radio" name="sector" value="Construction"> Construction</label>
@@ -516,17 +516,17 @@ contact = f'''<main id="main">
         </fieldset>
         <div class="field"><label for="f-service">Service</label><select id="f-service" name="service" required></select></div>
         <div class="row">
-          <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="f-name">Full Name</label><input id="f-name" name="name" required autocomplete="name"></div>
           <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div>
         </div>
         <div class="row">
           <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
           <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
         </div>
-        <div class="field"><label for="f-location">Project location (city)</label><input id="f-location" name="location"></div>
-        <div class="field"><label for="f-message">Project details</label><textarea id="f-message" name="message" required></textarea></div>
-        <button class="btn btn-primary" type="submit">Send enquiry <span class="arrow" aria-hidden="true">→</span></button>
-        <p class="form-note">Submitting opens your email app with the details filled in.</p>
+        <div class="field"><label for="f-location">Project Location (City)</label><input id="f-location" name="location"></div>
+        <div class="field"><label for="f-message">Project Details</label><textarea id="f-message" name="message" required></textarea></div>
+        <button class="btn btn-primary" type="submit">Send Enquiry <span class="arrow" aria-hidden="true">→</span></button>
+        <p class="form-note">Submitting this form opens your email application with your details included.</p>
       </form>
     </div>
   </section>
