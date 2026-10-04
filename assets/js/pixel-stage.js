@@ -657,16 +657,17 @@
   }
 
   /* ======================================================================
-     Inner pages: morph driven by scrolling through a pinned section
-     (telecom: map of Pakistan with fiber network → 5G tower;
-      construction: house → commercial plaza)
+     Sector pages: the hero loops between two shapes on a timer
+     (telecom: map of Pakistan with fiber network <-> 5G tower;
+      construction: house <-> commercial plaza)
      ====================================================================== */
-  function initTrack(canvas) {
+  function initCycle(canvas) {
     var from = canvas.getAttribute('data-from') || 'map', form = canvas.getAttribute('data-form') || 'tower';
-    var track = document.querySelector(canvas.getAttribute('data-track')) || canvas.parentNode;
+    var host = canvas.closest('section') || canvas.parentNode;
     var stage = new Stage(canvas, { dark: canvas.hasAttribute('data-dark'), net: from === 'map' });
     stage.setSolid(0);
     var rot0 = parseFloat(canvas.getAttribute('data-rot0') || '0');
+    var HOLD = 1.8, MORPH = 1.7, LOOP = 2 * (HOLD + MORPH);
     var start = performance.now(), visible = true;
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }).observe(canvas);
@@ -674,13 +675,16 @@
     function frame(now) {
       requestAnimationFrame(frame);
       if (!visible) return;
-      var t = (now - start) / 1000, r = track.getBoundingClientRect();
-      var p = clamp(-r.top / Math.max(1, r.height - window.innerHeight), 0, 1);
-      var tm = clamp((p - 0.15) / 0.7, 0, 1);
-      stage.layout(from, form, tm);
-      stage.updateNet(1 - tm / 0.12, t);
-      stage.render(rot0 + ease(clamp((p - 0.1) / 0.75, 0, 1)) * Math.PI * 2, 0, 0, 0.92, 0.7, t);
-      track.classList.toggle('is-built', tm > 0.55);
+      var t = (now - start) / 1000, c = t % LOOP, a = from, b = form, m = 0;
+      if (c < HOLD) m = 0;                                                     // first shape
+      else if (c < HOLD + MORPH) m = (c - HOLD) / MORPH;                       // first -> second
+      else if (c < 2 * HOLD + MORPH) m = 1;                                    // second shape
+      else { a = form; b = from; m = (c - 2 * HOLD - MORPH) / MORPH; }         // second -> first
+      stage.layout(a, b, m);
+      var atMap = (a === 'map' && m === 0) || (b === 'map' && m === 1) ? 1 : (a === 'map' ? 1 - m / 0.12 : b === 'map' ? (m - 0.88) / 0.12 : 0);
+      stage.updateNet(atMap, t);
+      stage.render(rot0 + ease(clamp(m, 0, 1)) * Math.PI * 2, 0, 0, 0.92, 0.7, t);
+      host.classList.toggle('is-built', (b === form && m > 0.5) || (a === form && m < 0.5 && b !== form));
     }
     requestAnimationFrame(frame);
   }
@@ -692,7 +696,7 @@
     [].forEach.call(canvases, function (c) {
       try {
         var mode = c.getAttribute('data-stage');
-        if (mode === 'scroll') initScroll(c); else if (mode === 'track') initTrack(c); else initAssemble(c);
+        if (mode === 'scroll') initScroll(c); else if (mode === 'cycle') initCycle(c); else initAssemble(c);
       } catch (err) {
         document.documentElement.classList.add('no-webgl');
         if (window.console) console.error(err);
