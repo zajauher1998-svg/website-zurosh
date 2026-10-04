@@ -180,7 +180,6 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
 <main id="main">
   <section class="scene hero-scene" id="top" data-zone="neutral" data-kf="z" data-side="center" data-rot="0">
     <h1 class="visually-hidden">Zurosh Enterprises: Telecommunications Infrastructure and Construction in Pakistan</h1>
-    <div class="scroll-cue" aria-hidden="true"><span class="mouse"></span>Scroll</div>
   </section>
 
   <section class="scene scene-tall" id="sectors" data-zone="neutral" data-kf="globe" data-side="right" data-rot="1">
