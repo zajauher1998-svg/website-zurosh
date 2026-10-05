@@ -77,7 +77,7 @@ def header(current):
             </div>
             <ul>
               <li><a class="sub" href="construction.html#residential"><strong>Residential Units</strong><span>Houses, villas and apartment buildings</span></a></li>
-              <li><a class="sub" href="construction.html#commercial"><strong>Commercial Plazas</strong><span>Retail, office and mixed-use plazas</span></a></li>
+              <li><a class="sub" href="construction.html#commercial"><strong>Commercial Buildings</strong><span>Retail, office and mixed-use commercial buildings</span></a></li>
               <li><a class="sub" href="construction.html#renovation"><strong>Renovation &amp; Extension</strong><span>Extensions, remodelling and refurbishment</span></a></li>
             </ul>
             <a class="sector-all" href="construction.html">All Construction Services <span aria-hidden="true">→</span></a>
@@ -113,7 +113,7 @@ FOOTER = f'''<footer class="site-footer">
         <h4 class="c">Construction</h4>
         <ul>
           <li><a href="construction.html#residential">Residential Units</a></li>
-          <li><a href="construction.html#commercial">Commercial Plazas</a></li>
+          <li><a href="construction.html#commercial">Commercial Buildings</a></li>
           <li><a href="construction.html#renovation">Renovation &amp; Extension</a></li>
         </ul>
       </div>
@@ -247,10 +247,10 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Sector 02 · Construction</span>
-        <h2>Commercial Plazas</h2>
-        <p class="lead">We develop retail, office and mixed-use plazas, managing design, regulatory approvals, construction and handover.</p>
+        <h2>Commercial Buildings</h2>
+        <p class="lead">We develop retail, office and mixed-use commercial buildings, managing design, regulatory approvals, construction and handover.</p>
         <ul class="tag-list">
-          <li>Retail Plazas</li><li>Office Buildings</li><li>Mixed-Use</li><li>Design &amp; Build</li>
+          <li>Retail Buildings</li><li>Office Buildings</li><li>Mixed-Use</li><li>Design &amp; Build</li>
         </ul>
         <a class="btn btn-primary" href="construction.html#commercial">Explore Construction <span class="arrow" aria-hidden="true">→</span></a>
       </div>
@@ -384,7 +384,7 @@ construction = f'''<main id="main" class="construction-page">
         <div class="breadcrumb"><a href="index.html">Home</a> / Construction</div>
         <span class="sector-badge">{ICON['building'].replace('<svg', '<svg width="16" height="16"')} Sector 02 · Construction</span>
         <h1>Residential and Commercial Construction</h1>
-        <p class="lead">Zurosh Enterprises constructs residential units and commercial plazas and carries out renovation and extension works across Pakistan, managing each project from design and approvals through to handover.</p>
+        <p class="lead">Zurosh Enterprises constructs residential units and commercial buildings and carries out renovation and extension works across Pakistan, managing each project from design and approvals through to handover.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
           <a class="btn btn-primary" href="#residential">Our Services <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="contact.html?sector=Construction">Discuss a Project</a>
@@ -395,7 +395,7 @@ construction = f'''<main id="main" class="construction-page">
         <img class="fallback" src="assets/img/z-mark.svg" alt="">
         <div class="stage-caption" aria-hidden="true">
           <span class="cap-a"><i></i>Residential Units</span>
-          <span class="cap-b"><i></i>Commercial Plazas</span>
+          <span class="cap-b"><i></i>Commercial Buildings</span>
         </div>
       </div>
     </div>
@@ -414,9 +414,9 @@ construction = f'''<main id="main" class="construction-page">
       </article>
 
       <article class="service-block" id="commercial">
-        <div><div class="num">02</div><h2>Commercial Plazas</h2><p class="lead">Retail, office and mixed-use plazas planned for commercial viability and long-term value.</p></div>
+        <div><div class="num">02</div><h2>Commercial Buildings</h2><p class="lead">Retail, office and mixed-use commercial buildings planned for financial viability and long-term value.</p></div>
         <div class="feature-grid">
-          {card('plaza', 'Retail Plazas', 'Plazas with ground-floor retail and upper-floor commercial units.')}
+          {card('plaza', 'Retail Buildings', 'Commercial buildings with ground-floor retail and upper-floor units.')}
           {card('building', 'Office Buildings', 'Office space with modern building services and utilities.')}
           {card('layers', 'Mixed-Use Developments', 'Commercial podiums combined with residential or office floors.')}
           {card('shield', 'MEP &amp; Finishing', 'Electrical, plumbing, HVAC, façades and interior finishing.')}
@@ -454,7 +454,7 @@ construction = f'''<main id="main" class="construction-page">
 {cta('Planning a Construction Project?', 'Share your site details and requirements, and our team will be in touch.', 'Construction')}
 </main>'''
 page('construction.html', 'Construction | Zurosh Enterprises',
-     'Residential units, commercial plazas, and renovation and extension works across Pakistan by Zurosh Enterprises.',
+     'Residential units, commercial buildings, and renovation and extension works across Pakistan by Zurosh Enterprises.',
      'construction', construction, three=True)
 
 # =========================================================================== ABOUT
@@ -478,7 +478,7 @@ about = f'''<main id="main">
       <div class="reveal">
         <span class="eyebrow">Who We Are</span>
         <h2>Two Sectors, Managed Independently</h2>
-        <p>Telecommunications and construction require different expertise, partners and regulatory approvals, so each sector is run as a separate division. Our <strong>Telecom division</strong> delivers FTTH networks, 5G tower infrastructure, consultancy services and business feasibility reports. Our <strong>Construction division</strong> builds residential units and commercial plazas, and carries out renovation and extension works.</p>
+        <p>Telecommunications and construction require different expertise, partners and regulatory approvals, so each sector is run as a separate division. Our <strong>Telecom division</strong> delivers FTTH networks, 5G tower infrastructure, consultancy services and business feasibility reports. Our <strong>Construction division</strong> builds residential units and commercial buildings, and carries out renovation and extension works.</p>
         <p>Both divisions follow the same principles: clearly defined scope, realistic schedules, safe working practices and complete project documentation.</p>
         <div class="split-sectors" style="margin-top:24px">
           <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G Towers · Consultancy</a>
@@ -549,7 +549,7 @@ def division(key, tag, title, text, cls):
       </div>'''
 
 DIVISIONS = division('telecom', 'Sector 01', 'Telecom Division', 'FTTH networks, 5G tower infrastructure, consultancy and business feasibility reports.', 'telecom-head') + \
-            division('construction', 'Sector 02', 'Construction Division', 'Residential units, commercial plazas, and renovation and extension works.', 'construction-head')
+            division('construction', 'Sector 02', 'Construction Division', 'Residential units, commercial buildings, and renovation and extension works.', 'construction-head')
 DIVISION_SECTION = f'''  <section class="section alt">
     <div class="container">
 {DIVISIONS}
