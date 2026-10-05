@@ -192,7 +192,7 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
         <p class="lead">Zurosh Enterprises operates through two dedicated divisions. Our Telecom division delivers fiber networks and tower infrastructure for operators, and our Construction division develops residential and commercial properties. Each division is led by its own specialist team and works to common standards of quality, safety and accountability.</p>
         <div class="split-sectors">
           <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G Towers · Consultancy</a>
-          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Plazas · Renovation</a>
+          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial · Renovation</a>
         </div>
       </div>
     </div>
@@ -482,7 +482,7 @@ about = f'''<main id="main">
         <p>Both divisions follow the same principles: clearly defined scope, realistic schedules, safe working practices and complete project documentation.</p>
         <div class="split-sectors" style="margin-top:24px">
           <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom</strong>FTTH · 5G Towers · Consultancy</a>
-          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Plazas · Renovation</a>
+          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial · Renovation</a>
         </div>
       </div>
     </div>
