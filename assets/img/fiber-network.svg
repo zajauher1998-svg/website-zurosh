@@ -50,7 +50,7 @@
 
 
 </g>
-<g transform="translate(270 280)" stroke="#FFFFFF" fill="none" stroke-linecap="round" font-family="Montserrat, Arial, sans-serif">
+<g transform="translate(420 290)" stroke="#FFFFFF" fill="none" stroke-linecap="round" font-family="Montserrat, Arial, sans-serif">
 <circle r="168" stroke-width="3"/><circle r="150" stroke-width="1.6"/>
 <circle cx="0" cy="-141" r="6" fill="#C29B57" fill-opacity=".9" stroke="none"/>
 <path d="M138.0 0.0L144.9 5.8" stroke="#C29B57" stroke-width="1"/>
@@ -266,18 +266,18 @@
 <circle cx="-84.0" cy="21.4" r="4.6" fill="#F29BB0" stroke="#FFFFFF" stroke-width=".7"/>
 <circle cx="-78.2" cy="10.8" r="4.6" fill="#2EC4C4" stroke="#FFFFFF" stroke-width=".7"/>
 <circle cx="-62.5" cy="-49.9" r="38" stroke-width="1.4" fill="#FFFFFF" fill-opacity=".12"/>
-<path d="M150 -70L230 -120H250" stroke-width=".9"/><circle cx="150" cy="-70" r="2.5" fill="#FFFFFF" stroke="none"/>
-<text x="258" y="-116" fill="#FFFFFF" stroke="none" font-size="12" letter-spacing="3">OUTER SHEATH · HDPE</text>
-<path d="M0 -141L230 -150H250" stroke-width=".9"/><circle cx="0" cy="-141" r="2.5" fill="#FFFFFF" stroke="none"/>
-<text x="258" y="-146" fill="#FFFFFF" stroke="none" font-size="12" letter-spacing="3">RIPCORD</text>
-<path d="M138 10L230 -90H250" stroke-width=".9"/><circle cx="138" cy="10" r="2.5" fill="#FFFFFF" stroke="none"/>
-<text x="258" y="-86" fill="#FFFFFF" stroke="none" font-size="12" letter-spacing="3">ARAMID YARN</text>
-<path d="M126 48L230 -60H250" stroke-width=".9"/><circle cx="126" cy="48" r="2.5" fill="#FFFFFF" stroke="none"/>
-<text x="258" y="-56" fill="#FFFFFF" stroke="none" font-size="12" letter-spacing="3">WATER-BLOCKING TAPE</text>
-<path d="M114 18L230 -30H250" stroke-width=".9"/><circle cx="114" cy="18" r="2.5" fill="#FFFFFF" stroke="none"/>
-<text x="258" y="-26" fill="#FFFFFF" stroke="none" font-size="12" letter-spacing="3">LOOSE TUBE · 12F</text>
-<path d="M0 22L230 0H250" stroke-width=".9"/><circle cx="0" cy="22" r="2.5" fill="#FFFFFF" stroke="none"/>
-<text x="258" y="4" fill="#FFFFFF" stroke="none" font-size="12" letter-spacing="3">CENTRAL STRENGTH MEMBER · FRP</text>
-<text x="-168" y="-196" fill="#FFFFFF" stroke="none" font-size="13" letter-spacing="4">ADSS 72F LOOSE-TUBE CABLE · CROSS-SECTION</text>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </g>
 </svg>
