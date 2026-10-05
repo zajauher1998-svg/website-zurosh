@@ -512,22 +512,11 @@ page('about.html', 'About | Zurosh Enterprises',
 # the card shows the person's initials.
 TEAM = {
     'leadership': [
-        ('Name Surname', 'Chief Executive Officer', 'Add a one-line summary of experience and responsibilities.', ''),
-        ('Name Surname', 'Director, Telecom', 'Add a one-line summary of experience and responsibilities.', ''),
-        ('Name Surname', 'Director, Construction', 'Add a one-line summary of experience and responsibilities.', ''),
+        ('Zulfiqar Ali', 'Chief Executive Officer', 'Leads Zurosh Enterprises across its Telecom and Construction divisions.', 'assets/img/team/zulfiqar-ali.jpg'),
     ],
-    'telecom': [
-        ('Name Surname', 'Head of FTTH Projects', '', ''),
-        ('Name Surname', 'Site Acquisition Manager', '', ''),
-        ('Name Surname', 'Telecom Consultant', '', ''),
-        ('Name Surname', 'Project Engineer', '', ''),
-    ],
-    'construction': [
-        ('Name Surname', 'Head of Construction', '', ''),
-        ('Name Surname', 'Project Manager', '', ''),
-        ('Name Surname', 'Site Engineer', '', ''),
-        ('Name Surname', 'Quantity Surveyor', '', ''),
-    ],
+    # Add division team members here when ready; empty sections are hidden.
+    'telecom': [],
+    'construction': [],
 }
 
 def initials(name):
@@ -545,6 +534,29 @@ def member(m, lead=False):
 def team_grid(key, lead=False):
     return '\n          '.join(member(m, lead) for m in TEAM[key])
 
+def division(key, tag, title, text, cls):
+    if not TEAM[key]:
+        return ''
+    return f'''      <div class="team-division">
+        <div class="division-head {cls} reveal">
+          <span class="division-tag">{tag}</span>
+          <h2>{title}</h2>
+          <p>{text}</p>
+        </div>
+        <div class="team-grid">
+          {team_grid(key)}
+        </div>
+      </div>'''
+
+DIVISIONS = division('telecom', 'Sector 01', 'Telecom Division', 'FTTH networks, 5G tower infrastructure, consultancy and business feasibility reports.', 'telecom-head') + \
+            division('construction', 'Sector 02', 'Construction Division', 'Residential units, commercial plazas, and renovation and extension works.', 'construction-head')
+DIVISION_SECTION = f'''  <section class="section alt">
+    <div class="container">
+{DIVISIONS}
+    </div>
+  </section>
+''' if DIVISIONS else ''
+
 team = f'''<main id="main">
   <section class="page-hero plain">
     <div class="container" style="grid-template-columns:1fr">
@@ -552,45 +564,21 @@ team = f'''<main id="main">
         <div class="breadcrumb"><a href="index.html">Home</a> / Our Team</div>
         <span class="eyebrow">Our Team</span>
         <h1>The People Behind Zurosh</h1>
-        <p class="lead">Zurosh Enterprises is led by a management team with experience across telecommunications and construction, supported by dedicated specialists in each division.</p>
+        <p class="lead">Zurosh Enterprises is led by a leadership team with experience across telecommunications and construction.</p>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="section-head reveal"><span class="eyebrow">Leadership</span><h2>Management Team</h2></div>
+      <div class="section-head reveal"><span class="eyebrow">Leadership</span><h2>Management</h2></div>
       <div class="team-grid lead-grid">
           {team_grid('leadership', True)}
       </div>
     </div>
   </section>
 
-  <section class="section alt">
-    <div class="container">
-      <div class="team-division">
-        <div class="division-head telecom-head reveal">
-          <span class="division-tag">Sector 01</span>
-          <h2>Telecom Division</h2>
-          <p>FTTH networks, 5G tower infrastructure, consultancy and business feasibility reports.</p>
-        </div>
-        <div class="team-grid">
-          {team_grid('telecom')}
-        </div>
-      </div>
-      <div class="team-division">
-        <div class="division-head construction-head reveal">
-          <span class="division-tag">Sector 02</span>
-          <h2>Construction Division</h2>
-          <p>Residential units, commercial plazas, and renovation and extension works.</p>
-        </div>
-        <div class="team-grid">
-          {team_grid('construction')}
-        </div>
-      </div>
-    </div>
-  </section>
-
+{DIVISION_SECTION}
 {cta('Join Our Team', 'We are always interested in hearing from experienced engineers and project professionals. Send your CV to ' + EMAIL + '.')}
 </main>'''
 page('team.html', 'Our Team | Zurosh Enterprises',
