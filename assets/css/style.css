@@ -574,10 +574,12 @@ html.veil-in body::after { content: ""; position: fixed; inset: 0; background: v
    ========================================================================== */
 .zone-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 .zone-bg .zone { position: absolute; inset: 0; opacity: 0; transition: opacity .9s ease; }
-.zone-telecom {
-  background:
-    radial-gradient(rgba(255, 255, 255, .07) 1px, transparent 1.6px) 0 0 / 28px 28px,
-    radial-gradient(1100px 700px at 72% 28%, #22406F 0%, var(--navy) 48%, var(--navy-900) 100%);
+.zone-telecom { background: radial-gradient(1100px 700px at 72% 28%, #22406F 0%, var(--navy) 48%, var(--navy-900) 100%); }
+/* faint fiber network: routes between cities, FDH cabinet, splice closure, cable cross-section */
+.zone-telecom::before {
+  content: ""; position: absolute; inset: 0;
+  background: url("../img/fiber-network.svg") center / cover no-repeat;
+  opacity: .17;
 }
 .zone-construction { background: linear-gradient(160deg, #F8F1E4 0%, #EEDFC4 100%); }
 /* faint architectural drawing: floor plan with compass, set square, ruler and pencil */
