@@ -50,7 +50,7 @@
 
 
 </g>
-<g transform="translate(420 290)" stroke="#FFFFFF" fill="none" stroke-linecap="round" font-family="Montserrat, Arial, sans-serif">
+<g transform="translate(205 290)" opacity=".45" stroke="#FFFFFF" fill="none" stroke-linecap="round" font-family="Montserrat, Arial, sans-serif">
 <circle r="168" stroke-width="3"/><circle r="150" stroke-width="1.6"/>
 <circle cx="0" cy="-141" r="6" fill="#C29B57" fill-opacity=".9" stroke="none"/>
 <path d="M138.0 0.0L144.9 5.8" stroke="#C29B57" stroke-width="1"/>
