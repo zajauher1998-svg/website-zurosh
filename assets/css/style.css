@@ -688,3 +688,11 @@ body[data-zone="telecom"] .panel .tagline { color: var(--gold); }
   .home .steps-mini li { font-size: .82rem; }
   .home .panel .btn { padding: .7em 1.3em; }
 }
+
+/* four cards sit as a tidy 2 × 2 instead of 3 + 1 */
+@media (min-width: 561px) {
+  .feature-grid:has(> :nth-child(4):last-child) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.benefit-list { margin: 4px 0 22px; gap: 10px; }
+.benefit-list li { font-weight: 600; color: var(--navy); }
