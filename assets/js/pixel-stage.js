@@ -616,6 +616,7 @@
 
     function measure() {
       var vh = window.innerHeight, narrow = stage.camera.aspect < 1.05;
+      var hd = document.querySelector('.site-header'), headH = hd ? Math.min(hd.offsetHeight, 84) : 0;
       var off = narrow ? 0 : Math.min(stage.visW * 0.23, 9);
       var fitScale = narrow ? Math.min(1, stage.visW / 13) : 1;
       kf = sections.map(function (s, i) {
@@ -626,7 +627,8 @@
           form: s.getAttribute('data-kf'),
           rot: parseFloat(s.getAttribute('data-rot') || '0') * Math.PI * 2,
           x: side === 'left' ? -off : side === 'right' ? off : 0,
-          y: lift ? stage.visH * 0.27 : parseFloat(s.getAttribute('data-y') || '0') * stage.visH,
+          // desktop: centre in the area below the fixed header, not the whole window
+          y: lift ? stage.visH * 0.27 : parseFloat(s.getAttribute('data-y') || '0') * stage.visH - headH / 2 / vh * stage.visH,
           scale: parseFloat(s.getAttribute('data-scale') || '1') * fitScale * (lift ? 0.6 : 1),
           sway: s.getAttribute('data-kf') === 'z' ? 0.5 : 1
         };
@@ -637,7 +639,7 @@
         if (i === 0) return 0;
         var el = s.querySelector('.panel') || s, r = el.getBoundingClientRect();
         // phones: the panel's top sits just below the object; desktop: the panel is centred
-        var a = narrow ? r.top + window.scrollY - vh * 0.44 : r.top + window.scrollY + r.height / 2 - vh * 0.5;
+        var a = narrow ? r.top + window.scrollY - vh * 0.44 : r.top + window.scrollY + r.height / 2 - (headH + (vh - headH) / 2);
         prev = Math.max(prev + 1, Math.min(maxY, a));
         return prev;
       });

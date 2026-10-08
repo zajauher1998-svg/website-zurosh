@@ -212,7 +212,7 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
     </div>
   </section>
 
-  <section class="scene scene-tall right" id="tower-lifecycle" data-zone="telecom" data-kf="tower" data-side="left" data-rot="2" data-scale="0.82">
+  <section class="scene scene-tall right" id="tower-lifecycle" data-zone="telecom" data-kf="tower" data-side="left" data-rot="2" data-scale="0.8" data-y="-0.045">
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Sector 01 · Telecom</span>
@@ -244,7 +244,7 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
     </div>
   </section>
 
-  <section class="scene scene-tall" id="commercial" data-zone="construction" data-kf="commercial" data-side="right" data-rot="3.92">
+  <section class="scene scene-tall" id="commercial" data-zone="construction" data-kf="commercial" data-side="right" data-rot="3.92" data-scale="0.86" data-y="0.045">
     <div class="container">
       <div class="panel reveal">
         <span class="eyebrow">Sector 02 · Construction</span>
