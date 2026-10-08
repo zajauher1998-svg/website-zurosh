@@ -439,15 +439,15 @@ construction = f'''<main id="main" class="construction-page">
       <article class="service-block" id="supervision">
         <div><div class="num">04</div><h2>Construction Supervision</h2><p class="lead">For owners who are unable to supervise their own project, our engineers oversee the construction on your behalf at affordable rates, so you do not have to manage the site yourself.</p>
           <ul class="check-list benefit-list">
-            <li>Quality is never compromised</li>
-            <li>Material usage is monitored</li>
-            <li>Everything is taken care of</li>
+            <li>Workmanship inspected against approved drawings</li>
+            <li>Material usage tracked to prevent wastage</li>
+            <li>Contractor coordination, scheduling and site issues handled</li>
           </ul>
           <a class="btn btn-primary" href="contact.html?sector=Construction" style="margin-top:8px">Request Supervision <span class="arrow" aria-hidden="true">→</span></a></div>
         <div class="feature-grid">
           {card('shield', 'Quality Assurance', 'Workmanship is inspected at every key stage against approved drawings and specifications, so quality is never compromised.')}
           {card('layers', 'Material Monitoring', 'Delivery, quality and consumption of materials are checked and recorded to prevent wastage and misuse.')}
-          {card('hardhat', 'Complete Site Management', 'We coordinate with your contractor, resolve issues on site and keep the work on schedule, so everything is taken care of.')}
+          {card('hardhat', 'Complete Site Management', 'Coordination with your contractor, resolution of site issues, and schedule control from start to handover.')}
           {card('doc', 'Progress Reports', 'Regular written reports with photographs, so you always know where the project stands.')}
         </div>
       </article>
