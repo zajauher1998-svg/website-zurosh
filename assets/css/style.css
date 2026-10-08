@@ -661,3 +661,13 @@ body[data-zone="telecom"] .panel { backdrop-filter: blur(24px) saturate(1.05); -
   .lead-grid > .member:only-child .member-photo { flex: none; }
 }
 .member-photo:has(img)::after { display: none; }
+
+/* subheading tagline under a panel heading */
+.panel h2 + .tagline { margin-top: -.15em; }
+.tagline {
+  display: flex; align-items: flex-start; gap: 10px; line-height: 1.4;
+  font-size: clamp(.98rem, 1.25vw, 1.1rem); font-weight: 600; letter-spacing: .01em;
+  color: var(--gold-600); margin: 0 0 1em;
+}
+.tagline::before { content: ""; flex: 0 0 22px; height: 3px; margin-top: .65em; border-radius: 2px; background: var(--gold); }
+body[data-zone="telecom"] .panel .tagline { color: var(--gold); }
