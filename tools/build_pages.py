@@ -227,7 +227,7 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
         <p class="lead">A single point of accountability at every stage of the tower lifecycle.</p>
         <ol class="steps-mini">
           <li>Site Hunting &amp; Acquisition</li><li>Survey &amp; Design</li>
-          <li>Permits &amp; Approvals</li><li>Civil Works &amp; Foundation</li>
+          <li>NOC &amp; Approval Facilitation</li><li>Civil Works &amp; Foundation</li>
           <li>Tower Erection</li><li>Power &amp; Installation</li>
           <li>Testing &amp; Commissioning</li><li>Handover</li>
         </ol>
@@ -327,7 +327,7 @@ telecom = f'''<main id="main" class="telecom-page">
         <div><div class="num">02</div><h2>5G Tower Infrastructure</h2><p class="lead">Turnkey tower sites delivered under a single contract, from site search to final handover.</p></div>
         <div class="feature-grid">
           {card('map', 'Site Acquisition', 'Site hunting, landlord negotiation, lease agreements and title verification.')}
-          {card('doc', 'Permits &amp; Approvals', 'NOCs and statutory approvals from the relevant authorities.')}
+          {card('doc', 'NOC &amp; Approval Facilitation', 'Support for clients in obtaining NOCs and statutory approvals, including documentation and liaison with the relevant authorities.')}
           {card('hardhat', 'Civil Works &amp; Erection', 'Foundations, greenfield and rooftop towers, monopoles and equipment shelters.')}
           {card('tower', 'Installation &amp; Commissioning', 'Antennas, RRUs, microwave links, power systems, testing and integration.')}
         </div>
@@ -371,7 +371,7 @@ telecom = f'''<main id="main" class="telecom-page">
       <ol class="timeline">
         <li class="reveal"><h3>Site Hunting &amp; Acquisition</h3><p>Identification of candidate sites within the operator’s search ring, landlord negotiation and lease execution.</p></li>
         <li class="reveal"><h3>Survey &amp; Design</h3><p>Technical site surveys, soil investigation, and structural and electrical design.</p></li>
-        <li class="reveal"><h3>Permits &amp; Approvals</h3><p>NOCs and approvals from the relevant municipal and regulatory authorities.</p></li>
+        <li class="reveal"><h3>NOC &amp; Approval Facilitation</h3><p>Support for the client in obtaining NOCs and approvals from municipal and regulatory authorities, from preparing documentation to following up on applications.</p></li>
         <li class="reveal"><h3>Civil Works &amp; Foundation</h3><p>Excavation, foundations, boundary walls, equipment shelters and site access.</p></li>
         <li class="reveal"><h3>Tower Erection</h3><p>Erection of greenfield lattice towers, monopoles and rooftop structures to approved designs.</p></li>
         <li class="reveal"><h3>Power &amp; Installation</h3><p>Grid connection, generators, batteries and solar systems, followed by installation of antennas, RRUs and microwave links.</p></li>
