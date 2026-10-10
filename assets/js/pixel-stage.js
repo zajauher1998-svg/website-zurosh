@@ -528,10 +528,6 @@
       ring.position.copy(pos[k]); ring.userData.phase = i * 0.37; net.add(ring);
       this.rings.push(ring);
     }, this);
-    var outline = PK.map(function (q) { var xy = project(q[0], q[1]); return new THREE.Vector3(xy[0], xy[1], front - 0.1); });
-    var olMat = new THREE.LineBasicMaterial({ color: LIGHT, transparent: true, opacity: 0.55, depthWrite: false });
-    olMat.userData.base = 0.55; mats.push(olMat);
-    net.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(outline), olMat));
     this.links = [];
     var lineMat = new THREE.LineBasicMaterial({ color: GOLD, transparent: true, opacity: 0.75, depthWrite: false });
     lineMat.userData.base = 0.75; mats.push(lineMat);
