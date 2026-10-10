@@ -28,6 +28,12 @@
   var UNIT = 0.1;           // logo units -> world units
   var CELL = STEP * UNIT;   // world size of one pixel
 
+  /* each sector has its own visual language:
+     Telecom forms are drawn in light (glowing points, streaming between shapes),
+     Construction forms are solid matte blocks that build up from the ground. */
+  var TEL = { map: 1, tower: 1 }, CON = { house: 1, commercial: 1, buildings: 1 };
+  var TOWER_SEGS = [];
+
   /* ---------- helpers ---------- */
   function rng(seed) {
     return function () {
@@ -125,6 +131,7 @@
         segs.push({ a: [ox, H1 + 0.15, oz], b: [ox, H1 + 2.0, oz], c: 'g', w: 2.6 });
       }
     }
+    TOWER_SEGS = segs;
     // microwave dish (gold ring)
     var DY = 1.2, DR = 0.55, prev = null;
     for (k = 0; k <= 16; k++) {
@@ -334,7 +341,9 @@
       var c = p.c === 'g' ? gold : navy;
       C[i * 3] = c.r; C[i * 3 + 1] = c.g; C[i * 3 + 2] = c.b;
     });
-    return { p: P, c: C };
+    var y0 = Infinity, y1 = -Infinity;
+    pts.forEach(function (p) { if (p.y < y0) y0 = p.y; if (p.y > y1) y1 = p.y; });
+    return { p: P, c: C, y0: y0, y1: y1 };
   }
 
   function webglOK() {
@@ -405,6 +414,32 @@
     this.group.add(mesh);
     this.scene.add(this.group);
 
+    // Telecom rendering: the same pixels drawn as soft glowing points
+    var glow = document.createElement('canvas'); glow.width = glow.height = 64;
+    var gx = glow.getContext('2d'), grad = gx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0, 'rgba(255,255,255,1)'); grad.addColorStop(0.28, 'rgba(255,255,255,.95)');
+    grad.addColorStop(0.55, 'rgba(255,255,255,.35)'); grad.addColorStop(1, 'rgba(255,255,255,0)');
+    gx.fillStyle = grad; gx.fillRect(0, 0, 64, 64);
+    var pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(N * 3), 3).setUsage(THREE.DynamicDrawUsage));
+    pGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array(N * 3), 3).setUsage(THREE.DynamicDrawUsage));
+    this.points = new THREE.Points(pGeo, new THREE.PointsMaterial({
+      size: 0.34, map: new THREE.CanvasTexture(glow), vertexColors: true, transparent: true,
+      opacity: 0, depthWrite: false, sizeAttenuation: true
+    }));
+    this.points.frustumCulled = false;
+    this.points.visible = false;
+    this.group.add(this.points);
+    this.pointsV = 0;
+
+    // thin structural lines that resolve once the tower has formed
+    var tl = [];
+    TOWER_SEGS.forEach(function (sg) { if (sg.c !== 'g') tl.push(new THREE.Vector3().fromArray(sg.a), new THREE.Vector3().fromArray(sg.b)); });
+    this.towerLines = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(tl),
+      new THREE.LineBasicMaterial({ color: LIGHT, transparent: true, opacity: 0, depthWrite: false }));
+    this.towerLines.visible = false;
+    this.group.add(this.towerLines);
+
     // the solid logo: shown at rest, swapped for the pixels once morphing starts
     var solid = this.solid = new THREE.Group(), depth = LAYERS * CELL, mats = this.solidMats = [];
     Z_POLYS.forEach(function (poly) {
@@ -458,12 +493,20 @@
     if (v === this.solidV) return;
     this.solidV = v;
     this.solid.visible = v > 0;
-    this.mesh.visible = v < 1;
     this.solidMats.forEach(function (m) { m.opacity = v; });
-    // crossfade: the pixels fade out as the solid logo fades in (and back)
-    var pm = this.mesh.material, fading = v > 0 && v < 1;
+    this.applyFade();
+  };
+
+  /* cubes vs glowing points vs solid logo: one place decides what is visible */
+  Stage.prototype.applyFade = function () {
+    var v = Math.max(0, this.solidV), P = this.pointsV;
+    var cube = (v >= 1 ? 0 : 1 - v * v) * (1 - P);
+    var pm = this.mesh.material, fading = cube < 0.999;
+    this.mesh.visible = cube > 0.01;
     if (pm.transparent !== fading) { pm.transparent = fading; pm.needsUpdate = true; }
-    pm.opacity = fading ? 1 - v * v : 1;
+    pm.opacity = cube;
+    this.points.visible = P > 0.01;
+    this.points.material.opacity = P;
   };
 
   /* fiber network over the map: glowing city nodes, backbone arcs, travelling pulses */
@@ -485,6 +528,10 @@
       ring.position.copy(pos[k]); ring.userData.phase = i * 0.37; net.add(ring);
       this.rings.push(ring);
     }, this);
+    var outline = PK.map(function (q) { var xy = project(q[0], q[1]); return new THREE.Vector3(xy[0], xy[1], front - 0.1); });
+    var olMat = new THREE.LineBasicMaterial({ color: LIGHT, transparent: true, opacity: 0.55, depthWrite: false });
+    olMat.userData.base = 0.55; mats.push(olMat);
+    net.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(outline), olMat));
     this.links = [];
     var lineMat = new THREE.LineBasicMaterial({ color: GOLD, transparent: true, opacity: 0.75, depthWrite: false });
     lineMat.userData.base = 0.75; mats.push(lineMat);
@@ -545,7 +592,7 @@
   Stage.prototype.updateSignal = function (v, time) {
     v = clamp(v, 0, 1);
     this.signal.visible = v > 0.01;
-    if (!this.signal.visible) return;
+    if (!this.signal.visible) { this.towerLines.visible = false; return; }
     var still = this.reduced;
     this.arcs.forEach(function (a) {
       var f = still ? 0.5 : (time * 0.55 + a.userData.phase) % 1;     // 0 → 1 as the wave travels out
@@ -553,41 +600,72 @@
       a.material.opacity = v * (still ? 0.6 : Math.sin(Math.PI * f) * 0.95);
     });
     this.beacon.material.opacity = v * (still ? 1 : 0.65 + 0.35 * Math.sin(time * 5));
+    this.towerLines.visible = v > 0.01;
+    this.towerLines.material.opacity = v * 0.32;
   };
 
-  /* place every pixel for a morph between two formations (t: 0..1) */
+  /* place every pixel for a morph between two formations (t: 0..1).
+     Three motion styles:
+       build  – into a Construction form: blocks rise into place course by course, bottom up
+       stream – into/out of a Telecom form: points flow along curved paths like data
+       burst  – everything else: pixels scatter and re-form                                  */
   Stage.prototype.layout = function (from, to, t) {
     var key = from + '|' + to + '|' + t.toFixed(4);
     if (key === this.last) return;
     this.last = key;
     var A = this.forms[from], B = this.forms[to], N = this.N;
     var mat = this.mesh.instanceMatrix.array, col = this.mesh.instanceColor.array;
-    var d = this.dummy, burstAmp = this.reduced ? 0 : 3.6, same = from === to;
+    var pp = this.points.geometry.attributes.position.array, pc = this.points.geometry.attributes.color.array;
+    var d = this.dummy, still = this.reduced, same = from === to;
+    var style = CON[to] ? 'build' : (TEL[to] || TEL[from]) ? 'stream' : 'burst';
+    var burstAmp = still ? 0 : 3.6, bSpan = Math.max(0.001, B.y1 - B.y0);
     for (var i = 0; i < N; i++) {
-      var i3 = i * 3, e = 1;
-      if (!same && t < 1) {
-        // pixels peel away left→right with jitter
-        var delay = clamp((A.p[i3] + 5) / 10, 0, 1) * 0.55 + this.rnd[i] * 0.3;
-        e = ease(clamp((t - delay * 0.4) / 0.6, 0, 1));
-      }
-      if (same) e = 0;
-      var bump = same ? 0 : Math.sin(Math.PI * e);
-      d.position.set(
-        A.p[i3] + (B.p[i3] - A.p[i3]) * e + this.burst[i3] * bump * burstAmp,
-        A.p[i3 + 1] + (B.p[i3 + 1] - A.p[i3 + 1]) * e + this.burst[i3 + 1] * bump * burstAmp,
-        A.p[i3 + 2] + (B.p[i3 + 2] - A.p[i3 + 2]) * e + this.burst[i3 + 2] * bump * burstAmp
-      );
+      var i3 = i * 3, e = 0, x, y, z, bump = 0, rnd = this.rnd[i];
+      var ax = A.p[i3], ay = A.p[i3 + 1], az = A.p[i3 + 2], bx = B.p[i3], by = B.p[i3 + 1], bz = B.p[i3 + 2];
+      if (!same) {
+        if (style === 'build') {
+          // each block's turn comes with its height in the finished building
+          var rowT = (by - B.y0) / bSpan;
+          e = ease(clamp((t - (rowT * 0.74 + rnd * 0.06)) / 0.2, 0, 1));
+          x = ax + (bx - ax) * e; z = az + (bz - az) * e;
+          var lift = still ? 0 : Math.sin(Math.PI * Math.min(1, e * 1.15)) * 1.4;   // rise, then set down
+          y = ay + (by - ay) * e + lift;
+        } else if (style === 'stream') {
+          e = ease(clamp((t - rnd * 0.45 - clamp((ax + 6) / 12, 0, 1) * 0.12) / 0.43, 0, 1));
+          var dx = bx - ax, dy = by - ay, len = Math.sqrt(dx * dx + dy * dy) || 1;
+          var arc = still ? 0 : Math.sin(Math.PI * e) * Math.min(3.2, len * 0.35) * (0.6 + rnd * 0.8);
+          x = ax + dx * e - dy / len * arc;
+          y = ay + dy * e + dx / len * arc;
+          z = az + (bz - az) * e + (still ? 0 : Math.sin(Math.PI * e) * (rnd - 0.5) * 2);
+        } else {
+          var delay = clamp((ax + 5) / 10, 0, 1) * 0.55 + rnd * 0.3;
+          e = ease(clamp((t - delay * 0.4) / 0.6, 0, 1));
+          bump = Math.sin(Math.PI * e);
+          x = ax + (bx - ax) * e + this.burst[i3] * bump * burstAmp;
+          y = ay + (by - ay) * e + this.burst[i3 + 1] * bump * burstAmp;
+          z = az + (bz - az) * e + this.burst[i3 + 2] * bump * burstAmp;
+        }
+      } else { x = ax; y = ay; z = az; }
+      d.position.set(x, y, z);
       d.rotation.set(this.spin[i * 2] * bump, this.spin[i * 2 + 1] * bump, 0);
-      var s = 1 - 0.3 * bump;
-      d.scale.set(s, s, s);
+      var sc = 1 - 0.3 * bump;
+      d.scale.set(sc, sc, sc);
       d.updateMatrix();
       d.matrix.toArray(mat, i * 16);
-      col[i3] = A.c[i3] + (B.c[i3] - A.c[i3]) * e;
-      col[i3 + 1] = A.c[i3 + 1] + (B.c[i3 + 1] - A.c[i3 + 1]) * e;
-      col[i3 + 2] = A.c[i3 + 2] + (B.c[i3 + 2] - A.c[i3 + 2]) * e;
+      pp[i3] = x; pp[i3 + 1] = y; pp[i3 + 2] = z;
+      for (var c = 0; c < 3; c++) pc[i3 + c] = col[i3 + c] = A.c[i3 + c] + (B.c[i3 + c] - A.c[i3 + c]) * e;
     }
     this.mesh.instanceMatrix.needsUpdate = true;
     this.mesh.instanceColor.needsUpdate = true;
+    this.points.geometry.attributes.position.needsUpdate = true;
+    this.points.geometry.attributes.color.needsUpdate = true;
+    // how much of the scene is drawn as light, and how matte the blocks are
+    var k = same ? 0 : (t * t * (3 - 2 * t));
+    this.pointsV = (TEL[from] ? 1 : 0) + ((TEL[to] ? 1 : 0) - (TEL[from] ? 1 : 0)) * k;
+    var con = (CON[from] ? 1 : 0) + ((CON[to] ? 1 : 0) - (CON[from] ? 1 : 0)) * k;
+    this.mesh.material.roughness = 0.42 + 0.46 * con;
+    this.mesh.material.metalness = 0.18 * (1 - con);
+    this.applyFade();
   };
 
   Stage.prototype.render = function (rotY, x, y, scale, sway, time) {
@@ -595,8 +673,9 @@
     m.x += (m.tx - m.x) * 0.05; m.y += (m.ty - m.y) * 0.05;
     var g = this.group;
     var wobble = this.reduced ? 0 : Math.sin(time * 0.6) * 0.32 * sway;
-    g.rotation.y = rotY + wobble + m.x * 0.18;
-    g.rotation.x = m.y * 0.1 + (this.reduced ? 0 : Math.sin(time * 0.45) * 0.05 * sway);
+    var follow = 0.35 + 0.65 * Math.min(1, sway);
+    g.rotation.y = rotY + wobble + m.x * 0.18 * follow;
+    g.rotation.x = m.y * 0.1 * follow + (this.reduced ? 0 : Math.sin(time * 0.45) * 0.05 * sway);
     g.position.x = x;
     g.position.y = y + (this.reduced ? 0 : Math.sin(time * 0.8) * 0.18 * sway);
     g.scale.setScalar(scale);
@@ -630,7 +709,7 @@
           // desktop: centre in the area below the fixed header, not the whole window
           y: lift ? stage.visH * 0.27 : parseFloat(s.getAttribute('data-y') || '0') * stage.visH - headH / 2 / vh * stage.visH,
           scale: parseFloat(s.getAttribute('data-scale') || '1') * fitScale * (lift ? 0.6 : 1),
-          sway: s.getAttribute('data-kf') === 'z' ? 0.5 : 1
+          sway: { z: 0.5, house: 0.1, commercial: 0.1 }[s.getAttribute('data-kf')] || 1
         };
       });
       // a section is "reached" when its panel sits in the reading position
@@ -735,7 +814,8 @@
       var atMap = (a === 'map' && m === 0) || (b === 'map' && m === 1) ? 1 : (a === 'map' ? 1 - m / 0.12 : b === 'map' ? (m - 0.88) / 0.12 : 0);
       stage.updateNet(atMap, t);
       stage.updateSignal(a === 'tower' ? 1 - m / 0.12 : b === 'tower' ? (m - 0.88) / 0.12 : 0, t);
-      stage.render(rot0 + ease(clamp(m, 0, 1)) * Math.PI * 2, 0, 0, 0.92, 0.7, t);
+      var turn = CON[form] ? 0 : Math.PI * 2;
+      stage.render(rot0 + ease(clamp(m, 0, 1)) * turn, 0, 0, 0.92, CON[form] ? 0.1 : 0.8, t);
       host.classList.toggle('is-built', (b === form && m > 0.5) || (a === form && m < 0.5 && b !== form));
     }
     requestAnimationFrame(frame);

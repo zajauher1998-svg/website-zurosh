@@ -38,7 +38,7 @@ def head(title, desc):
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <script>try{{if(sessionStorage.getItem('zurosh-veil'))document.documentElement.classList.add('veil-in')}}catch(e){{}}</script>
 </head>'''
@@ -202,9 +202,11 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
 
   <section class="scene scene-tall right" id="telecom" data-zone="telecom" data-kf="map" data-side="left" data-rot="1" data-scale="0.72">
     <div class="container">
-      <div class="panel dark reveal">
-        <span class="eyebrow on-dark">Sector 01 · Telecom</span>
+      <div class="panel dark tel reveal">
+        <span class="hud" aria-hidden="true"></span>
+        <div class="panel-meta"><span class="eyebrow on-dark">Sector 01 · Telecom</span><span class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
         <h2>Fiber Across Pakistan</h2>
+        <p class="spec">FTTH · GPON / XGS-PON · OTDR Tested</p>
         <p class="lead">We plan, deploy and commission fiber optic networks and telecom infrastructure for operators and developers in every province of Pakistan.</p>
         <ul class="tag-list">
           <li>FTTH Deployment</li><li>5G Tower Infrastructure</li><li>Site Acquisition</li><li>Telecom Consultancy</li><li>Feasibility Reports</li>
@@ -216,10 +218,12 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
 
   <section class="scene scene-tall right" id="tower-lifecycle" data-zone="telecom" data-kf="tower" data-side="left" data-rot="2" data-scale="0.8" data-y="-0.045">
     <div class="container">
-      <div class="panel reveal">
-        <span class="eyebrow">Sector 01 · Telecom</span>
+      <div class="panel tel reveal">
+        <span class="hud" aria-hidden="true"></span>
+        <div class="panel-meta"><span class="eyebrow">Sector 01 · Telecom</span><span class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
         <h2>5G Tower Infrastructure</h2>
         <p class="tagline">From Site Acquisition to Handover</p>
+        <p class="spec">4G / 5G · Greenfield · Rooftop · Monopole</p>
         <p class="lead">A single point of accountability at every stage of the tower lifecycle.</p>
         <ol class="steps-mini">
           <li>Site Hunting &amp; Acquisition</li><li>Survey &amp; Design</li>
@@ -234,7 +238,9 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
 
   <section class="scene scene-tall" id="construction" data-zone="construction" data-kf="house" data-side="right" data-rot="2.92">
     <div class="container">
-      <div class="panel reveal">
+      <div class="panel con reveal">
+        <span class="ruler" aria-hidden="true"></span>
+        <span class="title-block" aria-hidden="true"><b>Sheet A-101</b><span>Residential · 1:100</span></span>
         <span class="eyebrow">Sector 02 · Construction</span>
         <h2>Residential Construction</h2>
         <p class="lead">We construct houses, villas and apartment buildings to approved designs, with full site supervision from foundation to finishing.</p>
@@ -246,9 +252,11 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
     </div>
   </section>
 
-  <section class="scene scene-tall" id="commercial" data-zone="construction" data-kf="commercial" data-side="right" data-rot="3.92" data-scale="0.86" data-y="0.045">
+  <section class="scene scene-tall" id="commercial" data-zone="construction" data-kf="commercial" data-side="right" data-rot="2.92" data-scale="0.86" data-y="0.045">
     <div class="container">
-      <div class="panel reveal">
+      <div class="panel con reveal">
+        <span class="ruler" aria-hidden="true"></span>
+        <span class="title-block" aria-hidden="true"><b>Sheet A-201</b><span>Commercial · 1:100</span></span>
         <span class="eyebrow">Sector 02 · Construction</span>
         <h2>Commercial Buildings</h2>
         <p class="lead">We develop retail, office and mixed-use commercial buildings, managing design, regulatory approvals, construction and handover.</p>
