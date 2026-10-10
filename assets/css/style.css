@@ -765,3 +765,14 @@ body[data-zone="construction"] .progress-rail a.active { background: transparent
 }
 @media (prefers-reduced-motion: reduce) { .signal i { animation: none; opacity: 1; } }
 @media (max-width: 420px) { .home .panel .eyebrow { letter-spacing: .2em; font-size: .7rem; } }
+
+/* consultancy scope panel */
+.consult-body { display: grid; gap: 18px; min-width: 0; }
+.scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
+.scope { padding: clamp(20px, 2.6vw, 30px); min-width: 0; }
+.scope + .scope { border-left: 1px solid var(--line); }
+.scope h3 { font-size: 1.02rem; margin-bottom: 1em; padding-bottom: .7em; border-bottom: 2px solid var(--gold); display: inline-block; }
+.scope .check-list { gap: 12px; }
+.scope .check-list li { font-size: .9rem; color: var(--muted); line-height: 1.55; }
+.scope .check-list strong { color: var(--navy); font-weight: 600; }
+@media (max-width: 900px) { .scope-grid { grid-template-columns: 1fr; } .scope + .scope { border-left: 0; border-top: 1px solid var(--line); } }

@@ -65,7 +65,7 @@ def header(current):
             <ul>
               <li><a class="sub" href="telecom.html#ftth"><strong>FTTH Networks</strong><span>Fiber-to-the-home design, deployment and splicing</span></a></li>
               <li><a class="sub" href="telecom.html#towers"><strong>5G Tower Infrastructure</strong><span>Site acquisition through to tower handover</span></a></li>
-              <li><a class="sub" href="telecom.html#consultancy"><strong>Telecom Consultancy</strong><span>Network planning, regulatory advisory and project management</span></a></li>
+              <li><a class="sub" href="telecom.html#consultancy"><strong>Telecom Consultancy</strong><span>FTTH and long-haul network planning, design and as-built drawings</span></a></li>
               <li><a class="sub" href="telecom.html#feasibility"><strong>Business Feasibility Reports</strong><span>Customer needs, business model, costing and feasibility</span></a></li>
             </ul>
             <a class="sector-all" href="telecom.html">All Telecom Services <span aria-hidden="true">→</span></a>
@@ -334,11 +334,34 @@ telecom = f'''<main id="main" class="telecom-page">
       </article>
 
       <article class="service-block" id="consultancy">
-        <div><div class="num">03</div><h2>Telecom Consultancy</h2><p class="lead">Technical and commercial advisory services for operators, tower companies, developers and investors.</p></div>
-        <div class="feature-grid">
-          {card('consult', 'Network Planning', 'Coverage and capacity planning for 4G, 5G and fiber networks.')}
-          {card('shield', 'Regulatory Advisory', 'Guidance on telecom licensing and compliance requirements in Pakistan.')}
-          {card('clock', 'Project Management', 'Programme governance, vendor management and quality audits.')}
+        <div><div class="num">03</div><h2>Telecom Consultancy</h2><p class="lead">Technical and commercial advisory services for operators, ISPs, tower companies, developers and investors, from network planning through design, documentation and delivery oversight.</p></div>
+        <div class="consult-body">
+          <div class="scope-grid reveal">
+            <div class="scope">
+              <h3>Network Planning &amp; Design</h3>
+              <ul class="check-list">
+                <li><strong>FTTH networks:</strong> GPON / XGS-PON architecture, splitter ratios and OLT, FDH and FAT placement for housing societies, high-rises and commercial areas</li>
+                <li><strong>Long-haul and backbone:</strong> intercity fiber routes, ring topologies for redundancy, and duct, aerial or direct-buried route design</li>
+                <li><strong>Metro and access networks:</strong> city rings, fiber-to-the-building and enterprise links</li>
+                <li><strong>Wireless networks:</strong> 4G / 5G coverage and capacity planning, site nominations and microwave backhaul</li>
+              </ul>
+            </div>
+            <div class="scope">
+              <h3>Engineering Documentation</h3>
+              <ul class="check-list">
+                <li><strong>Route surveys and GIS mapping</strong> of planned and existing networks</li>
+                <li><strong>Detailed design drawings:</strong> route plans, splicing diagrams and fiber allocation schedules</li>
+                <li><strong>As-built drawings</strong> and network records after construction</li>
+                <li><strong>Optical link budgets,</strong> bills of quantities and technical specifications</li>
+              </ul>
+            </div>
+          </div>
+          <div class="feature-grid">
+            {card('shield', 'Regulatory Advisory', 'Guidance on telecom licensing and compliance requirements in Pakistan.')}
+            {card('clock', 'Project Management', 'Programme governance, vendor management and progress reporting.')}
+            {card('layers', 'Quality Audits', 'Independent inspection of installed networks and acceptance test results.')}
+            {card('consult', 'Vendor &amp; Tender Support', 'Technical specifications, bid evaluation and equipment selection.')}
+          </div>
         </div>
       </article>
 
