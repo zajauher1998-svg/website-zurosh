@@ -776,3 +776,4 @@ body[data-zone="construction"] .progress-rail a.active { background: transparent
 .scope .check-list li { font-size: .9rem; color: var(--muted); line-height: 1.55; }
 .scope .check-list strong { color: var(--navy); font-weight: 600; }
 @media (max-width: 900px) { .scope-grid { grid-template-columns: 1fr; } .scope + .scope { border-left: 0; border-top: 1px solid var(--line); } }
+@media (max-width: 420px) { .home .panel .sec-no { display: none; } }
