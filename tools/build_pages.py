@@ -3,7 +3,7 @@
 import os
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..') + os.sep
 
-EMAIL = 'info@zurosh.com'
+EMAIL = 'support@zurosh.com'
 PHONE = '+92 323 2222062'          # shown as written; spaces are stripped for the tel: link
 ADDRESS = 'Office-3, 2nd Floor, Galaxy Mall, Airport Road, Lahore'
 MAP_URL = 'https://www.google.com/maps/search/?api=1&amp;query=Galaxy+Mall+Airport+Road+Lahore'
