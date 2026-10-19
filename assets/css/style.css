@@ -53,10 +53,10 @@ p { margin: 0 0 1em; }
 
 .eyebrow {
   display: inline-flex; align-items: center; gap: .6em;
-  font-size: .75rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase;
+  font-size: .92rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
   color: var(--gold-600); margin-bottom: 1rem;
 }
-.eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--gold); }
+.eyebrow::before { content: ""; width: 32px; height: 2px; background: var(--gold); }
 .eyebrow.on-dark { color: var(--gold); }
 
 .lead { font-size: 1.125rem; color: var(--muted); max-width: 60ch; }
@@ -764,7 +764,7 @@ body[data-zone="construction"] .progress-rail a.active { background: transparent
   .spec { font-size: .66rem; letter-spacing: .05em; }
 }
 @media (prefers-reduced-motion: reduce) { .signal i { animation: none; opacity: 1; } }
-@media (max-width: 420px) { .home .panel .eyebrow { letter-spacing: .2em; font-size: .7rem; } }
+@media (max-width: 420px) { .home .panel .eyebrow { letter-spacing: .16em; font-size: .8rem; } }
 
 /* consultancy scope panel */
 .consult-body { display: grid; gap: 18px; min-width: 0; }
@@ -777,3 +777,16 @@ body[data-zone="construction"] .progress-rail a.active { background: transparent
 .scope .check-list strong { color: var(--navy); font-weight: 600; }
 @media (max-width: 900px) { .scope-grid { grid-template-columns: 1fr; } .scope + .scope { border-left: 0; border-top: 1px solid var(--line); } }
 @media (max-width: 420px) { .home .panel .sec-no { display: none; } }
+@media (max-width: 420px) { .home .panel.tel .eyebrow { letter-spacing: .1em; font-size: .76rem; white-space: nowrap; } .home .panel .eyebrow::before { width: 22px; } }
+/* home panel labels (Zurosh Enterprises, Sector 01 · Telecom Infrastructure, …) a step larger */
+.home .panel .eyebrow { font-size: 1rem; letter-spacing: .22em; }
+@media (max-width: 420px) {
+  .home .panel .eyebrow { font-size: .82rem; letter-spacing: .14em; }
+  .home .panel.tel .eyebrow { letter-spacing: .08em; white-space: nowrap; }
+  .home .panel .eyebrow::before { width: 22px; }
+}
+/* panel labels wrap as normal text; the signal indicator sits in the panel corner */
+.home .panel .eyebrow { display: block; }
+.home .panel .eyebrow::before { display: inline-block; vertical-align: middle; margin-right: .6em; position: relative; top: -.15em; }
+.panel-meta { display: block; padding-right: 30px; }
+.panel-meta .signal { position: absolute; top: clamp(24px, 4vw, 44px); right: clamp(24px, 4vw, 44px); margin-top: .2em; }
