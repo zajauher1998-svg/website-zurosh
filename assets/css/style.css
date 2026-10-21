@@ -790,3 +790,11 @@ body[data-zone="construction"] .progress-rail a.active { background: transparent
 .home .panel .eyebrow::before { display: inline-block; vertical-align: middle; margin-right: .6em; position: relative; top: -.15em; }
 .panel-meta { display: block; padding-right: 30px; }
 .panel-meta .signal { position: absolute; top: clamp(24px, 4vw, 44px); right: clamp(24px, 4vw, 44px); margin-top: .2em; }
+
+/* header spans the full window: logo in the left corner, menu and button at the right edge */
+.site-header .container { width: 100%; max-width: none; padding-inline: clamp(16px, 3.2vw, 56px); }
+/* restore the button styling that the plain nav-link rule was overriding */
+.nav > a.btn-primary { background: var(--navy); color: #fff; border-radius: 999px; }
+.nav > a.btn-primary:hover { background: var(--navy-700); }
+@media (min-width: 961px) { .nav > a.btn { margin-left: 14px; padding: .8em 1.4em; } }
+@media (max-width: 960px) { .nav > a.btn-primary { justify-content: center; border-bottom: 0; border-radius: 999px; } }
