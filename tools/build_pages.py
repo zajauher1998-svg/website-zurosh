@@ -534,9 +534,9 @@ about = f'''<main id="main">
       <div class="reveal">
         <span class="eyebrow">Who We Are</span>
         <h2>An Engineering-Led Company</h2>
-        <p>Zurosh Enterprises brings together engineering consultancy experience, structured project management and hands-on experience in telecom infrastructure deployment as a contractor in Pakistan.</p>
-        <p>That foundation shapes how we work. Every project is planned with the rigour of an engineering consultancy, managed with the accountability of a contractor, and costed and tracked with the clarity that only good data provides.</p>
-        <p>The result is a company where professionalism is not an aspiration but a working standard: clear scopes, honest reporting, safe sites and documentation that stands up to scrutiny.</p>
+        <p>Zurosh Enterprises brings together engineering consultancy experience, structured project management and hands-on experience in telecom network infrastructure deployment across Pakistan.</p>
+        <p>That foundation shapes how we work. Every project is planned with the rigour of an engineering consultancy, managed with full accountability for delivery, and costed and tracked with the clarity that only good data provides.</p>
+        <p>Our first priority is the client’s requirement. We deliver to the standard each client specifies, without compromise, and support that with clear scopes, honest reporting, safe sites and documentation that stands up to scrutiny. Professionalism is not an aspiration for us; it is how we work.</p>
       </div>
     </div>
   </section>
@@ -576,7 +576,7 @@ about = f'''<main id="main">
         <p>Our leadership has worked on projects where precision, safety and coordination are non-negotiable. That experience now underpins every network we deploy and every building we construct.</p>
       </div>
       <ul class="exp-list reveal">
-        <li><strong>Telecom Infrastructure Deployment</strong><span>Fiber networks and tower sites delivered as a contractor across Pakistan.</span></li>
+        <li><strong>Telecom Infrastructure Deployment</strong><span>Fiber networks and tower sites deployed across Pakistan.</span></li>
         <li><strong>Power Generation Projects</strong><span>Technical coordination on large coal-fired power plant developments.</span></li>
         <li><strong>Multidisciplinary Engineering</strong><span>Geotechnical investigation, hydrology, structural and architectural design.</span></li>
         <li><strong>Consultancy &amp; Project Management</strong><span>Planning, scheduling, stakeholder coordination and progress reporting.</span></li>
@@ -600,9 +600,9 @@ about = f'''<main id="main">
     <div class="container">
       <div class="section-head center reveal"><span class="eyebrow">Our Principles</span><h2>What We Stand For</h2></div>
       <div class="values">
-        {card('shield', 'Professionalism First', 'Clear communication, written commitments and conduct our clients can rely on.')}
-        {card('consult', 'Accountability', 'One project team responsible from the first survey to final handover.')}
-        {card('clock', 'Schedule Discipline', 'Realistic programmes, monitored weekly and reported transparently.')}
+        {card('consult', 'Client Requirements First', 'Every project is delivered to the standard the client specifies, without compromise.')}
+        {card('shield', 'Professionalism', 'Clear communication, written commitments and conduct our clients can rely on.')}
+        {card('clock', 'Accountability &amp; Schedule', 'One accountable team, with realistic programmes monitored weekly and reported transparently.')}
         {card('hardhat', 'Safety', 'Safe working practices on every site, including all work at height.')}
         {card('layers', 'Quality', 'Workmanship and materials inspected against approved drawings and specifications.')}
         {card('doc', 'Complete Documentation', 'As-built drawings, test results and warranties provided as standard.')}
