@@ -636,7 +636,7 @@ page('about.html', 'About | Zurosh Enterprises',
 # the card shows the person's initials.
 TEAM = {
     'leadership': [
-        ('Zulfiqar Ali', 'Chief Executive Officer', 'Leads Zurosh Enterprises across its Telecom and Construction divisions.', 'assets/img/team/zulfiqar-ali.jpg'),
+        ('Zulfiqar Ali', 'Chief Executive Officer', 'Leads Zurosh Enterprises across its Telecom Infrastructure and Construction divisions, overseeing project delivery, client relationships and quality standards. Brings experience in managing telecom network deployment across multiple cities in Pakistan and in technical coordination on major infrastructure projects.', 'assets/img/team/zulfiqar-ali.jpg'),
     ],
     # Add division team members here when ready; empty sections are hidden.
     'telecom': [],
@@ -688,14 +688,14 @@ team = f'''<main id="main">
         <div class="breadcrumb"><a href="index.html">Home</a> / Our Team</div>
         <span class="eyebrow">Our Team</span>
         <h1>The People Behind Zurosh</h1>
-        <p class="lead">Zurosh Enterprises is led by a leadership team with experience across telecommunications and construction.</p>
+        <p class="lead">Zurosh Enterprises is led by professionals with hands-on experience in telecom network deployment, infrastructure project management and engineering coordination. Our leadership is directly involved in every project, so client requirements are understood at the outset and delivered to standard.</p>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="section-head reveal"><span class="eyebrow">Leadership</span><h2>Management</h2></div>
+      <div class="section-head reveal"><span class="eyebrow">Leadership</span><h2>Leadership Team</h2></div>
       <div class="team-grid lead-grid">
           {team_grid('leadership', True)}
       </div>
