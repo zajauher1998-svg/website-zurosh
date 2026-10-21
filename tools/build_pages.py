@@ -636,7 +636,7 @@ page('about.html', 'About | Zurosh Enterprises',
 # the card shows the person's initials.
 TEAM = {
     'leadership': [
-        ('Zulfiqar Ali', 'Chief Executive Officer', 'Leads Zurosh Enterprises across its Telecom Infrastructure and Construction divisions, overseeing project delivery, client relationships and quality standards. Brings experience in managing telecom network deployment across multiple cities in Pakistan and in technical coordination on major power generation and civil engineering projects.', 'assets/img/team/zulfiqar-ali.jpg'),
+        ('Zulfiqar Ali', 'Chief Executive Officer', 'Leads Zurosh Enterprises across its Telecom Infrastructure and Construction divisions, overseeing project delivery, client relationships and quality standards.', 'assets/img/team/zulfiqar-ali.jpg'),
     ],
     # Add division team members here when ready; empty sections are hidden.
     'telecom': [],
