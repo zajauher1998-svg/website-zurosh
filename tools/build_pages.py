@@ -557,7 +557,7 @@ about = f'''<main id="main">
         <article class="pillar reveal">
           <div class="pillar-num">02</div>
           <h3>Project Management</h3>
-          <p>Experience planning and managing the deployment of telecom networks across multiple cities in Pakistan, alongside technical coordination on major power generation projects.</p>
+          <p>Experience planning and managing the deployment of telecom networks across multiple cities in Pakistan, alongside technical coordination on major power generation and civil engineering projects.</p>
         </article>
         <article class="pillar reveal">
           <div class="pillar-num">03</div>
@@ -577,7 +577,7 @@ about = f'''<main id="main">
       </div>
       <ul class="exp-list reveal">
         <li><strong>Telecom Infrastructure Deployment</strong><span>Fiber networks and tower sites deployed across Pakistan.</span></li>
-        <li><strong>Power Generation Projects</strong><span>Technical coordination on large coal-fired power plant developments.</span></li>
+        <li><strong>Power Generation &amp; Civil Engineering Projects</strong><span>Technical coordination on large coal-fired power plant developments and civil engineering projects.</span></li>
         <li><strong>Engineering Design &amp; Review</strong><span>Design coordination and technical review for network and building projects.</span></li>
         <li><strong>Consultancy &amp; Project Management</strong><span>Planning, scheduling, stakeholder coordination and progress reporting.</span></li>
       </ul>
@@ -636,7 +636,7 @@ page('about.html', 'About | Zurosh Enterprises',
 # the card shows the person's initials.
 TEAM = {
     'leadership': [
-        ('Zulfiqar Ali', 'Chief Executive Officer', 'Leads Zurosh Enterprises across its Telecom Infrastructure and Construction divisions, overseeing project delivery, client relationships and quality standards. Brings experience in managing telecom network deployment across multiple cities in Pakistan and in technical coordination on major infrastructure projects.', 'assets/img/team/zulfiqar-ali.jpg'),
+        ('Zulfiqar Ali', 'Chief Executive Officer', 'Leads Zurosh Enterprises across its Telecom Infrastructure and Construction divisions, overseeing project delivery, client relationships and quality standards. Brings experience in managing telecom network deployment across multiple cities in Pakistan and in technical coordination on major power generation and civil engineering projects.', 'assets/img/team/zulfiqar-ali.jpg'),
     ],
     # Add division team members here when ready; empty sections are hidden.
     'telecom': [],
