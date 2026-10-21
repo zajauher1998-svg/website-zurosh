@@ -534,7 +534,7 @@ about = f'''<main id="main">
       <div class="reveal">
         <span class="eyebrow">Who We Are</span>
         <h2>An Engineering-Led Company</h2>
-        <p>Zurosh Enterprises was founded on a background in civil engineering, project management consultancy and business analytics, combined with hands-on experience in telecom infrastructure deployment as a contractor in Pakistan.</p>
+        <p>Zurosh Enterprises brings together engineering consultancy experience, structured project management and hands-on experience in telecom infrastructure deployment as a contractor in Pakistan.</p>
         <p>That foundation shapes how we work. Every project is planned with the rigour of an engineering consultancy, managed with the accountability of a contractor, and costed and tracked with the clarity that only good data provides.</p>
         <p>The result is a company where professionalism is not an aspiration but a working standard: clear scopes, honest reporting, safe sites and documentation that stands up to scrutiny.</p>
       </div>
@@ -546,13 +546,13 @@ about = f'''<main id="main">
       <div class="section-head center reveal">
         <span class="eyebrow">Our Foundation</span>
         <h2>Three Disciplines, One Approach</h2>
-        <p class="lead" style="margin-inline:auto">The experience behind Zurosh Enterprises brings together three disciplines that are rarely found under one roof.</p>
+        <p class="lead" style="margin-inline:auto">Every project we deliver draws on three disciplines that are rarely found under one roof.</p>
       </div>
       <div class="pillars">
         <article class="pillar reveal">
           <div class="pillar-num">01</div>
           <h3>Engineering</h3>
-          <p>A civil engineering foundation, with experience coordinating multidisciplinary work across geotechnical, hydrological, structural and architectural design.</p>
+          <p>Experience coordinating multidisciplinary engineering work across geotechnical, hydrological, structural and architectural design.</p>
         </article>
         <article class="pillar reveal">
           <div class="pillar-num">02</div>
@@ -561,8 +561,8 @@ about = f'''<main id="main">
         </article>
         <article class="pillar reveal">
           <div class="pillar-num">03</div>
-          <h3>Business Analytics</h3>
-          <p>Postgraduate training in business analytics, applied to costing, feasibility studies, progress tracking and decisions that are based on evidence rather than assumption.</p>
+          <h3>Data-Driven Decisions</h3>
+          <p>Costing, feasibility studies and progress tracking built on reliable data, so decisions are based on evidence rather than assumption.</p>
         </article>
       </div>
     </div>
