@@ -520,8 +520,8 @@ about = f'''<main id="main">
       <div class="hero-copy">
         <div class="breadcrumb"><a href="index.html">Home</a> / About</div>
         <span class="eyebrow">About Us</span>
-        <h1>Connecting and Building Pakistan</h1>
-        <p class="lead">Zurosh Enterprises is a Pakistani company working in telecommunications infrastructure and construction, with a dedicated team for each sector.</p>
+        <h1>Where Professionalism Comes First</h1>
+        <p class="lead">Zurosh Enterprises is a Pakistani telecommunications infrastructure and construction company built on engineering discipline, structured project management and decisions grounded in data.</p>
       </div>
     </div>
   </section>
@@ -533,13 +533,65 @@ about = f'''<main id="main">
       </div>
       <div class="reveal">
         <span class="eyebrow">Who We Are</span>
-        <h2>Two Sectors, Managed Independently</h2>
-        <p>Telecommunications and construction require different expertise, partners and regulatory approvals, so each sector is run as a separate division. Our <strong>Telecom division</strong> delivers FTTH networks, 5G tower infrastructure, consultancy services and business feasibility reports. Our <strong>Construction division</strong> builds residential units and commercial buildings, carries out renovation and extension works, and provides construction supervision for owners.</p>
-        <p>Both divisions follow the same principles: clearly defined scope, realistic schedules, safe working practices and complete project documentation.</p>
-        <div class="split-sectors" style="margin-top:24px">
-          <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom Infrastructure</strong>FTTH · 5G Towers · Consultancy</a>
-          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial · Renovation · Supervision</a>
-        </div>
+        <h2>An Engineering-Led Company</h2>
+        <p>Zurosh Enterprises was founded on a background in civil engineering, project management consultancy and business analytics, combined with hands-on experience in telecom infrastructure deployment as a contractor in Pakistan.</p>
+        <p>That foundation shapes how we work. Every project is planned with the rigour of an engineering consultancy, managed with the accountability of a contractor, and costed and tracked with the clarity that only good data provides.</p>
+        <p>The result is a company where professionalism is not an aspiration but a working standard: clear scopes, honest reporting, safe sites and documentation that stands up to scrutiny.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Our Foundation</span>
+        <h2>Three Disciplines, One Approach</h2>
+        <p class="lead" style="margin-inline:auto">The experience behind Zurosh Enterprises brings together three disciplines that are rarely found under one roof.</p>
+      </div>
+      <div class="pillars">
+        <article class="pillar reveal">
+          <div class="pillar-num">01</div>
+          <h3>Engineering</h3>
+          <p>A civil engineering foundation, with experience coordinating multidisciplinary work across geotechnical, hydrological, structural and architectural design.</p>
+        </article>
+        <article class="pillar reveal">
+          <div class="pillar-num">02</div>
+          <h3>Project Management</h3>
+          <p>Consultancy experience in planning and coordinating large-scale infrastructure, including technical coordination on major power generation projects in Pakistan.</p>
+        </article>
+        <article class="pillar reveal">
+          <div class="pillar-num">03</div>
+          <h3>Business Analytics</h3>
+          <p>Postgraduate training in business analytics, applied to costing, feasibility studies, progress tracking and decisions that are based on evidence rather than assumption.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section navy">
+    <div class="container two-col" style="align-items:start">
+      <div class="section-head reveal">
+        <span class="eyebrow on-dark">Experience</span>
+        <h2>Built on Real Infrastructure Work</h2>
+        <p>Our leadership has worked on projects where precision, safety and coordination are non-negotiable. That experience now underpins every network we deploy and every building we construct.</p>
+      </div>
+      <ul class="exp-list reveal">
+        <li><strong>Telecom Infrastructure Deployment</strong><span>Fiber networks and tower sites delivered as a contractor across Pakistan.</span></li>
+        <li><strong>Power Generation Projects</strong><span>Technical coordination on large coal-fired power plant developments.</span></li>
+        <li><strong>Multidisciplinary Engineering</strong><span>Geotechnical investigation, hydrology, structural and architectural design.</span></li>
+        <li><strong>Consultancy &amp; Project Management</strong><span>Planning, scheduling, stakeholder coordination and progress reporting.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal"><span class="eyebrow">How We Work</span><h2>A Structured Approach to Every Project</h2></div>
+      <div class="feature-grid">
+        {card('map', '1 · Understand', 'We define the scope, site conditions and client requirements before any commitment is made.')}
+        {card('doc', '2 · Plan', 'Engineering design, bills of quantities, schedules and risks are set out clearly and agreed in writing.')}
+        {card('hardhat', '3 · Execute', 'Work is supervised on site, quality is inspected at each stage and progress is tracked against the plan.')}
+        {card('layers', '4 · Report &amp; Hand Over', 'Regular progress reports, followed by formal handover with complete documentation.')}
       </div>
     </div>
   </section>
@@ -548,18 +600,34 @@ about = f'''<main id="main">
     <div class="container">
       <div class="section-head center reveal"><span class="eyebrow">Our Principles</span><h2>What We Stand For</h2></div>
       <div class="values">
-        {card('shield', 'Safety', 'Safe working practices on every site, including all work at height.')}
+        {card('shield', 'Professionalism First', 'Clear communication, written commitments and conduct our clients can rely on.')}
+        {card('consult', 'Accountability', 'One project team responsible from the first survey to final handover.')}
         {card('clock', 'Schedule Discipline', 'Realistic programmes, monitored weekly and reported transparently.')}
-        {card('layers', 'Single Point of Contact', 'One project team accountable from the first survey to final handover.')}
+        {card('hardhat', 'Safety', 'Safe working practices on every site, including all work at height.')}
+        {card('layers', 'Quality', 'Workmanship and materials inspected against approved drawings and specifications.')}
         {card('doc', 'Complete Documentation', 'As-built drawings, test results and warranties provided as standard.')}
       </div>
     </div>
   </section>
 
-{cta('Work with Zurosh Enterprises', 'Contact us to discuss your telecom or construction requirements.')}
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Our Sectors</span>
+        <h2>Two Divisions, One Standard</h2>
+        <p class="lead" style="margin-inline:auto">Telecommunications and construction require different expertise, partners and approvals, so each sector is run as a separate division under the same standards.</p>
+      </div>
+      <div class="split-sectors about-sectors reveal">
+        <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom Infrastructure</strong>FTTH networks, 5G tower infrastructure, telecom consultancy and business feasibility reports.</a>
+        <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential units, commercial buildings, renovation and extension, and construction supervision.</a>
+      </div>
+    </div>
+  </section>
+
+{cta('Work with Zurosh Enterprises', 'Contact us to discuss your telecom infrastructure or construction requirements.')}
 </main>'''
 page('about.html', 'About | Zurosh Enterprises',
-     'About Zurosh Enterprises, a telecommunications infrastructure and construction company in Pakistan.',
+     'Zurosh Enterprises is an engineering-led telecommunications infrastructure and construction company in Pakistan, where professionalism comes first.',
      'about', about)
 
 # =========================================================================== TEAM
