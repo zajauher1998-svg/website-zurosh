@@ -520,7 +520,7 @@ about = f'''<main id="main">
       <div class="hero-copy">
         <span class="eyebrow">About Us</span>
         <h1>Where Professionalism Comes First</h1>
-        <p class="lead">Zurosh Enterprises is a Pakistani telecommunications infrastructure and construction company built on engineering discipline, structured project management and an uncompromising focus on client requirements.</p>
+        <p class="lead">Zurosh Enterprises is a telecommunications infrastructure and construction company built on engineering discipline, structured project management and an uncompromising focus on client requirements.</p>
       </div>
     </div>
   </section>
@@ -533,7 +533,7 @@ about = f'''<main id="main">
       <div class="reveal">
         <span class="eyebrow">Who We Are</span>
         <h2>An Engineering-Led Company</h2>
-        <p>Zurosh Enterprises brings together engineering consultancy experience, structured project management and hands-on experience in telecom network infrastructure deployment across Pakistan.</p>
+        <p>Zurosh Enterprises brings together engineering consultancy experience, structured project management and hands-on experience in telecom network infrastructure deployment.</p>
         <p>That foundation shapes how we work. Every project is planned with the rigour of an engineering consultancy, managed with full accountability for delivery, and costed and tracked with complete transparency.</p>
         <p>Our first priority is the client’s requirement. We deliver to the standard each client specifies, without compromise, and support that with clear scopes, honest reporting, safe sites and documentation that stands up to scrutiny. Professionalism is not an aspiration for us; it is how we work.</p>
       </div>
@@ -556,7 +556,7 @@ about = f'''<main id="main">
         <article class="pillar reveal">
           <div class="pillar-num">02</div>
           <h3>Project Management</h3>
-          <p>Experience planning and managing the deployment of telecom networks across multiple cities in Pakistan, alongside technical coordination on major power generation and civil engineering projects.</p>
+          <p>Experience planning and managing the deployment of telecom networks across multiple cities, alongside technical coordination on major power generation and civil engineering projects.</p>
         </article>
         <article class="pillar reveal">
           <div class="pillar-num">03</div>
@@ -575,7 +575,7 @@ about = f'''<main id="main">
         <p>Our leadership has worked on projects where precision, safety and coordination are non-negotiable. That experience now underpins every network we deploy and every building we construct.</p>
       </div>
       <ul class="exp-list reveal">
-        <li><strong>Telecom Infrastructure Deployment</strong><span>Fiber networks and tower sites deployed across Pakistan.</span></li>
+        <li><strong>Telecom Infrastructure Deployment</strong><span>Fiber networks and tower sites deployed across multiple cities.</span></li>
         <li><strong>Power Generation &amp; Civil Engineering Projects</strong><span>Technical coordination on large coal-fired power plant developments and civil engineering projects.</span></li>
         <li><strong>Engineering Design &amp; Review</strong><span>Design coordination and technical review for network and building projects.</span></li>
         <li><strong>Consultancy &amp; Project Management</strong><span>Planning, scheduling, stakeholder coordination and progress reporting.</span></li>
@@ -626,7 +626,7 @@ about = f'''<main id="main">
 {cta('Work with Zurosh Enterprises', 'Contact us to discuss your telecom infrastructure or construction requirements.')}
 </main>'''
 page('about.html', 'About | Zurosh Enterprises',
-     'Zurosh Enterprises is an engineering-led telecommunications infrastructure and construction company in Pakistan, where professionalism comes first.',
+     'Zurosh Enterprises is an engineering-led telecommunications infrastructure and construction company where professionalism comes first.',
      'about', about)
 
 # =========================================================================== TEAM
