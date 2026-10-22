@@ -817,3 +817,21 @@ body[data-zone="construction"] .progress-rail a.active { background: transparent
 .values { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) { .pillars, .values { grid-template-columns: 1fr; } }
 @media (min-width: 561px) and (max-width: 900px) { .values { grid-template-columns: 1fr 1fr; } }
+
+/* home: Two Sectors panel with more detail */
+.panel.panel-wide { width: min(700px, 100%); }
+.sector-detail { gap: 16px; }
+.sector-detail a { display: flex; flex-direction: column; padding: 22px; }
+.sector-detail strong { font-size: 1.12rem; margin-bottom: 6px; }
+.sector-detail .sd-text { font-size: .88rem; line-height: 1.5; opacity: .85; margin-bottom: 12px; }
+.sector-detail ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 7px; font-size: .86rem; line-height: 1.4; }
+.sector-detail li { position: relative; padding-left: 16px; }
+.sector-detail li::before { content: ""; position: absolute; left: 0; top: .5em; width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+.sector-detail .c li::before { background: var(--gold-600); }
+.sector-detail .sd-more { margin-top: auto; font-size: .8rem; font-weight: 700; letter-spacing: .04em; color: var(--gold); }
+.sector-detail .c .sd-more { color: var(--gold-600); }
+@media (min-width: 761px) and (max-height: 860px) {
+  .sector-detail a { padding: 16px 18px; }
+  .sector-detail ul { gap: 4px; margin-bottom: 10px; }
+  .sector-detail .sd-text { margin-bottom: 8px; }
+}

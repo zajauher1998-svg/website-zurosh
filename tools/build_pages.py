@@ -186,15 +186,35 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
     <h1 class="visually-hidden">Zurosh Enterprises: Telecommunications Infrastructure and Construction in Pakistan</h1>
   </section>
 
-  <section class="scene scene-tall" id="sectors" data-zone="neutral" data-kf="globe" data-side="right" data-rot="1">
+  <section class="scene scene-tall" id="sectors" data-zone="neutral" data-kf="globe" data-side="right" data-rot="1" data-scale="0.8">
     <div class="container">
-      <div class="panel reveal">
+      <div class="panel panel-wide reveal">
         <span class="eyebrow">Zurosh Enterprises</span>
         <h2>Two Sectors.<br>One Standard.</h2>
-        <p class="lead">Zurosh Enterprises operates through two dedicated divisions. Our Telecom division delivers fiber networks and tower infrastructure for operators, and our Construction division develops residential and commercial properties. Each division is led by its own specialist team and works to common standards of quality, safety and accountability.</p>
-        <div class="split-sectors">
-          <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom Infrastructure</strong>FTTH · 5G Towers · Consultancy</a>
-          <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial · Renovation · Supervision</a>
+        <p class="lead">Zurosh Enterprises operates through two dedicated divisions, each led by its own specialist team and held to common standards of quality, safety and accountability.</p>
+        <div class="split-sectors sector-detail">
+          <a class="t" href="telecom.html">
+            <small>Sector 01</small><strong>Telecom Infrastructure</strong>
+            <span class="sd-text">Fiber networks and tower infrastructure for operators, ISPs and developers.</span>
+            <ul>
+              <li>FTTH network design and deployment</li>
+              <li>5G tower sites, from site acquisition to handover</li>
+              <li>Network planning and as-built drawings</li>
+              <li>Business feasibility reports</li>
+            </ul>
+            <span class="sd-more">Explore Telecom <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="c" href="construction.html">
+            <small>Sector 02</small><strong>Construction</strong>
+            <span class="sd-text">Residential and commercial construction, managed from design to handover.</span>
+            <ul>
+              <li>Houses, villas and apartment buildings</li>
+              <li>Retail, office and mixed-use buildings</li>
+              <li>Renovation and extension works</li>
+              <li>Construction supervision for owners</li>
+            </ul>
+            <span class="sd-more">Explore Construction <span aria-hidden="true">→</span></span>
+          </a>
         </div>
       </div>
     </div>
