@@ -192,7 +192,8 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
         <span class="eyebrow">Zurosh Enterprises</span>
         <h2>Two Sectors.<br>One Standard.</h2>
         <p class="lead">Zurosh Enterprises operates through two dedicated divisions, each led by its own specialist team and held to common standards of quality, safety and accountability.</p>
-        <p class="lead">Our Telecom Infrastructure division executes FTTH network deployment and additionally offers network design services. It also delivers 5G tower sites from site acquisition to handover, and provides telecom consultancy and business feasibility reports for operators, ISPs and developers. Our Construction division builds residential units and commercial buildings, carries out renovation and extension works, and provides construction supervision for owners who cannot oversee their own projects.</p>
+        <p class="lead">Our Telecom Infrastructure division executes FTTH network deployment and additionally offers network design services. It also delivers 5G tower sites from site acquisition to handover, and provides telecom consultancy and business feasibility reports for operators, ISPs and developers.</p>
+        <p class="lead">Our Construction division builds residential units and commercial buildings, carries out renovation and extension works, and provides construction supervision for owners who cannot oversee their own projects.</p>
         <div class="split-sectors">
           <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom Infrastructure</strong>FTTH · 5G Towers · Consultancy</a>
           <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial · Renovation · Supervision</a>

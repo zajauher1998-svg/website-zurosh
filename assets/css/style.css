@@ -820,5 +820,4 @@ body[data-zone="construction"] .progress-rail a.active { background: transparent
 
 /* home: Two Sectors panel, wider for the fuller introduction */
 .panel.panel-wide { width: min(640px, 100%); }
-.panel.panel-wide .lead + .lead { margin-top: -.2em; }
 @media (min-width: 761px) and (max-height: 860px) { .panel.panel-wide .lead { font-size: .95rem; } }
