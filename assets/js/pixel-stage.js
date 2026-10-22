@@ -722,15 +722,23 @@
       var fitScale = narrow ? Math.min(1, stage.visW / 13) : 1;
       kf = sections.map(function (s, i) {
         var side = s.getAttribute('data-side') || 'center';
-        // on narrow screens the object floats above the text panel
-        var lift = narrow && i > 0;
+        var form = s.getAttribute('data-kf');
+        var y = parseFloat(s.getAttribute('data-y') || '0') * stage.visH - headH / 2 / vh * stage.visH;
+        var scale = parseFloat(s.getAttribute('data-scale') || '1') * fitScale;
+        // phones: fit the object into the band between the header and the panel below it
+        if (narrow && i > 0) {
+          var F = stage.forms[form], top = F.y1 + (form === 'tower' ? 3.2 : 0.4), bot = F.y0 - 0.4;  // tower: room for signal waves
+          var pad = 14, bandTop = headH + pad, bandBot = vh * 0.44 - pad, wpp = stage.visH / vh;
+          scale = Math.min(scale * 0.78, (bandBot - bandTop) * wpp / (top - bot));
+          var centerPx = (bandTop + bandBot) / 2;
+          y = (vh / 2 - centerPx) * wpp - (top + bot) / 2 * scale;
+        }
         return {
-          form: s.getAttribute('data-kf'),
+          form: form,
           rot: parseFloat(s.getAttribute('data-rot') || '0') * Math.PI * 2,
           x: side === 'left' ? -off : side === 'right' ? off : 0,
-          // desktop: centre in the area below the fixed header, not the whole window
-          y: lift ? stage.visH * 0.27 : parseFloat(s.getAttribute('data-y') || '0') * stage.visH - headH / 2 / vh * stage.visH,
-          scale: parseFloat(s.getAttribute('data-scale') || '1') * fitScale * (lift ? 0.6 : 1),
+          y: y,
+          scale: scale,
           sway: { z: 0.5, house: 0.1, commercial: 0.1 }[s.getAttribute('data-kf')] || 1
         };
       });
