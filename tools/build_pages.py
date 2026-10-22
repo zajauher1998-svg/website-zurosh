@@ -291,7 +291,6 @@ telecom = f'''<main id="main" class="telecom-page">
   <section class="page-hero telecom" id="network">
     <div class="container">
       <div class="hero-copy">
-        <div class="breadcrumb"><a href="index.html">Home</a> / Telecom Infrastructure</div>
         <span class="sector-badge">{ICON['tower'].replace('<svg', '<svg width="16" height="16"')} Sector 01 · Telecom Infrastructure</span>
         <h1>Telecom Infrastructure from Fiber to 5G</h1>
         <p class="lead">Zurosh Enterprises designs, builds and commissions telecommunications infrastructure in Pakistan, including FTTH networks, turnkey 5G tower sites and specialist consultancy.</p>
@@ -421,7 +420,6 @@ construction = f'''<main id="main" class="construction-page">
   <section class="page-hero construction" id="build">
     <div class="container">
       <div class="hero-copy">
-        <div class="breadcrumb"><a href="index.html">Home</a> / Construction</div>
         <span class="sector-badge">{ICON['building'].replace('<svg', '<svg width="16" height="16"')} Sector 02 · Construction</span>
         <h1>Residential and Commercial Construction</h1>
         <p class="lead">Zurosh Enterprises constructs residential units and commercial buildings, carries out renovation and extension works, and provides construction supervision across Pakistan.</p>
