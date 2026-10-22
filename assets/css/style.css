@@ -821,3 +821,7 @@ body[data-zone="construction"] .progress-rail a.active { background: transparent
 /* home: Two Sectors panel, wider for the fuller introduction */
 .panel.panel-wide { width: min(640px, 100%); }
 @media (min-width: 761px) and (max-height: 860px) { .panel.panel-wide .lead { font-size: .95rem; } }
+
+/* Two Sectors: each division's paragraph in its sector colour (gold deepened for legibility) */
+.panel .lead.lead-tel { color: var(--navy); }
+.panel .lead.lead-con { color: #8A6A2C; }
