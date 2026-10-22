@@ -518,7 +518,6 @@ about = f'''<main id="main">
   <section class="page-hero plain">
     <div class="container" style="grid-template-columns:1fr">
       <div class="hero-copy">
-        <div class="breadcrumb"><a href="index.html">Home</a> / About</div>
         <span class="eyebrow">About Us</span>
         <h1>Where Professionalism Comes First</h1>
         <p class="lead">Zurosh Enterprises is a Pakistani telecommunications infrastructure and construction company built on engineering discipline, structured project management and an uncompromising focus on client requirements.</p>
@@ -685,7 +684,6 @@ team = f'''<main id="main">
   <section class="page-hero plain">
     <div class="container" style="grid-template-columns:1fr">
       <div class="hero-copy">
-        <div class="breadcrumb"><a href="index.html">Home</a> / Our Team</div>
         <span class="eyebrow">Our Team</span>
         <h1>The People Behind Zurosh</h1>
         <p class="lead">Zurosh Enterprises is led by professionals with hands-on experience in telecom network deployment, infrastructure project management and engineering coordination. Our leadership is directly involved in every project, so client requirements are understood at the outset and delivered to standard.</p>
@@ -714,7 +712,6 @@ contact = f'''<main id="main">
   <section class="page-hero plain">
     <div class="container" style="grid-template-columns:1fr">
       <div class="hero-copy">
-        <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
         <span class="eyebrow">Contact</span>
         <h1>Discuss Your Project</h1>
         <p class="lead">Select the relevant sector and share a few details about your project. The appropriate team will respond to your enquiry.</p>
