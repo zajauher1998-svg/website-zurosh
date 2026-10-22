@@ -37,6 +37,19 @@
   // phones and low-power devices get half the pixels and a lower drawing resolution
   var LITE = (window.innerWidth < 760) || ((navigator.hardwareConcurrency || 8) <= 4) || ((navigator.deviceMemory || 8) <= 3);
 
+  /* Phones show and hide the address bar while scrolling, which fires 'resize' with a
+     slightly different height every time. Reacting to that rebuilds the canvas and
+     re-measures the page mid-scroll (stutter and jumps), so only respond to real
+     size changes: a new width, or a height change bigger than the address bar. */
+  function onRealResize(fn) {
+    var w = window.innerWidth, h = window.innerHeight;
+    window.addEventListener('resize', function () {
+      var nw = window.innerWidth, nh = window.innerHeight;
+      if (nw === w && Math.abs(nh - h) < 160) return;
+      w = nw; h = nh; fn();
+    });
+  }
+
   /* ---------- helpers ---------- */
   function rng(seed) {
     return function () {
@@ -367,7 +380,7 @@
     function pal(name) { return (opts.lightForms || []).indexOf(name) >= 0 ? lightPal : palette; }
     var rand = rng(1998);
 
-    var zPts = formZ(LITE ? 2 : LAYERS);
+    var zPts = formZ(LAYERS);
     var N = this.N = zPts.length;
     this.forms = {
       z: pack(zPts, palette, rand),
@@ -394,7 +407,7 @@
     }
 
     var r = this.renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !LITE, alpha: true, powerPreference: 'high-performance' });
-    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, LITE ? 1.5 : 2));
+    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, LITE ? 1.25 : 2));
     r.setClearColor(0x000000, 0);
 
     this.scene = new THREE.Scene();
@@ -406,7 +419,8 @@
     var rim = new THREE.DirectionalLight(0xF1D9A8, 1.0); rim.position.set(-10, -4, 6); this.scene.add(rim);
 
     var geo = new THREE.BoxGeometry(CELL * 0.86, CELL * 0.86, CELL * 0.86);
-    var mat = new THREE.MeshStandardMaterial({ roughness: 0.42, metalness: 0.18, transparent: true });
+    var mat = LITE ? new THREE.MeshLambertMaterial({ transparent: true })     // per-vertex lighting: far cheaper on phones
+                   : new THREE.MeshStandardMaterial({ roughness: 0.42, metalness: 0.18, transparent: true });
     var mesh = this.mesh = new THREE.InstancedMesh(geo, mat, N);
     mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
     mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(N * 3), 3);
@@ -477,7 +491,7 @@
       self.mouse.ty = (e.clientY / window.innerHeight) * 2 - 1;
     }, { passive: true });
     this.resize();
-    window.addEventListener('resize', function () { self.resize(); });
+    onRealResize(function () { self.resize(); });
     this.warmUp();
   }
 
@@ -658,12 +672,13 @@
       } else { x = ax; y = ay; z = az; }
       var o = i * 16;
       if (bump > 0.001) {
-        d.position.set(x, y, z);
-        d.rotation.set(this.spin[i * 2] * bump, this.spin[i * 2 + 1] * bump, 0);
-        var sc = 1 - 0.3 * bump;
-        d.scale.set(sc, sc, sc);
-        d.updateMatrix();
-        d.matrix.toArray(mat, o);
+        // rotation X then Y (Euler XYZ with z = 0), uniform scale, translation
+        var rx = this.spin[i * 2] * bump, ry = this.spin[i * 2 + 1] * bump, sc = 1 - 0.3 * bump;
+        var ca = Math.cos(rx), sa = Math.sin(rx), cb = Math.cos(ry), sb = Math.sin(ry);
+        mat[o] = cb * sc;        mat[o + 1] = sa * sb * sc;  mat[o + 2] = -ca * sb * sc; mat[o + 3] = 0;
+        mat[o + 4] = 0;          mat[o + 5] = ca * sc;       mat[o + 6] = sa * sc;       mat[o + 7] = 0;
+        mat[o + 8] = sb * sc;    mat[o + 9] = -sa * cb * sc; mat[o + 10] = ca * cb * sc; mat[o + 11] = 0;
+        mat[o + 12] = x;         mat[o + 13] = y;            mat[o + 14] = z;            mat[o + 15] = 1;
       } else {
         // plain translation: write the matrix directly (much cheaper per pixel)
         mat[o] = 1; mat[o + 1] = 0; mat[o + 2] = 0; mat[o + 3] = 0;
@@ -685,8 +700,10 @@
     var k = same ? 0 : (t * t * (3 - 2 * t));
     this.pointsV = (TEL[from] ? 1 : 0) + ((TEL[to] ? 1 : 0) - (TEL[from] ? 1 : 0)) * k;
     var con = (CON[from] ? 1 : 0) + ((CON[to] ? 1 : 0) - (CON[from] ? 1 : 0)) * k;
-    this.mesh.material.roughness = 0.42 + 0.46 * con;
-    this.mesh.material.metalness = 0.18 * (1 - con);
+    if (!LITE) {
+      this.mesh.material.roughness = 0.42 + 0.46 * con;
+      this.mesh.material.metalness = 0.18 * (1 - con);
+    }
     this.applyFade();
   };
 
@@ -728,10 +745,11 @@
         // phones: fit the object into the band between the header and the panel below it
         if (narrow && i > 0) {
           var F = stage.forms[form], top = F.y1 + (form === 'tower' ? 3.2 : 0.4), bot = F.y0 - 0.4;  // tower: room for signal waves
-          var pad = 14, bandTop = headH + pad, bandBot = vh * 0.44 - pad, wpp = stage.visH / vh;
+          var ch = canvas.clientHeight || vh;   // canvas may be taller than the visible window on phones
+          var pad = 14, bandTop = headH + pad, bandBot = vh * 0.44 - pad, wpp = stage.visH / ch;
           scale = Math.min(scale * 0.78, (bandBot - bandTop) * wpp / (top - bot));
           var centerPx = (bandTop + bandBot) / 2;
-          y = (vh / 2 - centerPx) * wpp - (top + bot) / 2 * scale;
+          y = (ch / 2 - centerPx) * wpp - (top + bot) / 2 * scale;
         }
         return {
           form: form,
@@ -754,7 +772,7 @@
       });
     }
     measure();
-    window.addEventListener('resize', measure);
+    onRealResize(measure);
     window.addEventListener('load', measure);
 
     var start = performance.now();
