@@ -34,6 +34,9 @@
   var TEL = { map: 1, tower: 1 }, CON = { house: 1, commercial: 1, buildings: 1 };
   var TOWER_SEGS = [];
 
+  // phones and low-power devices get half the pixels and a lower drawing resolution
+  var LITE = (window.innerWidth < 760) || ((navigator.hardwareConcurrency || 8) <= 4) || ((navigator.deviceMemory || 8) <= 3);
+
   /* ---------- helpers ---------- */
   function rng(seed) {
     return function () {
@@ -55,15 +58,15 @@
   function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
 
   /* ---------- formations: arrays of {x,y,z,c} ---------- */
-  function formZ() {
-    var pts = [];
+  function formZ(layers) {
+    var pts = [], LAY = layers || LAYERS;
     for (var gy = 0; gy * STEP < 100; gy++) {
       for (var gx = 0; gx * STEP < 94; gx++) {
         var x = (gx + 0.5) * STEP, y = (gy + 0.5) * STEP, col = null;
         for (var k = 0; k < Z_POLYS.length; k++) if (inPoly(x, y, Z_POLYS[k].p)) { col = Z_POLYS[k].c; break; }
         if (!col) continue;
-        for (var l = 0; l < LAYERS; l++) {
-          pts.push({ x: (x - 47) * UNIT, y: (50 - y) * UNIT, z: (l - (LAYERS - 1) / 2) * CELL, c: col });
+        for (var l = 0; l < LAY; l++) {
+          pts.push({ x: (x - 47) * UNIT, y: (50 - y) * UNIT, z: (l - (LAY - 1) / 2) * CELL * (LAYERS / LAY), c: col });
         }
       }
     }
@@ -364,7 +367,7 @@
     function pal(name) { return (opts.lightForms || []).indexOf(name) >= 0 ? lightPal : palette; }
     var rand = rng(1998);
 
-    var zPts = formZ();
+    var zPts = formZ(LITE ? 2 : LAYERS);
     var N = this.N = zPts.length;
     this.forms = {
       z: pack(zPts, palette, rand),
@@ -390,8 +393,8 @@
       this.spin[i * 2 + 1] = (rand() - 0.5) * 6;
     }
 
-    var r = this.renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    var r = this.renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !LITE, alpha: true, powerPreference: 'high-performance' });
+    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, LITE ? 1.5 : 2));
     r.setClearColor(0x000000, 0);
 
     this.scene = new THREE.Scene();
@@ -403,7 +406,7 @@
     var rim = new THREE.DirectionalLight(0xF1D9A8, 1.0); rim.position.set(-10, -4, 6); this.scene.add(rim);
 
     var geo = new THREE.BoxGeometry(CELL * 0.86, CELL * 0.86, CELL * 0.86);
-    var mat = new THREE.MeshStandardMaterial({ roughness: 0.42, metalness: 0.18 });
+    var mat = new THREE.MeshStandardMaterial({ roughness: 0.42, metalness: 0.18, transparent: true });
     var mesh = this.mesh = new THREE.InstancedMesh(geo, mat, N);
     mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
     mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(N * 3), 3);
@@ -475,7 +478,17 @@
     }, { passive: true });
     this.resize();
     window.addEventListener('resize', function () { self.resize(); });
+    this.warmUp();
   }
+
+  /* compile every material once while the page loads, so the first
+     hand-over from the solid logo to the pixels does not stall */
+  Stage.prototype.warmUp = function () {
+    var vis = [];
+    this.scene.traverse(function (o) { vis.push([o, o.visible]); o.visible = true; });
+    try { this.renderer.compile(this.scene, this.camera); } catch (e) {}
+    vis.forEach(function (v) { v[0].visible = v[1]; });
+  };
 
   Stage.prototype.resize = function () {
     var w = this.canvas.clientWidth || window.innerWidth, h = this.canvas.clientHeight || window.innerHeight;
@@ -501,10 +514,10 @@
   Stage.prototype.applyFade = function () {
     var v = Math.max(0, this.solidV), P = this.pointsV;
     var cube = (v >= 1 ? 0 : 1 - v * v) * (1 - P);
-    var pm = this.mesh.material, fading = cube < 0.999;
+    var pm = this.mesh.material;
     this.mesh.visible = cube > 0.01;
-    if (pm.transparent !== fading) { pm.transparent = fading; pm.needsUpdate = true; }
     pm.opacity = cube;
+    pm.depthWrite = cube > 0.6;
     this.points.visible = P > 0.01;
     this.points.material.opacity = P;
   };
@@ -614,6 +627,7 @@
     var pp = this.points.geometry.attributes.position.array, pc = this.points.geometry.attributes.color.array;
     var d = this.dummy, still = this.reduced, same = from === to;
     var style = CON[to] ? 'build' : (TEL[to] || TEL[from]) ? 'stream' : 'burst';
+    var needPts = !!(TEL[to] || TEL[from]) || this.pointsV > 0;
     var burstAmp = still ? 0 : 3.6, bSpan = Math.max(0.001, B.y1 - B.y0);
     for (var i = 0; i < N; i++) {
       var i3 = i * 3, e = 0, x, y, z, bump = 0, rnd = this.rnd[i];
@@ -642,19 +656,31 @@
           z = az + (bz - az) * e + this.burst[i3 + 2] * bump * burstAmp;
         }
       } else { x = ax; y = ay; z = az; }
-      d.position.set(x, y, z);
-      d.rotation.set(this.spin[i * 2] * bump, this.spin[i * 2 + 1] * bump, 0);
-      var sc = 1 - 0.3 * bump;
-      d.scale.set(sc, sc, sc);
-      d.updateMatrix();
-      d.matrix.toArray(mat, i * 16);
-      pp[i3] = x; pp[i3 + 1] = y; pp[i3 + 2] = z;
-      for (var c = 0; c < 3; c++) pc[i3 + c] = col[i3 + c] = A.c[i3 + c] + (B.c[i3 + c] - A.c[i3 + c]) * e;
+      var o = i * 16;
+      if (bump > 0.001) {
+        d.position.set(x, y, z);
+        d.rotation.set(this.spin[i * 2] * bump, this.spin[i * 2 + 1] * bump, 0);
+        var sc = 1 - 0.3 * bump;
+        d.scale.set(sc, sc, sc);
+        d.updateMatrix();
+        d.matrix.toArray(mat, o);
+      } else {
+        // plain translation: write the matrix directly (much cheaper per pixel)
+        mat[o] = 1; mat[o + 1] = 0; mat[o + 2] = 0; mat[o + 3] = 0;
+        mat[o + 4] = 0; mat[o + 5] = 1; mat[o + 6] = 0; mat[o + 7] = 0;
+        mat[o + 8] = 0; mat[o + 9] = 0; mat[o + 10] = 1; mat[o + 11] = 0;
+        mat[o + 12] = x; mat[o + 13] = y; mat[o + 14] = z; mat[o + 15] = 1;
+      }
+      var c0 = A.c[i3] + (B.c[i3] - A.c[i3]) * e, c1 = A.c[i3 + 1] + (B.c[i3 + 1] - A.c[i3 + 1]) * e, c2 = A.c[i3 + 2] + (B.c[i3 + 2] - A.c[i3 + 2]) * e;
+      col[i3] = c0; col[i3 + 1] = c1; col[i3 + 2] = c2;
+      if (needPts) { pp[i3] = x; pp[i3 + 1] = y; pp[i3 + 2] = z; pc[i3] = c0; pc[i3 + 1] = c1; pc[i3 + 2] = c2; }
     }
     this.mesh.instanceMatrix.needsUpdate = true;
     this.mesh.instanceColor.needsUpdate = true;
-    this.points.geometry.attributes.position.needsUpdate = true;
-    this.points.geometry.attributes.color.needsUpdate = true;
+    if (needPts) {
+      this.points.geometry.attributes.position.needsUpdate = true;
+      this.points.geometry.attributes.color.needsUpdate = true;
+    }
     // how much of the scene is drawn as light, and how matte the blocks are
     var k = same ? 0 : (t * t * (3 - 2 * t));
     this.pointsV = (TEL[from] ? 1 : 0) + ((TEL[to] ? 1 : 0) - (TEL[from] ? 1 : 0)) * k;
@@ -730,10 +756,11 @@
       var span = Math.max(1, anchors[i + 1] - anchors[i]);
       var raw = clamp((y - anchors[i]) / span, 0, 1);
       // hold zones around each section; the opening logo reacts to the first scroll
-      var th = i === 0 ? clamp(raw / 0.9, 0, 1) : clamp((raw - 0.1) / 0.8, 0, 1);
+      // the opening is quicker: the logo turns and breaks apart together, done in ~60% of the scroll
+      var th = i === 0 ? clamp(raw / 0.6, 0, 1) : clamp((raw - 0.1) / 0.8, 0, 1);
       var a = kf[i], b = kf[i + 1];
-      var tr = ease(clamp(th / 0.65, 0, 1));     // rotate first…
-      var tm = clamp((th - 0.22) / 0.78, 0, 1);  // …then shatter & rebuild
+      var tr = ease(clamp(th / (i === 0 ? 0.55 : 0.65), 0, 1));                 // rotate…
+      var tm = i === 0 ? clamp((th - 0.06) / 0.8, 0, 1) : clamp((th - 0.22) / 0.78, 0, 1);  // …and shatter & rebuild
       stage.layout(a.form, b.form, tm);
       // solid logo until the pixels start moving; it returns once they have re-formed a Z
       // the opening logo dissolves quickly; the closing logo settles in gradually
