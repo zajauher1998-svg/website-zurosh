@@ -295,7 +295,7 @@ telecom = f'''<main id="main" class="telecom-page">
         <h1>Telecom Infrastructure from Fiber to 5G</h1>
         <p class="lead">Zurosh Enterprises designs, builds and commissions telecommunications infrastructure in Pakistan, including FTTH networks, turnkey 5G tower sites and specialist consultancy.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
-          <a class="btn btn-gold" href="#towers">5G Towers <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-gold" href="#ftth">Our Telecom Services <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-ghost on-dark" href="contact.html?sector=Telecom">Request a Proposal</a>
         </div>
       </div>
@@ -424,7 +424,7 @@ construction = f'''<main id="main" class="construction-page">
         <h1>Residential and Commercial Construction</h1>
         <p class="lead">Zurosh Enterprises constructs residential units and commercial buildings, carries out renovation and extension works, and provides construction supervision across Pakistan.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
-          <a class="btn btn-primary" href="#residential">Our Services <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-primary" href="#residential">Our Construction Services <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="contact.html?sector=Construction">Discuss a Project</a>
         </div>
       </div>
