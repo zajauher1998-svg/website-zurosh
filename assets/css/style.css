@@ -163,9 +163,13 @@ p { margin: 0 0 1em; }
 .sector-construction a.sub:hover { background: var(--gold-100); }
 .sector-construction a.sub strong { color: var(--navy); }
 .sector .sector-all {
-  display: inline-flex; gap: .4em; margin-top: 14px; font-size: .8rem; font-weight: 600;
-  text-decoration: none; letter-spacing: .04em;
+  display: flex; gap: .4em; margin-top: 10px; font-size: .8rem; font-weight: 600;
+  text-decoration: none; letter-spacing: .04em; padding: 10px 12px; border-radius: 10px; transition: background .2s;
 }
+.sector .sector-all span { transition: transform .2s; }
+.sector .sector-all:hover span { transform: translateX(3px); }
+.sector-telecom .sector-all:hover, .sector-telecom .sector-all:focus-visible { background: rgba(255,255,255,.08); }
+.sector-construction .sector-all:hover, .sector-construction .sector-all:focus-visible { background: var(--gold-100); }
 .sector-telecom .sector-all { color: var(--gold); }
 .sector-construction .sector-all { color: var(--gold-600); }
 
