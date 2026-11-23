@@ -64,7 +64,7 @@ def header(current):
             </div>
             <ul>
               <li><a class="sub" href="telecom.html#ftth"><strong>FTTH Networks</strong><span>Fiber-to-the-home design, deployment and splicing</span></a></li>
-              <li><a class="sub" href="telecom.html#towers"><strong>5G Tower Infrastructure</strong><span>Site acquisition through to tower handover</span></a></li>
+              <li><a class="sub" href="telecom.html#towers"><strong>GSM Tower Infrastructure</strong><span>Site acquisition through to tower handover</span></a></li>
               <li><a class="sub" href="telecom.html#consultancy"><strong>Telecom Consultancy</strong><span>FTTH and long-haul network planning, design and as-built drawings</span></a></li>
               <li><a class="sub" href="telecom.html#feasibility"><strong>Business Feasibility Reports</strong><span>Customer needs, business model, costing and feasibility</span></a></li>
             </ul>
@@ -104,7 +104,7 @@ FOOTER = f'''<footer class="site-footer">
         <h4 class="t">Telecom Infrastructure</h4>
         <ul>
           <li><a href="telecom.html#ftth">FTTH Networks</a></li>
-          <li><a href="telecom.html#towers">5G Tower Infrastructure</a></li>
+          <li><a href="telecom.html#towers">GSM Tower Infrastructure</a></li>
           <li><a href="telecom.html#lifecycle">Site Acquisition to Handover</a></li>
           <li><a href="telecom.html#consultancy">Telecom Consultancy</a></li>
           <li><a href="telecom.html#feasibility">Business Feasibility Reports</a></li>
@@ -192,10 +192,10 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
         <span class="eyebrow">Zurosh Enterprises</span>
         <h2>Two Sectors.<br>One Standard.</h2>
         <p class="lead">Zurosh Enterprises operates through two dedicated divisions, each led by its own specialist team and held to common standards of quality, safety and accountability.</p>
-        <p class="lead lead-tel">Our Telecom Infrastructure division executes FTTH network deployment and additionally offers network design services. It also delivers 5G tower sites from site acquisition to handover, and provides telecom consultancy and business feasibility reports for operators, ISPs and developers.</p>
+        <p class="lead lead-tel">Our Telecom Infrastructure division executes FTTH network deployment and additionally offers network design services. It also delivers GSM tower sites from site acquisition to handover, and provides telecom consultancy and business feasibility reports for operators, ISPs and developers.</p>
         <p class="lead lead-con">Our Construction division builds residential units and commercial buildings, carries out renovation and extension works, and provides construction supervision for owners who cannot oversee their own projects.</p>
         <div class="split-sectors">
-          <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom Infrastructure</strong>FTTH · 5G Towers · Consultancy</a>
+          <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom Infrastructure</strong>FTTH · GSM Towers · Consultancy</a>
           <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential · Commercial · Renovation · Supervision</a>
         </div>
       </div>
@@ -211,7 +211,7 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
         <p class="spec">FTTH · GPON / XGS-PON · OTDR Tested</p>
         <p class="lead">We plan, deploy and commission fiber optic networks and telecom infrastructure for operators and developers in every province of Pakistan.</p>
         <ul class="tag-list">
-          <li>FTTH Deployment</li><li>5G Tower Infrastructure</li><li>Site Acquisition</li><li>Telecom Consultancy</li><li>Feasibility Reports</li>
+          <li>FTTH Deployment</li><li>GSM Tower Infrastructure</li><li>Site Acquisition</li><li>Telecom Consultancy</li><li>Feasibility Reports</li>
         </ul>
         <a class="btn btn-gold" href="telecom.html">Explore Telecom Infrastructure <span class="arrow" aria-hidden="true">→</span></a>
       </div>
@@ -223,7 +223,7 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
       <div class="panel tel reveal">
         <span class="hud" aria-hidden="true"></span>
         <div class="panel-meta"><span class="eyebrow"><span class="sec-no">Sector 01 · </span>Telecom Infrastructure</span><span class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
-        <h2>5G Tower Infrastructure</h2>
+        <h2>GSM Tower Infrastructure</h2>
         <p class="tagline">From Site Acquisition to Handover</p>
         <p class="spec">4G / 5G · Greenfield · Rooftop · Monopole</p>
         <p class="lead">A single point of accountability at every stage of the tower lifecycle.</p>
@@ -282,7 +282,7 @@ home = f'''<div class="zone-bg" aria-hidden="true"><div class="zone zone-telecom
   </section>
 </main>'''
 page('index.html', 'Zurosh Enterprises | Telecom Infrastructure & Construction, Pakistan',
-     'Zurosh Enterprises provides FTTH networks, 5G tower infrastructure, telecom consultancy, and residential and commercial construction across Pakistan.',
+     'Zurosh Enterprises provides FTTH networks, GSM tower infrastructure, telecom consultancy, and residential and commercial construction across Pakistan.',
      'home', home, 'home', three=True)
 
 # =========================================================================== TELECOM
@@ -295,7 +295,7 @@ telecom = f'''<main id="main" class="telecom-page">
       <div class="hero-copy">
         <span class="sector-badge">{ICON['tower'].replace('<svg', '<svg width="16" height="16"')} Sector 01 · Telecom Infrastructure</span>
         <h1>Telecom Infrastructure from Fiber to 5G</h1>
-        <p class="lead">Zurosh Enterprises designs, builds and commissions telecommunications infrastructure in Pakistan, including FTTH networks, turnkey 5G tower sites and specialist consultancy.</p>
+        <p class="lead">Zurosh Enterprises designs, builds and commissions telecommunications infrastructure in Pakistan, including FTTH networks, turnkey GSM tower sites and specialist consultancy.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
           <a class="btn btn-gold" href="#ftth">Our Telecom Services <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn btn-ghost on-dark" href="contact.html?sector=Telecom">Request a Proposal</a>
@@ -306,7 +306,7 @@ telecom = f'''<main id="main" class="telecom-page">
         <img class="fallback" src="assets/img/z-mark.svg" alt="">
         <div class="stage-caption" aria-hidden="true">
           <span class="cap-a"><i></i>Fiber Backbone Across Pakistan</span>
-          <span class="cap-b"><i></i>5G Tower Infrastructure</span>
+          <span class="cap-b"><i></i>GSM Tower Infrastructure</span>
         </div>
       </div>
     </div>
@@ -325,7 +325,7 @@ telecom = f'''<main id="main" class="telecom-page">
       </article>
 
       <article class="service-block" id="towers">
-        <div><div class="num">02</div><h2>5G Tower Infrastructure</h2><p class="lead">Turnkey tower sites delivered under a single contract, from site search to final handover.</p></div>
+        <div><div class="num">02</div><h2>GSM Tower Infrastructure</h2><p class="lead">Turnkey tower sites delivered under a single contract, from site search to final handover.</p></div>
         <div class="feature-grid">
           {card('map', 'Site Acquisition', 'Site hunting, landlord negotiation, lease agreements and title verification.')}
           {card('doc', 'NOC &amp; Approval Facilitation', 'Support for clients in obtaining NOCs and statutory approvals, including documentation and liaison with the relevant authorities.')}
@@ -414,7 +414,7 @@ telecom = f'''<main id="main" class="telecom-page">
 {cta('Planning a Fiber or Tower Rollout?', 'Send us your scope and timeline, and our team will prepare a proposal.', 'Telecom')}
 </main>'''
 page('telecom.html', 'Telecom Infrastructure | Zurosh Enterprises',
-     'FTTH networks, turnkey 5G tower infrastructure from site acquisition to handover, telecom consultancy and business feasibility reports in Pakistan.',
+     'FTTH networks, turnkey GSM tower infrastructure from site acquisition to handover, telecom consultancy and business feasibility reports in Pakistan.',
      'telecom', telecom, three=True)
 
 # =========================================================================== CONSTRUCTION
@@ -617,7 +617,7 @@ about = f'''<main id="main">
         <p class="lead" style="margin-inline:auto">Telecommunications and construction require different expertise, partners and approvals, so each sector is run as a separate division under the same standards.</p>
       </div>
       <div class="split-sectors about-sectors reveal">
-        <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom Infrastructure</strong>FTTH networks, 5G tower infrastructure, telecom consultancy and business feasibility reports.</a>
+        <a class="t" href="telecom.html"><small>Sector 01</small><strong>Telecom Infrastructure</strong>FTTH networks, GSM tower infrastructure, telecom consultancy and business feasibility reports.</a>
         <a class="c" href="construction.html"><small>Sector 02</small><strong>Construction</strong>Residential units, commercial buildings, renovation and extension, and construction supervision.</a>
       </div>
     </div>
@@ -671,7 +671,7 @@ def division(key, tag, title, text, cls):
         </div>
       </div>'''
 
-DIVISIONS = division('telecom', 'Sector 01', 'Telecom Infrastructure Division', 'FTTH networks, 5G tower infrastructure, consultancy and business feasibility reports.', 'telecom-head') + \
+DIVISIONS = division('telecom', 'Sector 01', 'Telecom Infrastructure Division', 'FTTH networks, GSM tower infrastructure, consultancy and business feasibility reports.', 'telecom-head') + \
             division('construction', 'Sector 02', 'Construction Division', 'Residential units, commercial buildings, and renovation and extension works.', 'construction-head')
 DIVISION_SECTION = f'''  <section class="section alt">
     <div class="container">

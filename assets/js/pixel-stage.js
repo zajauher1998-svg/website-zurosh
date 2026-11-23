@@ -1,7 +1,7 @@
 /* ==========================================================================
    Zurosh Enterprises — 3D pixel stage
    The Zurosh "Z" is voxelised into thousands of small cubes ("pixels").
-   Every other shape on the site (globe, 5G tower, buildings) is built from
+   Every other shape on the site (globe, GSM tower, buildings) is built from
    the exact same set of pixels, so the Z can rotate, shatter and re-assemble
    into each page's subject.
 
@@ -837,7 +837,7 @@
 
   /* ======================================================================
      Sector pages: the hero loops between two shapes on a timer
-     (telecom: map of Pakistan with fiber network <-> 5G tower;
+     (telecom: map of Pakistan with fiber network <-> GSM tower;
       construction: house <-> commercial plaza)
      ====================================================================== */
   function initCycle(canvas) {
